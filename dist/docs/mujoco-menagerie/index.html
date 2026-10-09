@@ -1,0 +1,131 @@
+<!doctype html><html lang="en" data-base-path=""><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MuJoCo Menagerie | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: MuJoCo Menagerie"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/mujoco-menagerie/"><meta property="og:title" content="MuJoCo Menagerie"><meta property="og:description" content="GenerativeDynamics documentation: MuJoCo Menagerie"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/mujoco-menagerie/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/gpu/" >GPU workflows</a><a href="/docs/docker/" >Docker</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/mujoco-menagerie/" aria-current="page">MuJoCo Menagerie</a><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Integrations</div><h1 id="mujoco-menagerie">MuJoCo Menagerie</h1>
+<p>GenerativeDynamics uses MuJoCo Menagerie robot descriptions and meshes for
+selected simulation, execution, and rendering paths, including Unitree Go2 and
+G1. The integration supplies robot assets; the framework supplies the task,
+planner, controller, and evaluation interfaces. Adding the asset catalogue does
+not make every Menagerie robot a supported framework recipe.</p>
+<h2 id="initialize-the-pinned-assets">Initialize the pinned assets</h2>
+<p>From the GenerativeDynamics repository root:</p>
+<pre><code class="language-bash">bash scripts/setup/setup_mujoco_menagerie.sh
+</code></pre>
+<p>For source-based simulation outside Docker, install the simulation dependencies
+in your Python environment as well:</p>
+<pre><code class="language-bash">python -m pip install -e &quot;.[simulation]&quot;
+</code></pre>
+<p>The setup script initializes <code>third_party/mujoco_menagerie</code> when needed and
+applies the project&#39;s Go2 MJX adaptation. The submodule points to the official
+upstream repository at commit:</p>
+<pre><code class="language-text">a03e87bf13502b0b48ebbf2808928fd96ebf9cf3
+</code></pre>
+<p>Use the setup script instead of replacing the checkout with the latest upstream
+revision. It checks the revision and patch state before changing files.</p>
+<h2 id="what-the-go2-patch-changes">What the Go2 patch changes</h2>
+<p><code>third_party/patches/mujoco_menagerie-go2-mjx.patch</code> changes 13 collision
+geometries in <code>unitree_go2/go2_mjx.xml</code> to explicitly use spheres with one
+radius. It preserves the earlier local Go2 MJX adaptation; it does not modify
+robot meshes, inertial/dynamics parameters, or the G1 model.</p>
+<p>The setup command is repeatable. An already applied patch is retained; a
+conflicting patch or unexpected revision causes the script to stop without
+resetting or cleaning the checkout. On a fresh setup, Git may report the Go2
+XML as a local submodule modification while <code>HEAD</code> remains at the official pin.
+The former local commit <code>e5146679f3cfcb327cf759fc9706f5bb0236bd5e</code> is also
+recognized and preserved, but is not the revision to fetch from upstream.</p>
+<h2 id="paths-and-an-existing-checkout">Paths and an existing checkout</h2>
+<p>The standard checkout lives at <code>third_party/mujoco_menagerie</code>. Relevant robot
+paths are:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Path below the Menagerie root</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Go2 robot</td>
+<td><code>unitree_go2/go2.xml</code></td>
+</tr>
+<tr>
+<td>Go2 MJX variant patched by the framework</td>
+<td><code>unitree_go2/go2_mjx.xml</code></td>
+</tr>
+<tr>
+<td>G1 robot candidates</td>
+<td><code>unitree_g1/g1.xml</code>, <code>unitree_g1/g1_mjx.xml</code></td>
+</tr>
+<tr>
+<td>G1 scene candidates</td>
+<td><code>unitree_g1/scene.xml</code>, <code>unitree_g1/scene_mjx.xml</code></td>
+</tr>
+</tbody></table>
+<p>Resolvers choose available candidates according to the requested model/scene and
+MJX preference. Keep each robot&#39;s mesh and scene directories together.</p>
+<p>To use an independently initialized checkout at the expected revision:</p>
+<pre><code class="language-bash">bash scripts/setup/setup_mujoco_menagerie.sh /absolute/path/to/mujoco_menagerie
+export MUJOCO_MENAGERIE_PATH=/absolute/path/to/mujoco_menagerie
+</code></pre>
+<p><code>MUJOCO_MENAGERIE_PATH</code> points to the catalogue root, not the <code>unitree_go2</code> or
+<code>unitree_g1</code> subdirectory. Passing a directory to the setup script checks and
+patches it; it does not configure the runtime environment variable for you.</p>
+<p>Inspect the paths the framework actually resolves:</p>
+<pre><code class="language-python">from genedynamics.robots import get_robot_registry
+
+registry = get_robot_registry()
+print(&quot;Go2:&quot;, registry.get_model_path(&quot;quadruped&quot;, &quot;go2&quot;))
+print(&quot;G1:&quot;, registry.get_model_path(&quot;humanoid&quot;, &quot;g1&quot;))
+</code></pre>
+<p>G1 resolution prefers an explicit override, then the environment variable,
+an installed Menagerie package, and the project tree. The current Go2 registry
+checks an installed Menagerie package before the environment variable. If a
+different installation is being selected, use the chosen component&#39;s explicit
+model-path option and inspect the resolved path. A found file establishes asset
+location, not successful simulation or task performance.</p>
+<h2 id="cpu-gpu-and-rendering">CPU, GPU, and rendering</h2>
+<p>Asset setup is independent of compute-device selection. MuJoCo and MJX consume
+robot model files; the planner, physics adapter, and renderer determine where
+computation runs. Selecting <code>--device gpu</code> for a planner does not automatically
+move its controller or renderer onto the GPU.</p>
+<p>MJX paths prefer compatible model/scene variants where available. The Go2 patch
+addresses that model&#39;s collision geometry, not general CUDA installation. Follow
+<a href="/docs/gpu/">GPU workflows</a> and <a href="/docs/compatibility/">compatibility</a> for device
+setup and per-task support.</p>
+<h2 id="use-the-assets-with-docker">Use the assets with Docker</h2>
+<p>See <a href="/docs/docker/">Docker setup</a> for building and selecting the CPU or GPU
+service.</p>
+<p>The supplied Compose services mount the repository at <code>/workspace</code>. Both images
+set <code>MUJOCO_MENAGERIE_PATH=/workspace/third_party/mujoco_menagerie</code>, so the
+initialized host checkout is visible at the expected container path.</p>
+<p>Initialize through the mounted checkout after building the CPU image:</p>
+<pre><code class="language-bash">docker compose -f docker/compose.cpu.yml build
+docker compose -f docker/compose.cpu.yml run --rm genedynamics-dev-cpu \
+  bash scripts/setup/setup_mujoco_menagerie.sh
+</code></pre>
+<p>The change persists in the host checkout. The GPU service uses the same asset
+mount. CPU Compose selects OSMesa rendering (<code>MUJOCO_GL=osmesa</code>); GPU Compose
+selects EGL (<code>MUJOCO_GL=egl</code>). These are headless artifact-rendering paths.</p>
+<p>The Docker build copies packaged framework robot assets, but does not copy the
+whole Menagerie submodule into the image. Likewise, the optional submodule is
+not included in the Python wheel. Keep the checkout mounted for recipes that
+need it.</p>
+<p>For an external checkout, initialize and patch it on the host, then mount it
+read-only and set its container-visible path:</p>
+<pre><code class="language-bash">docker compose -f docker/compose.cpu.yml run --rm \
+  -v /absolute/path/to/mujoco_menagerie:/opt/menagerie:ro \
+  -e MUJOCO_MENAGERIE_PATH=/opt/menagerie \
+  genedynamics-dev-cpu \
+  python -c &quot;from genedynamics.robots import get_robot_registry; print(get_robot_registry().get_model_path(&#39;humanoid&#39;, &#39;g1&#39;))&quot;
+</code></pre>
+<p>Do not run the patching setup command against that read-only mount.</p>
+<h2 id="sources-and-model-licenses">Sources and model licenses</h2>
+<p>The framework&#39;s MIT license does not replace the individual model licenses.
+Retain the corresponding model notices when redistributing descriptions or
+meshes. The repository records the integration in:</p>
+<ul>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/.gitmodules">Submodule definition</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/scripts/setup/setup_mujoco_menagerie.sh">Asset setup script</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/third_party/patches/README.md">Pinned revision and Go2 patch notes</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/robots/registry.py">Robot registry</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/robots/g1/assets.py">G1 asset resolver</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/docker/README.md">Docker setup</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a></li>
+</ul>
+<div class="doc-origin">Based on the framework documentation · Website guide · main</div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/humanoid-corridor/">Previous: Humanoid corridor</a><a href="/docs/d3il/">Next: D3IL integration</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#initialize-the-pinned-assets">Initialize the pinned assets</a><a href="#what-the-go2-patch-changes">What the Go2 patch changes</a><a href="#paths-and-an-existing-checkout">Paths and an existing checkout</a><a href="#cpu-gpu-and-rendering">CPU, GPU, and rendering</a><a href="#use-the-assets-with-docker">Use the assets with Docker</a><a href="#sources-and-model-licenses">Sources and model licenses</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

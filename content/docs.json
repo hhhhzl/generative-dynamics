@@ -24,7 +24,7 @@
       "sourcePath": "docs/index.md",
       "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/index.md",
       "kind": "repository-document",
-      "sha256": "3b9252523f7235b87f07ca5a2d8be5eac64acb40d5c82bae7c98d235c5e80e99",
+      "sha256": "a140f40dd74f7144170bf183a4411cd076b263e4ce412c4c5f6e1fa48de928ef",
       "sourceSha256": "f8f50f6defb2530786037af116bce90920decaa24300fb31a1d2ecef8189845c"
     },
     {
@@ -36,7 +36,7 @@
       "sourcePath": "docs/getting-started/installation.md",
       "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/getting-started/installation.md",
       "kind": "repository-document",
-      "sha256": "dbdcf7727b8b477cef588e4a05119c2aefc75dc3ee4ebb745812977f4c661458",
+      "sha256": "58feb354edc4c2e9d8740e87b96a86278c7183dde330813c21fccc5088b67e4a",
       "sourceSha256": "c95557a1a99f26c5e2e5e5215a146a49f4fff3db11f0e4c3c4572b6ab933b11e"
     },
     {
@@ -204,8 +204,20 @@
       "sourcePath": "docs/recipes/humanoid-corridor.md",
       "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/recipes/humanoid-corridor.md",
       "kind": "repository-document",
-      "sha256": "0b60c628e659a37ad83240c93ee1d92a4c6635766c6b761de7eb8c4d18841536",
+      "sha256": "bf44290497e5f4fbb19da7a8cd7658e40f50df3bfd1f403f678e58e2ed2958c7",
       "sourceSha256": "0b60c628e659a37ad83240c93ee1d92a4c6635766c6b761de7eb8c4d18841536"
+    },
+    {
+      "id": "mujoco-menagerie",
+      "title": "MuJoCo Menagerie",
+      "group": "Integrations",
+      "path": "docs/integrations/mujoco-menagerie.md",
+      "route": "/docs/mujoco-menagerie",
+      "sourcePath": null,
+      "sourceUrl": null,
+      "kind": "source-derived-guide",
+      "sha256": "6ad03b7df358db1791ac13b972a6a2aaf8722cd9979638182038723d6fcc0d32",
+      "sourceSha256": null
     },
     {
       "id": "d3il",
@@ -288,7 +300,7 @@
       "sourcePath": "docs/reference/compatibility.md",
       "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/compatibility.md",
       "kind": "repository-document",
-      "sha256": "d8a1c8d44b59f8c35df45e944176d15dcb4dbb600646872296bc25685ca0d7d1",
+      "sha256": "d7f4238818b769027f1d88add5848445688074b879c9fe2e596b77ac4863457c",
       "sourceSha256": "d8a1c8d44b59f8c35df45e944176d15dcb4dbb600646872296bc25685ca0d7d1"
     },
     {
@@ -312,7 +324,7 @@
       "sourcePath": "docs/assets/README.md",
       "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/assets/README.md",
       "kind": "repository-document",
-      "sha256": "b1e3be6233d1cd6f09a2b3ff2672826b27571942e9c137b458362fc23892e7dd",
+      "sha256": "ebf95df5d10e8d7415b47bbe4f54d4948e9a740a51394ff8a1b4710882bc95ad",
       "sourceSha256": "fc4d3f3f8f4ba450f3dc594ff9c15b73a74144d166f290424316ae625e529a11"
     },
     {

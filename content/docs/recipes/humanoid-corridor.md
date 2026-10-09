@@ -4,6 +4,10 @@ The Zone A recipe exercises the 2GO constrained planner on a multimodal
 corridor. V1 supports the planning configuration; humanoid walking and
 push-to-line execution remain deferred.
 
+For G1 model rendering or simulator execution paths, prepare the robot assets
+with the [MuJoCo Menagerie integration](/docs/mujoco-menagerie/). Asset setup is
+separate from the corridor planning configuration below.
+
 ## Inspect the resolved robot task
 
 ```bash

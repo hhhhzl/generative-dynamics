@@ -74,8 +74,8 @@ bash scripts/setup/setup_mujoco_menagerie.sh
 ```
 
 The setup is safe to repeat and refuses conflicting edits. See the
-[asset revision and patch notes](https://github.com/hhhhzl/genedynamics/blob/main/third_party/patches/README.md)
-for the upstream pin and local-checkout behavior.
+[MuJoCo Menagerie integration](/docs/mujoco-menagerie/) for the pinned revision,
+Go2 patch, model paths, and Docker mounts.
 
 ## D3IL
 

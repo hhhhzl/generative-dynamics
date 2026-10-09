@@ -4,20 +4,20 @@
   "publicPrefix": "/media/",
   "sourceGalleryVersion": 2,
   "notes": [
-    "All clips are copied byte-for-byte from the current README source gallery; checksums were verified.",
-    "Planning/simulation excerpts are normalized to six seconds; hardware excerpts to eight seconds.",
-    "Displayed speed is not execution latency. Adjacent source experiments are not synchronized.",
-    "MDOC multi-robot CBS remains in its original project; V1 exposes the single-robot planning component.",
+    "2GO demonstrations are re-encoded from original GIF/video sources without retiming; original frames and timestamps are retained.",
+    "Hardware excerpts use original source-video timing. The 2GO hardware excerpt preserves the full frame at 1\u00d7 speed.",
+    "Other planning/simulation clips retain the previous presentation timing; consult the per-clip playback description.",
+    "Source animation timing does not establish planning latency. Adjacent experiments are not synchronized.",
     "Hardware research footage does not imply that installing V1 supplies a qualified robot driver/controller setup.",
-    "MGA soft/compliant-surface clips show rigid robots contacting compliant material, not soft-robot morphology co-design."
+    "2GO hardware uses AR virtual obstacles; MGA hardware shows the model-based refinement component without an RL prior."
   ],
   "homepageIds": [
     "mdoc_cbs_random",
     "mdcoas_7dof_execution",
     "twogo_go2_s2",
-    "twogo_g1_zone_c",
-    "mga_surface_hybrid_stripes",
-    "mga_peg_id_wide"
+    "hardware_twogo_g1",
+    "hardware_mga_surface_foam",
+    "hardware_mga_peg_insert"
   ],
   "clips": [
     {
@@ -111,10 +111,10 @@
       "mimeType": "video/mp4",
       "width": 512,
       "height": 288,
-      "durationSeconds": 6.0,
-      "fps": 12,
-      "bytes": 262624,
-      "sha256": "0e10c6d281cc9045353d06b6665b7086f0d28c164cc8617181e5ecffd89c451a",
+      "durationSeconds": 16.28,
+      "fps": 9.09090909090909,
+      "bytes": 635846,
+      "sha256": "27a3120356376df089dbba0d48afed751e706875b4f2a97e39a95916b84382e9",
       "source": {
         "root": "project",
         "path": "results/quadruped/stepping_stones_2d/deploy/governed/twogo/level_5/seed_2/governed/trajectory_mujoco.gif",
@@ -131,11 +131,14 @@
         "start": 0.0,
         "end": 16.28
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/twogo_go2_s2.mp4",
-      "playback": "Source excerpt rescaled to 6.0 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "results/quadruped/stepping_stones_2d/deploy/governed/twogo/level_5/seed_2/governed/trajectory_mujoco.gif",
+      "playback": "Original source timing preserved; 1\u00d7 playback, looped and silent. Source animation timing is not a planning-latency benchmark.",
       "qualification": "research-demonstration",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 148,
+      "timingPolicy": "source",
+      "playbackRate": 1
     },
     {
       "id": "twogo_g1_zone_c",
@@ -150,10 +153,10 @@
       "mimeType": "video/mp4",
       "width": 512,
       "height": 384,
-      "durationSeconds": 6.0,
-      "fps": 12,
-      "bytes": 254448,
-      "sha256": "78796883b6fe7974ca5efaa4e5cf5f3c872dd9285ee7a247c2db53f5b691c124",
+      "durationSeconds": 34.56,
+      "fps": 16.666666666666664,
+      "bytes": 1256070,
+      "sha256": "6e96e31ae7fa00deacb0882ccc3a5b8376da1a838d64b55af427302c17a66a38",
       "source": {
         "root": "project",
         "path": "results/humanoid/corridor_2d/deploy/governed/twogo_zone_c/level_1/seed_2/trajectory_mujoco.gif",
@@ -170,11 +173,14 @@
         "start": 0.0,
         "end": 34.56
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/twogo_g1_zone_c.mp4",
-      "playback": "Source excerpt rescaled to 6.0 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "results/humanoid/corridor_2d/deploy/governed/twogo_zone_c/level_1/seed_2/trajectory_mujoco.gif",
+      "playback": "Original source timing preserved; 1\u00d7 playback, looped and silent. Source animation timing is not a planning-latency benchmark.",
       "qualification": "research-demonstration",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 576,
+      "timingPolicy": "source",
+      "playbackRate": 1
     },
     {
       "id": "mga_surface_hybrid_stripes",
@@ -415,18 +421,18 @@
       "title": "Humanoid hardware",
       "method": "2GO",
       "task": "Humanoid hardware",
-      "caption": "Original paper hardware footage of 2GO humanoid execution.",
+      "caption": "Real Unitree G1 navigates motion-capture-registered AR virtual obstacles.",
       "medium": "hardware",
       "usage": "hardware",
       "path": "assets/media/hardware_twogo_g1.mp4",
       "publicPath": "/media/hardware_twogo_g1.mp4",
       "mimeType": "video/mp4",
-      "width": 640,
-      "height": 598,
-      "durationSeconds": 8.0,
-      "fps": 12,
-      "bytes": 607170,
-      "sha256": "080075de2699f7aab46aebaef26e48db1ad9176d9fdd64e247a93588bbcb25d6",
+      "width": 960,
+      "height": 540,
+      "durationSeconds": 20.0,
+      "fps": 30.0,
+      "bytes": 2030596,
+      "sha256": "a5056387971abe27da2643087707db17c1fdea4777887c7c8dbfedb3c4122542",
       "source": {
         "root": "ral_submission",
         "path": "video/2go.mp4",
@@ -435,19 +441,23 @@
         "source_height": 1080,
         "source_duration": 136.27,
         "crop": [
-          400,
-          80,
-          1310,
-          930
+          0,
+          0,
+          1920,
+          1080
         ],
         "start": 92,
-        "end": 102
+        "end": 112
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/hardware_twogo_g1.mp4",
-      "playback": "Source excerpt rescaled to 8 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "video/2go.mp4",
+      "playback": "Original hardware video, 92\u2013112 s excerpt at 1\u00d7 playback; full frame preserved, looped and silent.",
       "qualification": "paper-hardware-system",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 600,
+      "timingPolicy": "source",
+      "playbackRate": 1,
+      "heroLabel": "Real Unitree G1 \u00b7 AR obstacles"
     },
     {
       "id": "hardware_mga_surface_foam",
@@ -462,10 +472,10 @@
       "mimeType": "video/mp4",
       "width": 510,
       "height": 640,
-      "durationSeconds": 8.0,
-      "fps": 12,
-      "bytes": 225466,
-      "sha256": "a3a5bcdd88f3862fa89458c12fe175ad7b1eb265529d5ba3d71b2a09534c800e",
+      "durationSeconds": 12.0,
+      "fps": 30.0,
+      "bytes": 475245,
+      "sha256": "2e26db4282634459f3789636d3a8f2eb73480e585418b5815f1890b35486f321",
       "source": {
         "root": "mga_supplement",
         "path": "videos/deployment.mp4",
@@ -482,11 +492,15 @@
         "start": 12,
         "end": 24
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/hardware_mga_surface_foam.mp4",
-      "playback": "Source excerpt rescaled to 8 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "videos/deployment.mp4",
+      "playback": "Original source-video timing preserved; looped and silent. No additional speed change is applied.",
       "qualification": "paper-hardware-system",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 360,
+      "timingPolicy": "source",
+      "playbackRate": 1,
+      "heroLabel": "Compliant surface interaction"
     },
     {
       "id": "hardware_mga_surface_curved",
@@ -501,10 +515,10 @@
       "mimeType": "video/mp4",
       "width": 606,
       "height": 640,
-      "durationSeconds": 8.0,
-      "fps": 12,
-      "bytes": 312232,
-      "sha256": "7c0cb1f82574f7993ea67acf0d4b719582332d6c9f4714241c1ea5db9babda11",
+      "durationSeconds": 12.0,
+      "fps": 30.0,
+      "bytes": 680650,
+      "sha256": "a64ae9ced9278f807da1d22508b81f38392790703e8180e73d83d1e06077d0e5",
       "source": {
         "root": "mga_supplement",
         "path": "videos/deployment.mp4",
@@ -521,11 +535,14 @@
         "start": 12,
         "end": 24
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/hardware_mga_surface_curved.mp4",
-      "playback": "Source excerpt rescaled to 8 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "videos/deployment.mp4",
+      "playback": "Original source-video timing preserved; looped and silent. No additional speed change is applied.",
       "qualification": "paper-hardware-system",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 360,
+      "timingPolicy": "source",
+      "playbackRate": 1
     },
     {
       "id": "hardware_mga_peg_insert",
@@ -540,10 +557,10 @@
       "mimeType": "video/mp4",
       "width": 492,
       "height": 640,
-      "durationSeconds": 8.0,
-      "fps": 12,
-      "bytes": 284131,
-      "sha256": "9a30daec445342abb3187f55ddad170ca10012d50ea8b2452fabb608c44a7d1e",
+      "durationSeconds": 12.0,
+      "fps": 30.0,
+      "bytes": 595521,
+      "sha256": "d10f1475cbdaf5518765e6d43f23bd4181bfb8c01d85db2fc87cd45d55ff17d6",
       "source": {
         "root": "mga_supplement",
         "path": "videos/deployment.mp4",
@@ -560,11 +577,15 @@
         "start": 12,
         "end": 24
       },
-      "sourceManifest": "docs/assets/showcase_sources/v2/manifest.json",
-      "sourceClip": "docs/assets/showcase_sources/v2/hardware_mga_peg_insert.mp4",
-      "playback": "Source excerpt rescaled to 8 seconds; looped, silent; not real-time execution or latency evidence.",
+      "sourceManifest": null,
+      "sourceClip": "videos/deployment.mp4",
+      "playback": "Original source-video timing preserved; looped and silent. No additional speed change is applied.",
       "qualification": "paper-hardware-system",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "frameCount": 360,
+      "timingPolicy": "source",
+      "playbackRate": 1,
+      "heroLabel": "Contact-rich insertion"
     }
   ],
   "missing": [],
@@ -572,5 +593,10 @@
     "architecture-overview.png",
     "architecture.svg",
     "showcase-poster.png"
+  ],
+  "heroIds": [
+    "hardware_twogo_g1",
+    "hardware_mga_surface_foam",
+    "hardware_mga_peg_insert"
   ]
 }

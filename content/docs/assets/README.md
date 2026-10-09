@@ -1,6 +1,6 @@
 # Demonstration gallery
 
-The homepage animation is one continuous, silent gallery of **44 native paper
+The framework README uses one continuous, silent gallery of **44 native paper
 and hardware clips**. A camera visits five groups, then pulls back to the whole
 wall before returning to the first group. Wider gutters separate the groups.
 There are no added titles, captions, logos or labels inside the animation.
@@ -13,7 +13,26 @@ There are no added titles, captions, logos or labels inside the animation.
 | 4 | **MGA** | Twelve surface geometry/material variants, three peg-insertion variants and three humanoid contact tasks. |
 | 5 | **Hardware** | 2GO humanoid execution, plus MGA rigid/curved/compliant scanning and peg insertion. |
 
-## Files and regeneration
+## Website playback
+
+This website presents individual clips rather than the README’s moving gallery.
+All 2GO animations retain their original frame timing, and hardware excerpts
+retain the original source-video timing. They loop silently without added
+acceleration. The homepage hero shows real G1 hardware with AR virtual obstacles,
+plus MGA hardware surface interaction and insertion.
+
+| Website clip | Preserved source interval |
+| --- | --- |
+| 2GO Go2 stepping stones | Full original GIF, 16.28 seconds |
+| 2GO G1 corridor | Full original GIF, 34.56 seconds |
+| 2GO real G1 | 92–112 seconds of the original hardware video, played over 20 seconds |
+| MGA hardware excerpts | 12–24 seconds of the original deployment video, played over 12 seconds |
+
+Other website planning and simulation clips retain presentation timing.
+Source animation timing does not establish planning latency or synchronize
+separate experiments. See each [result’s playback context](/results/).
+
+## README gallery files and regeneration
 
 - `showcase.gif` is the GitHub-compatible looping animation.
 - `showcase.mp4` is the 1344 × 992 video with the same 24-second camera journey.
@@ -54,7 +73,7 @@ overrides. It reads those folders and writes only to the requested output path.
 All robot motion, diffusion trajectories and scene geometry come from the
 original footage. Colors are preserved. Crops remove source titles, subtitles,
 rulers, plots and empty margins; frames retain their aspect ratios. No robot
-motion or scientific data is synthesized. Clips loop, and their selected time
+motion or scientific data is synthesized. In the README gallery, clips loop and their selected time
 ranges are rescaled to six seconds for simulation/planning or eight seconds for
 hardware. Playback and the moving gallery camera do **not** indicate execution
 latency, synchronization between experiments or real-time performance.

@@ -33,6 +33,11 @@ parity, compilation, memory, and reliability gates are measured.
 | Isaac Lab | NVIDIA container required | Not available | Experimental deployment adapter |
 | JAX CUDA | NVIDIA driver/runtime required | Not available | Installable; task qualification varies |
 
+Robot model assets are configured separately from the compute backend. The
+[MuJoCo Menagerie integration](/docs/mujoco-menagerie/) covers the pinned Go2/G1
+assets, MJX adaptation, and container paths; asset availability alone does not
+establish a qualified task or hardware deployment.
+
 ## Backend acceptance contract
 
 A future backend becomes supported only after it passes:

@@ -55,6 +55,7 @@ scheduling, and closed-form, JAXopt OSQP, OSQP and CVXOPT numerical solvers.
 | Use an environment and planner in your own Python loop | [Direct Python example](/docs/python-api) |
 | Run JAX planners on Linux/NVIDIA | [GPU workflows](/docs/gpu/) |
 | Use isolated CPU or NVIDIA GPU environments | [Docker](/docs/docker/) |
+| Initialize pinned robot descriptions and meshes | [MuJoCo Menagerie](/docs/mujoco-menagerie/) |
 | Save trajectories, metrics and multi-seed experiments | [First experiment](/docs/quickstart) |
 | Train models and reuse learned priors | [Learning workflows](/docs/learning-and-priors) |
 | Choose a paper algorithm and task | [Recipes](/docs/recipes) |
