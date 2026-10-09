@@ -1,0 +1,167 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Validation evidence | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Validation evidence"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/v1-evidence/"><meta property="og:title" content="Validation evidence"><meta property="og:description" content="GenerativeDynamics documentation: Validation evidence"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/v1-evidence/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" aria-current="page">Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Project</div><h1 id="v1-validation-evidence">V1 validation evidence</h1>
+<p>This page records the release-candidate checks from 2026-10-05 and the
+documentation/package refresh on 2026-10-09, on branch
+<code>release/v1-open-source</code>. It is validation evidence, not a performance claim.</p>
+<h2 id="release-surface">Release surface</h2>
+<ul>
+<li>80 experiment configurations and 16 deployment configurations validated.</li>
+<li>16 method registrations and 7 environment configuration keys across six
+task families matched the machine-readable V1 catalogue.</li>
+<li>Soft-robot, co-design, 3DGS, MBD3D, MRMFMBD, and morphology paths were absent
+from the source and wheel inventories.</li>
+<li>Humanoid push-to-line and MGA GPU remain outside the readiness claim.</li>
+</ul>
+<h2 id="test-evidence">Test evidence</h2>
+<p>The CPU Docker regression produced:</p>
+<pre><code class="language-text">725 passed, 19 skipped, 152 deselected, 0 failed
+</code></pre>
+<p>The deselected cases carry explicit slow, Docker, accelerator, Brax, or Isaac
+markers. After making D3IL registration lazy, the affected regression added:</p>
+<pre><code class="language-text">6 passed, 2 optional-dependency skips, 0 failed
+</code></pre>
+<p>The validated numerical stack was Python 3.10.20, JAX/JAXlib 0.6.2, NumPy
+2.2.6, and SciPy 1.15.3. CI repeats the portable core subset on Python 3.10
+and 3.12.</p>
+<h2 id="package-evidence">Package evidence</h2>
+<p>The final release-candidate wheel has:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Filename</td>
+<td><code>genedynamics-0.1.0-py3-none-any.whl</code></td>
+</tr>
+<tr>
+<td>Size</td>
+<td>12,160,715 bytes</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>789</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td><code>bf970959dac27924aff198c2d3814ec9c359041c079b7e87e05b4d1925759927</code></td>
+</tr>
+<tr>
+<td>Required package assets missing</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Forbidden V1 paths</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Twine metadata check</td>
+<td>Passed</td>
+</tr>
+</tbody></table>
+<p>The wheel and all core dependencies were installed into a new Python 3.12
+virtual environment on macOS arm64. <code>pip check</code>, package/version import, JAX CPU
+backend discovery, optional D3IL plugin import, and the documented planar
+dry-run all passed from outside the repository checkout.</p>
+<p>After the README visual refresh, the wheel was rebuilt and its metadata passed
+Twine again. Comparing the archives showed changes only in <code>METADATA</code> and
+<code>RECORD</code>; all runtime/package files are byte-identical to the CPU-tested wheel.</p>
+<p>The source and wheel inventory is stored in
+<code>release/v1_inventory.json</code>. The core dependency license closure is stored in
+<code>release/v1_dependency_licenses.json</code>.</p>
+<h2 id="static-and-documentation-evidence">Static and documentation evidence</h2>
+<ul>
+<li>MkDocs built in strict mode.</li>
+<li>1,017 release Python files parsed with zero syntax errors.</li>
+<li><code>git diff --check</code> reported no whitespace errors.</li>
+<li>Credential pattern scanning reported zero AWS, GitHub, OpenAI, Slack, or
+private-key signatures.</li>
+<li>The current source inventory reports three files above 10 MiB: two D3IL
+camera meshes and the homepage GIF. None is included in the wheel.</li>
+<li>The 20-package core dependency closure reported no detected strong-copyleft
+license.</li>
+</ul>
+<h2 id="documentation-refresh-2026-10-09">Documentation refresh — 2026-10-09</h2>
+<ul>
+<li>The homepage now uses 44 original clips in five groups: MDOC, MD-COAS, 2GO,
+MGA and hardware. Titles, subtitles and rulers were cropped from the inputs;
+the camera composition adds no text. All five groups and camera views were
+visually reviewed.</li>
+<li>The 24-second GIF is 896 × 661 at 6 fps (21.57 MiB). The same composition is
+available as a 1344 × 992, 12 fps MP4 (6.59 MiB). This is presentation playback,
+not a runtime or latency measurement.</li>
+<li>All 44 input sizes and SHA-256 checksums matched
+<code>docs/assets/showcase_sources/v2/manifest.json</code>. The exports regenerate from
+these checked-in inputs without the original research folders or simulators.</li>
+<li>MD-COAS pairs three diffusion views with native animations of 20 candidate
+trajectories: planar L6/seed 0, planar L10/seed 8 and arm avoidance L1/seed 0.
+The arm candidates are TCP projections of planned 7-DoF trajectories. Source
+GIF hashes were verified; every clip occupies exactly one gallery tile.</li>
+<li>The new Python example was run on CPU from the rebuilt wheel, outside the
+repository checkout: <strong>48 steps, goal error 0.099</strong>, with finite-value and
+goal-arrival assertions passing. <code>pip check</code> and Twine metadata checks passed.</li>
+<li>Planner descriptions were checked against original papers. CFS-MBD is
+documented as MD-COAS&#39;s historical implementation name.</li>
+<li>Environment and constraint catalogues document six task families, seven
+configuration keys and four numerical constraint-solver interfaces.</li>
+<li>The framework positioning and architecture now connect policy learning,
+learned trajectory diffusion, model-based generative inference and control.
+The learning guide documents training, checkpoint reuse and offline reliability
+calibration without claiming automatic online retraining.</li>
+<li>The roadmap is a concise checklist, and the architecture uses a coordinated
+learning/task/execution palette. The gallery preserves native footage and a
+text-free composition.</li>
+<li>The documentation built in strict mode. README links, anchors and Python
+syntax passed static checks. Training-guide commands were checked against
+their parsers; no new training runs were performed. Runtime source, task
+configurations and tests are unchanged by this refresh; the earlier
+regression remains the runtime evidence.</li>
+</ul>
+<h2 id="manifold-positioning-and-batched-constraints-2026-10-09">Manifold positioning and batched constraints — 2026-10-09</h2>
+<ul>
+<li>The homepage follows “Generative dynamics on manifold” and shows the complete
+task-to-execution workflow: task definitions, planners, learning, constraints,
+the planning workflow, simulation, deployment and evaluation. A rendered PNG
+accompanies the editable SVG, with Learning explicitly connected to planner
+priors and offline evaluation feedback.</li>
+<li>The obsolete 2GO corridor and stepping-stone poster images were removed; the
+unified demonstration gallery is unchanged.</li>
+<li>The batch guide documents candidate, horizon and refinement axes, CBF/CFS and
+manifold feedback, MGA learned proposals, and DPCC/SafeDiffuser integration
+boundaries. Its JAX example ran with shape <code>(64, 20, 2)</code> and maximum residual
+<code>2.2351741790771484e-08</code>.</li>
+<li>README checks passed for 70 local links, 14 stable section anchors and Python
+syntax. MkDocs built in strict mode. The rebuilt wheel passed Twine and differs
+only in metadata from the preceding wheel; runtime files are unchanged.</li>
+</ul>
+<h2 id="ci-checkout-repair-2026-10-09">CI checkout repair — 2026-10-09</h2>
+<ul>
+<li>The reported GitHub failure occurred before testing: recursive checkout could
+not fetch Menagerie commit <code>e5146679f3cfcb327cf759fc9706f5bb0236bd5e</code> from
+its official remote. This was a local asset adaptation commit.</li>
+<li>The gitlink now pins its official parent
+<code>a03e87bf13502b0b48ebbf2808928fd96ebf9cf3</code>, verified through a shallow fetch
+from the official repository. The Go2 MJX changes are preserved as an explicit
+patch. Setup was checked for first application, repeat application and
+conflict refusal; the patched XML matches the original local version exactly.
+The existing local submodule checkout was left untouched.</li>
+<li>A new Python 3.12 core environment ran the workflow&#39;s selected tests with
+coverage: <strong>89 passed, 4 skipped</strong>. The selected simulation tests ran in a
+temporary macOS environment: <strong>20 passed, 1 skipped</strong>, including the G1
+TorchScript control path. The D3IL startup test skipped for optional dependencies.</li>
+<li>The Ubuntu simulation workflow now installs CPU Torch and <code>urchin</code> explicitly
+and applies the asset patch after checkout. Test selections remain enabled.
+These local checks do not claim that the new remote Actions run has completed.</li>
+</ul>
+<h2 id="open-gates">Open gates</h2>
+<ul>
+<li>The project now uses MIT. The earlier license inventory recorded the project
+as <code>UNKNOWN</code> before selection; regenerate that inventory for the release candidate.</li>
+<li>Publication-grade latency, throughput, memory, task-success, safety, and
+reliability benchmarks still require the versioned hardware protocols and
+raw artifacts defined in the metrics contract.</li>
+<li>Tagging and publication require a clean-checkout CI run and explicit owner
+approval.</li>
+</ul>
+<div class="doc-origin">Based on the framework documentation · docs/releases/v1_evidence.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/releases/v1_evidence.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/v1-scope/">Previous: Release scope</a><a href="/docs/testing/">Next: Testing</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#release-surface">Release surface</a><a href="#test-evidence">Test evidence</a><a href="#package-evidence">Package evidence</a><a href="#static-and-documentation-evidence">Static and documentation evidence</a><a href="#documentation-refresh-2026-10-09">Documentation refresh — 2026-10-09</a><a href="#manifold-positioning-and-batched-constraints-2026-10-09">Manifold positioning and batched constraints — 2026-10-09</a><a href="#ci-checkout-repair-2026-10-09">CI checkout repair — 2026-10-09</a><a href="#open-gates">Open gates</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

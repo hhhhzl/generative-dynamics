@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batched constraints | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Batched constraints"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/batched-constraints/"><meta property="og:title" content="Batched constraints"><meta property="og:description" content="GenerativeDynamics documentation: Batched constraints"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/batched-constraints/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" aria-current="page">Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Guides</div><h1 id="batched-constraints-and-generative-samples">Batched constraints and generative samples</h1>
+<p>Constraints help determine <strong>which trajectories the generative process produces</strong>.
+They can correct samples, change their importance weights, shape an update on a
+constraint manifold, or reject a final proposal before execution. A learned
+proposal still passes through the model and constraint checks enabled by its
+planner and task.</p>
+<h2 id="follow-a-candidate-batch">Follow a candidate batch</h2>
+<p>The notation below describes one planning call. <code>N</code> is the candidate count,
+<code>H</code> the rollout horizon, <code>Du</code> the action dimension, and <code>Dx</code> the state dimension.
+<code>K</code> denotes generative refinement steps; it is a separate axis from time.</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Typical shape</th>
+<th>What happens to it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Current plan</td>
+<td><code>(H, Du)</code></td>
+<td>Center of the next candidate distribution.</td>
+</tr>
+<tr>
+<td>Candidate actions</td>
+<td><code>(N, H, Du)</code></td>
+<td>Noise proposals or learned horizons enter the search.</td>
+</tr>
+<tr>
+<td>Rollout states</td>
+<td><code>(N, H + 1, Dx)</code></td>
+<td>Each trajectory starts from the current observed state.</td>
+</tr>
+<tr>
+<td>Constraint residuals</td>
+<td>Conceptually <code>(N, H, Nc)</code></td>
+<td>Task-specific violations are reduced into scores and feedback; implementations need not materialize this whole tensor.</td>
+</tr>
+<tr>
+<td>Candidate scores and weights</td>
+<td><code>(N,)</code></td>
+<td>Task reward and feasibility determine each candidate&#39;s contribution.</td>
+</tr>
+<tr>
+<td>Refined plan</td>
+<td><code>(H, Du)</code></td>
+<td>The weighted update can be filtered or retracted again.</td>
+</tr>
+</tbody></table>
+<pre><code class="language-mermaid">flowchart LR
+    P[&quot;Noise / learned proposals&quot;] --&gt; S[&quot;Candidate batch · N × H × Du&quot;]
+    S --&gt; C[&quot;Constraint filters / probes&quot;]
+    S --&gt; R[&quot;Dynamics rollout + residuals&quot;]
+    C --&gt; R
+    R --&gt; W[&quot;Weights + feasibility feedback&quot;]
+    C --&gt; G[&quot;Constraint geometry&quot;]
+    W --&gt; U[&quot;Generative update&quot;]
+    G --&gt; U
+    U --&gt; F[&quot;Filter / retract / accept&quot;]
+    F --&gt; E[&quot;Execute first action&quot;]
+    F -. &quot;next refinement step&quot; .-&gt; S
+</code></pre>
+<p>This is a composition map; the planner determines the exact order and which
+operations are active. The implementations below do not all filter every sample.</p>
+<h2 id="where-the-parallelism-lives">Where the parallelism lives</h2>
+<p><strong>Across candidates:</strong> JAX paths use <code>vmap</code> to apply rollout, geometry or
+projection kernels to independent trajectories. This is the <code>N</code> axis.</p>
+<p><strong>Along a trajectory:</strong> state-dependent filters must propagate the corrected
+state. CBF implementations use <code>lax.scan</code> over <code>H</code>: filter <code>u[t]</code>, step the
+dynamics with that corrected action, then evaluate the next state. These time
+steps cannot generally be treated as independent QPs.</p>
+<p><strong>Across refinement steps:</strong> the generative update depends on the previous
+plan. The JAX MDOC, MD-COAS and MGA refinement paths, and 2GO&#39;s enabled scan
+core, use a separate <code>lax.scan</code> over the diffusion/refinement axis.
+<code>plan_batch()</code> can add an outer axis for modes or seeds; it is distinct from
+the candidate batch inside one plan.</p>
+<p>Full-horizon CFS changes the coupling within a trajectory: it solves or
+approximately projects an action sequence, rather than treating every action
+independently. For single-integrator-style dynamics, cumulative action sums
+let the JAX path apply coupled constraints without constructing a dense
+<code>(H * Nc, H * Du)</code> matrix. Top-K selection and masked inactive rows keep
+constraint arrays compatible with compiled shapes.</p>
+<h2 id="how-each-planner-uses-the-batch">How each planner uses the batch</h2>
+<table>
+<thead>
+<tr>
+<th>Planner</th>
+<th>How constraints enter generative inference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MDOC</strong></td>
+<td>Every reverse step calls <code>apply_actions_batch()</code> on sampled actions. The filtered trajectories are rolled out and weighted; the updated mean is filtered again. CBF filters use candidate <code>vmap</code> around a stateful horizon <code>scan</code>.</td>
+</tr>
+<tr>
+<td><strong>MD-COAS</strong> (<code>cfsmbd</code> in configuration)</td>
+<td>CFS corrects per-step or full-horizon actions when its schedule enables projection. Rollout reward includes augmented-Lagrangian feasibility terms. The adaptive path measures unfiltered samples for violation feedback and scores filtered samples for the generative update.</td>
+</tr>
+<tr>
+<td><strong>2GO</strong></td>
+<td>Rollouts evaluate the candidate batch. A budgeted probe selects high-violation and random candidates, gathers them, maps a CFS retraction over the probe slots, and scatters corrections back. Probe displacement refines constraint geometry, which shapes the generative direction and noise. The updated proposal can be retracted again.</td>
+</tr>
+<tr>
+<td><strong>MGA</strong></td>
+<td>Search operates on <code>(B, Hnode + 1, Du)</code> control nodes, expanded to dense actions by a spline. Guided modes mix learned horizon proposals into the refinement batch; additive mode preserves the Gaussian search and separately compares learned candidates. Model rollouts score task residuals. Manifold projection shapes the node update, clean-manifold retraction corrects the final proposal, and enabled acceptance hooks compare risk and fallback candidates. A task can additionally enable an action filter.</td>
+</tr>
+</tbody></table>
+<p>For MGA, <code>B</code> need not equal <code>Nsample</code>: an incumbent or explicit prior candidate
+can be appended. Guided structured proposals share the configured refinement
+budget, whereas additive priors have a separate candidate budget. See
+<a href="/docs/learning-and-priors">Learning and priors</a> for checkpoints and prior modes.</p>
+<p>2GO&#39;s active probe count is also not a promise of exactly that many independent
+native QP calls: the compiled probe has a fixed maximum slot count and masks
+inactive slots. Projection effort, probe capacity and scheduling jointly
+determine its cost.</p>
+<h2 id="learned-trajectory-diffusion-dpcc-and-safediffuser">Learned trajectory diffusion: DPCC and SafeDiffuser</h2>
+<p>These integrations use a <strong>trained Torch denoising model</strong>, rather than the
+JAX model-based refinement paths above. Each denoising sample has shape
+<code>(B, H, transition_dim)</code>: action channels come first, followed by observation
+channels and any model-specific goal channels. Conditions pin observations
+such as the current state or goal. After sampling, policy wrappers split and
+unnormalize the action and observation slices.</p>
+<table>
+<thead>
+<tr>
+<th>Integration</th>
+<th>Where constraints modify the learned samples</th>
+<th>Actual batch execution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DPCC projection variant</strong></td>
+<td>After a denoising step and conditioning, the enabled projector corrects the sampled trajectory when the diffusion timestep is below its configured threshold. Goal-only tail channels are excluded from projection, and conditions are reapplied afterward. Gradient variants instead add a constraint gradient to the model mean.</td>
+<td>The current <code>Projector.project()</code> flattens each horizon, transfers tensors to CPU NumPy, loops over <code>B</code> candidates using SciPy SLSQP, and restores a Torch batch on the model device. Torch model inference is batched; this projector is a host-side trajectory solve.</td>
+</tr>
+<tr>
+<td><strong>SafeDiffuser</strong></td>
+<td>Each denoising step calls <code>invariance(previous_sample, proposed_sample)</code> when safety is enabled. Its CBF-QP corrects selected observation XY channels in the proposed sample; it leaves the action slice unchanged. Conditioned endpoints are skipped.</td>
+<td>The corrector flattens <code>B × selected_time_slots</code> into <code>BT</code> independent 2D position-increment QPs, builds Torch tensors <code>Q[BT,2,2]</code>, <code>G[BT,Nc,2]</code>, <code>h[BT,Nc]</code>, and calls batched <code>qpth.QPFunction</code>. It writes corrected positions back before reapplying conditions.</td>
+</tr>
+</tbody></table>
+<p>SafeDiffuser&#39;s QPs constrain the <strong>denoising update</strong> at each selected slot;
+they do not enforce dynamics consistency between successive horizon states.
+Its D3IL integration can additionally repair actions and apply the framework
+constraint pipeline after sampling. Those task-specific operations include
+host-side loops and must be measured separately from denoising throughput.
+The invariance corrector falls back to the proposed increment if its QP raises
+an exception, so evaluate the resulting trajectory rather than interpreting
+an enabled flag as a feasibility certificate.</p>
+<p>These are specialized Torch integrations. They do not establish Torch parity
+for the shared JAX planner, geometry or constraint stack. See
+<a href="/docs/learning-and-priors#learned-trajectory-diffusion">Learning and priors</a>
+for training and checkpoint setup.</p>
+<h2 id="pick-a-numerical-path-that-fits-the-loop">Pick a numerical path that fits the loop</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Inside a compiled JAX candidate loop?</th>
+<th>Numerical behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Existing JAX CBF / CFS filters</td>
+<td>Yes, for their supported task integrations.</td>
+<td>Closed-form halfspace corrections or iterative JAX projections, with per-step or full-horizon coupling.</td>
+</tr>
+<tr>
+<td><code>solve_hard_qp_jax()</code> / <code>solve_slack_qp_jax()</code></td>
+<td>Yes; callers can compose <code>jit</code>, <code>vmap</code> and JAX loops.</td>
+<td>Finite, projection-style updates. They are not general exact QP solvers.</td>
+</tr>
+<tr>
+<td><code>JAXOPTOsqpSolver.solve_qp()</code></td>
+<td>The current public wrapper is host-facing.</td>
+<td>Runs <code>jaxopt.OSQP</code> internally, then converts its result to NumPy. Calling this wrapper inside <code>vmap</code> is not the same as using a pure-JAX kernel.</td>
+</tr>
+<tr>
+<td><code>OSQPSolver</code> / <code>CVXOPTSolver</code></td>
+<td>No native JAX batch path in these wrappers.</td>
+<td>CPU Python/NumPy QP interfaces. A batch requires explicit host orchestration; existing NumPy filter paths loop over trajectories.</td>
+</tr>
+</tbody></table>
+<p>Thus, “batched constraints” means that candidate generation, constraint
+evaluation and supported correction kernels compose over a batch. It does
+not mean that every backend solves all QPs in one native batch invocation.
+Use the <a href="/docs/constraints">solver catalogue</a> and
+<a href="/docs/compatibility">compatibility matrix</a> when selecting a recipe.</p>
+<h2 id="try-a-small-batch-kernel">Try a small batch kernel</h2>
+<p>This example applies an existing JAX projection helper to <code>64 × 20</code> independent
+actions. Its fixed halfspaces are <code>u[0] &gt;= 0.2</code> and <code>u[1] &gt;= -0.1</code>, with action
+bounds <code>[-1, 1]</code>. It demonstrates array composition; it does not model dynamics
+or replace a state-dependent CBF/CFS trajectory filter.</p>
+<pre><code class="language-python">import jax
+import jax.numpy as jnp
+from genedynamics.core.constraints.solvers.jaxopt_osqp_solver import solve_hard_qp_jax
+
+N, H, D = 64, 20, 2
+samples = jax.random.normal(jax.random.PRNGKey(0), (N, H, D))
+A = jnp.eye(D, dtype=jnp.float32)
+b = jnp.array([0.2, -0.1], dtype=jnp.float32)
+
+def project_action(u):
+    return solve_hard_qp_jax(u, A, b, control_limit=1.0, maxiter=20)
+
+project_batch = jax.jit(jax.vmap(jax.vmap(project_action)))
+filtered, residual = project_batch(samples)
+filtered.block_until_ready()
+assert filtered.shape == (N, H, D)
+assert residual.shape == (N, H)
+assert float(residual.max()) &lt; 1e-6
+</code></pre>
+<p>For robot tasks, begin with an existing
+<a href="/docs/recipes">MDOC, MD-COAS, 2GO or MGA recipe</a>. Keep the task&#39;s dynamics,
+constraint residuals and action semantics together. Re-evaluate the resulting
+trajectory after correction: clipping, slack, local linearization and iteration
+limits can leave residual violations. Compare violation statistics and
+projection effort alongside warm-run planning latency; increasing <code>Nsample</code>
+alone does not establish feasibility or a control-rate guarantee.</p>
+<h2 id="implementation-map">Implementation map</h2>
+<ul>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/base.py">Filter contract and batch hook</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/mdoc/backends/mdoc_jax.py">MDOC sample → filter → weight loop</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cbf_closed_form.py">CBF candidate vmap and horizon scan</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/cfsmbd/backends/cfsmbd_jax.py">MD-COAS augmented scoring and adaptive feedback</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cfs_qp_full.py">Full-horizon CFS projection</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/genemetry/pipeline/backends/probe_jax.py">2GO probe gather → vmap → scatter</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/mga/backends/mga_jax.py">MGA node proposals, rollout and acceptance</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/mga/core/retraction.py">MGA clean-manifold retraction</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/dpcc/stepper.py">DPCC denoising and projection schedule</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/dpcc/patch/projector.py">DPCC host-side trajectory projector</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/safediffuser/stepper.py">SafeDiffuser denoising stepper</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/safediffuser/patch/avoiding_cbf_qp.py">SafeDiffuser batched CBF-QP corrector</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/safediffuser/policies.py">SafeDiffuser sample channel layout</a></li>
+</ul>
+<div class="doc-origin">Based on the framework documentation · docs/guides/batched-constraints.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/batched-constraints.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/learning-and-priors/">Previous: Learning and priors</a><a href="/docs/adding-a-plugin/">Next: Add a plugin</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#follow-a-candidate-batch">Follow a candidate batch</a><a href="#where-the-parallelism-lives">Where the parallelism lives</a><a href="#how-each-planner-uses-the-batch">How each planner uses the batch</a><a href="#learned-trajectory-diffusion-dpcc-and-safediffuser">Learned trajectory diffusion: DPCC and SafeDiffuser</a><a href="#pick-a-numerical-path-that-fits-the-loop">Pick a numerical path that fits the loop</a><a href="#try-a-small-batch-kernel">Try a small batch kernel</a><a href="#implementation-map">Implementation map</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

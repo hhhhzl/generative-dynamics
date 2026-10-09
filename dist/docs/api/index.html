@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python API reference | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Python API reference"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/api/"><meta property="og:title" content="Python API reference"><meta property="og:description" content="GenerativeDynamics documentation: Python API reference"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/api/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" aria-current="page">Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Reference</div><h1 id="api-surface">API surface</h1>
+<p>The V1 public surface is intentionally small:</p>
+<ul>
+<li><code>genedynamics.experiments.framework.ExperimentConfig</code></li>
+<li><code>genedynamics.experiments.framework.ExperimentRunner</code></li>
+<li><code>genedynamics.experiments.framework.PluginRegistry</code></li>
+<li><code>MethodPlugin</code>, <code>EnvironmentPlugin</code>, <code>MetricsPlugin</code>,
+<code>VisualizationPlugin</code>, and <code>ObstacleGeneratorPlugin</code></li>
+<li>core types and backend interfaces under <code>genedynamics.core</code></li>
+<li>registered environment/robot factories under <code>genedynamics.envs</code> and
+<code>genedynamics.robots</code></li>
+<li>deployment registries and configuration under <code>genedynamics.deploy</code></li>
+</ul>
+<p>Internal solver modules remain importable for research, but V1 compatibility is
+defined at the plugin, configuration, and runner boundaries. Direct imports of
+private helpers or simulator implementation classes may change before 1.0.</p>
+<p>Use the <a href="/docs/adding-a-plugin">plugin guide</a> for extension patterns and
+the <a href="/docs/compatibility">compatibility matrix</a> for backend coverage.</p>
+<h2 id="environment-factories">Environment factories</h2>
+<pre><code class="language-python">from genedynamics.envs import make_env, make_energy
+
+env = make_env(&quot;single_integrator_box_2d&quot;)
+energy = make_energy(&quot;single_integrator_box_2d&quot;)
+</code></pre>
+<p><code>make_env(name: str, **kwargs)</code> creates a registered environment; an unknown
+name raises <code>ValueError</code> and lists available registrations.
+<code>make_energy(env_name: str)</code> creates the registered energy functional for that
+environment name. See the <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/factories.py#L35">factory implementation</a>.</p>
+<h2 id="runtime-and-a-direct-solver">Runtime and a direct solver</h2>
+<p>The current source signatures are:</p>
+<pre><code class="language-text">RuntimeBackendManager.set_backend(name=&quot;jax&quot;, device=&quot;cpu&quot;, **kwargs)
+RuntimeBackendManager.get_backend(name=None, device=None, **kwargs)
+
+TwoGOSolver(dynamics, energy, backend, *, constraint_filter=None, **kwargs)
+</code></pre>
+<p>The first two are class methods. Construct the task and select the runtime
+before constructing a solver. <code>TwoGOSolver</code> forwards common planning options
+through <code>**kwargs</code>; the tested walkthrough sets <code>dt</code>, <code>horizon</code>, <code>Nsample</code>, and
+<code>Ndiffuse</code>. See <a href="/docs/python-api">Plan from Python</a> for the
+complete loop and success criterion, not just a constructor.</p>
+<p>The solver interface is <code>solve(x0, horizon, **kwargs) -&gt; Trajectory</code>.
+The 2GO walkthrough supplies an explicit <code>rng_key</code>. Solver-specific keyword
+options are not universal across all planners.</p>
+<p><code>Trajectory</code> stores <code>states</code>, <code>actions</code>, and optional <code>info</code>. Its constructor
+requires <code>len(states) == len(actions) + 1</code>; inconsistent lengths raise
+<code>ValueError</code>.</p>
+<p>Sources: <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/backends/runtime/manager.py#L44">runtime manager</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/twogo/twogo.py#L35">2GO constructor</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/solvers/base.py#L65">solver contract</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/types.py#L63">Trajectory</a>.</p>
+<h2 id="configure-and-run-an-experiment">Configure and run an experiment</h2>
+<pre><code class="language-python">from pathlib import Path
+from genedynamics.experiments.framework import ExperimentConfig, ExperimentRunner
+from genedynamics.experiments.runner import register_all_plugins
+
+config = ExperimentConfig.from_yaml(Path(&quot;configs/single_2d/mbd.yaml&quot;))
+config.device = &quot;cpu&quot;
+config.seeds = [0]
+config.obstacle_levels = [0]
+config.use_development_output_root(Path(&quot;results/_development/python-example&quot;))
+
+runner = ExperimentRunner(config)
+register_all_plugins(runner)
+results = runner.run_all(resume=True)
+if runner.failures:
+    raise RuntimeError(runner.failures)
+</code></pre>
+<p>This example is derived from the current runner interfaces. For formal research
+matrices use the <a href="/docs/cli">CLI</a>, which also applies the configured
+formal-readiness and checkpoint-file checks before execution.</p>
+<table>
+<thead>
+<tr>
+<th>Public operation</th>
+<th>Source behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ExperimentConfig.from_yaml(path: Path)</code></td>
+<td>Load YAML, resolve inherited configuration, and return an <code>ExperimentConfig</code>.</td>
+</tr>
+<tr>
+<td><code>config.validate()</code></td>
+<td>Return a list of configuration errors.</td>
+</tr>
+<tr>
+<td><code>ExperimentRunner(config)</code></td>
+<td>Validate configuration and initialize an empty registry, result list, and failure list.</td>
+</tr>
+<tr>
+<td><code>runner.register_plugin(plugin, plugin_type, name=None)</code></td>
+<td>Register a component by type; defaults to the plugin&#39;s own name.</td>
+</tr>
+<tr>
+<td><code>runner.run_all(resume=False)</code></td>
+<td>Expand configured suites/levels/seeds and return experiment result dictionaries.</td>
+</tr>
+<tr>
+<td><code>runner.failures</code></td>
+<td>Retained failed entries from the current matrix run.</td>
+</tr>
+</tbody></table>
+<p>Sources: <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/config.py#L129">configuration</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L124">runner construction</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L846">matrix execution</a>,
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/runner.py#L330">built-in registration</a>.</p>
+<h2 id="registry-and-plugin-contracts">Registry and plugin contracts</h2>
+<p><code>PluginRegistry</code> exposes <code>register(plugin, plugin_type, name=None)</code>,
+<code>get_plugin(plugin_type, name)</code>, <code>list_plugins(plugin_type=None)</code>, and
+<code>has_plugin(plugin_type, name)</code>. Supported types are <code>method</code>, <code>environment</code>,
+<code>metric</code>, <code>visualization</code>, and <code>obstacle_generator</code>.</p>
+<p><code>list_plugins</code> returns a name list when given a type; with no type it returns
+a mapping from type to names. This documents the actual implementation behavior
+(the current source annotation is narrower).</p>
+<p>A <code>MethodPlugin</code> implements <code>name</code>,
+<code>create_planner(env, energy, config)</code>, and
+<code>plan(planner, initial_state, rng)</code>. Planning returns a dictionary containing
+states, actions, and initial state; additional diagnostics depend on the solver.
+Environment plugins own environment creation, energy creation, state dimension,
+and position extraction, with optional task-owned reset and execution behavior.</p>
+<p>See <a href="/docs/adding-a-plugin">Add a plugin</a>, the
+<a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/registry.py#L12">registry source</a>,
+and <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/base.py#L19">abstract contracts</a>.</p>
+<div class="doc-origin">Based on the framework documentation · docs/api/README.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/api/README.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/d3il/">Previous: D3IL integration</a><a href="/docs/cli/">Next: Command-line reference</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#environment-factories">Environment factories</a><a href="#runtime-and-a-direct-solver">Runtime and a direct solver</a><a href="#configure-and-run-an-experiment">Configure and run an experiment</a><a href="#registry-and-plugin-contracts">Registry and plugin contracts</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

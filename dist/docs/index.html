@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Documentation | GenerativeDynamics</title><meta name="description" content="Install, run, compose, and extend GenerativeDynamics."><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/"><meta property="og:title" content="Documentation"><meta property="og:description" content="Install, run, compose, and extend GenerativeDynamics."><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" aria-current="page">Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Start</div><h1 id="generativedynamics">GenerativeDynamics</h1>
+<p><strong>Generative dynamics on manifold.</strong></p>
+<p>For robotics: <strong>Planning. Control. Learning.</strong></p>
+<p><img src="/media/showcase-poster.png" alt="MDOC, MD-COAS, 2GO, MGA, and real robot demonstrations"></p>
+<p>Train reusable policy priors, learn trajectory diffusion models, and perform
+model-based generative inference with dynamics, manifold geometry and
+constraints. Connect the resulting plans to closed-loop control through shared task, solver and execution
+interfaces.</p>
+<p><a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/assets/showcase.mp4">Watch the full-quality video</a> ·
+<a href="/docs/recipes">Explore the task recipes</a></p>
+<h2 id="build-with-reusable-components">🧩 Build with reusable components</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What you can use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>🧠 Robot learning</strong></td>
+<td>PPO/SAC training and checkpoint reuse; PPO horizon priors for MGA.</td>
+</tr>
+<tr>
+<td><strong>✨ Generative models</strong></td>
+<td>Learned trajectory diffusion, model-based generative inference and composable reverse transports.</td>
+</tr>
+<tr>
+<td><strong>Planner plugins</strong></td>
+<td>MDOC, MD-COAS, 2GO, MGA and comparison algorithms through shared task and solver interfaces.</td>
+</tr>
+<tr>
+<td><strong>Batched constraints</strong></td>
+<td>Candidate evaluation, CBF/CFS correction and manifold feedback inside generative inference; see the <a href="/docs/batched-constraints">batch workflow</a>.</td>
+</tr>
+<tr>
+<td><strong>Geometry and constraints</strong></td>
+<td>Convex primitives, meshes, signed-distance geometry, collision constraints, state/action limits and constraint schedules.</td>
+</tr>
+<tr>
+<td><strong>Robot task composition</strong></td>
+<td>Semantic robot profiles, task objectives, dynamics and scene geometry kept separate from planner implementations.</td>
+</tr>
+<tr>
+<td><strong>Simulation adapters</strong></td>
+<td>MuJoCo, MJX, Brax and D3IL integrations with recipe-specific dependencies.</td>
+</tr>
+<tr>
+<td><strong>Execution components</strong></td>
+<td>Receding-horizon planning, followers, controllers, governors, safety filters and robot I/O.</td>
+</tr>
+<tr>
+<td><strong>Experiment tooling</strong></td>
+<td>Seeded configurations, resumable task matrices, metrics, trajectories, reports and observer plugins.</td>
+</tr>
+<tr>
+<td><strong>Compute</strong></td>
+<td>JAX-first planning with CPU setup and CUDA installation paths; device support is qualified per planner.</td>
+</tr>
+</tbody></table>
+<h2 id="explore-our-algorithms">🧪 Explore our algorithms</h2>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Start building</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MDOC</strong></td>
+<td>Run the planar planning component with <code>configs/single_2d/mdoc.yaml</code>; see the <a href="https://github.com/hhhhzl/mdoc">original multi-robot project</a> for its CBS application.</td>
+</tr>
+<tr>
+<td><strong>MD-COAS</strong></td>
+<td>Explore constrained diffusion and adaptive scheduling with <code>configs/single_2d/mdcoas.yaml</code>, then D3IL arm avoidance with <code>configs/d3il_avoiding/mdcoas.yaml</code>.</td>
+</tr>
+<tr>
+<td><strong>2GO</strong></td>
+<td>Plan quadruped stepping stones and humanoid corridor motion; begin with the <a href="/docs/humanoid-corridor">humanoid corridor recipe</a>.</td>
+</tr>
+<tr>
+<td><strong>MGA</strong></td>
+<td>Reuse learned policy priors for generative motion–impedance control in <a href="/docs/recipes#mga">peg insertion and surface scanning</a>.</td>
+</tr>
+</tbody></table>
+<p>The <a href="/docs/planners">algorithm catalogue</a> links the papers, explains each
+planner and maps published names to configuration keys.</p>
+<h2 id="environments-and-constraints">🌍 Environments and constraints</h2>
+<p>Browse six <a href="/docs/environments">environment families</a> and the
+<a href="/docs/constraints">constraint catalogue</a>: CBF/CFS filters, adaptive
+scheduling, and closed-form, JAXopt OSQP, OSQP and CVXOPT numerical solvers.</p>
+<h2 id="start-here">🚀 Start here</h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Guide</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Install the package and optional simulators</td>
+<td><a href="/docs/installation">Installation</a></td>
+</tr>
+<tr>
+<td>Use an environment and planner in your own Python loop</td>
+<td><a href="/docs/python-api">Direct Python example</a></td>
+</tr>
+<tr>
+<td>Save trajectories, metrics and multi-seed experiments</td>
+<td><a href="/docs/quickstart">First experiment</a></td>
+</tr>
+<tr>
+<td>Train models and reuse learned priors</td>
+<td><a href="/docs/learning-and-priors">Learning workflows</a></td>
+</tr>
+<tr>
+<td>Choose a paper algorithm and task</td>
+<td><a href="/docs/recipes">Recipes</a></td>
+</tr>
+<tr>
+<td>Understand or extend the interfaces</td>
+<td><a href="/docs/architecture">Architecture</a> · <a href="/docs/adding-a-plugin">Plugin development</a></td>
+</tr>
+<tr>
+<td>Check support or upcoming integrations</td>
+<td><a href="/docs/compatibility">Compatibility</a> · <a href="/docs/roadmap">Roadmap</a></td>
+</tr>
+</tbody></table>
+<p><img src="/media/architecture-overview.png" alt="Complete task, learning, planning, simulation, deployment and evaluation workflow"></p>
+<h2 id="release-status">📍 Release status</h2>
+<p>V1 is JAX-first and includes six task families. Dedicated Torch integrations
+support DPCC and SafeDiffuser; broader Torch support and Rust/C++ backends are
+planned. MGA GPU qualification and humanoid walking/push are follow-up
+priorities. See the <a href="/docs/roadmap">roadmap</a>, <a href="/docs/compatibility">compatibility matrix</a> and
+<a href="/docs/v1-scope">V1 scope</a> for the current release boundaries.</p>
+<div class="doc-origin">Based on the framework documentation · docs/index.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/index.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><span></span><a href="/docs/installation/">Next: Installation</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#build-with-reusable-components">🧩 Build with reusable components</a><a href="#explore-our-algorithms">🧪 Explore our algorithms</a><a href="#environments-and-constraints">🌍 Environments and constraints</a><a href="#start-here">🚀 Start here</a><a href="#release-status">📍 Release status</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

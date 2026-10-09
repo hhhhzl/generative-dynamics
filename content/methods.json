@@ -1,0 +1,71 @@
+[
+  {
+    "name": "MDOC",
+    "family": "Our research",
+    "description": "Model-based diffusion with CBF projections inside dynamics rollouts.",
+    "research": "mdoc"
+  },
+  {
+    "name": "MD-COAS",
+    "family": "Our research",
+    "description": "iALM soft feasibility, CFS correction, and adaptive constraint scheduling.",
+    "research": "md-coas"
+  },
+  {
+    "name": "2GO",
+    "family": "Our research",
+    "description": "Active geometry shapes refinement and reverse stochastic exploration.",
+    "research": "2go"
+  },
+  {
+    "name": "MGA",
+    "family": "Our research",
+    "description": "Learned proposals and feedback-conditioned motion–impedance refinement.",
+    "research": "mga"
+  },
+  {
+    "name": "MBD",
+    "family": "Model-based generation",
+    "description": "Known dynamics and Monte Carlo score estimates, without demonstrations."
+  },
+  {
+    "name": "EB-MBD",
+    "family": "Model-based generation",
+    "description": "Emerging barriers retain informative candidates under constraints."
+  },
+  {
+    "name": "MPPI",
+    "family": "Sampling MPC",
+    "description": "Cost-weighted control samples for receding-horizon optimization."
+  },
+  {
+    "name": "DIAL-MPC",
+    "family": "Model-based generation",
+    "description": "Diffusion-inspired annealing for online control-sequence refinement."
+  },
+  {
+    "name": "ATACOM",
+    "family": "Contact / constraints",
+    "description": "Tangent-space actions on an augmented constraint manifold."
+  },
+  {
+    "name": "ISSA",
+    "family": "Contact / constraints",
+    "description": "Derivative-free action filtering through implicit safe-set search."
+  },
+  {
+    "name": "PegasusFlow",
+    "family": "Model-based generation",
+    "description": "Rolling denoising with weighted spline-basis trajectory updates."
+  },
+  {
+    "name": "DPCC",
+    "family": "Learned diffusion",
+    "description": "Learned trajectory diffusion with model-based projection and tightening."
+  },
+  {
+    "name": "SafeDiffuser",
+    "family": "Learned diffusion",
+    "description": "CBF corrections during learned trajectory denoising."
+  }
+]

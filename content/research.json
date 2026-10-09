@@ -1,0 +1,326 @@
+[
+  {
+    "id": "mdoc",
+    "name": "MDOC",
+    "expandedName": "Model-Based Diffusion Optimal Control",
+    "title": "Model-Based Diffusion Optimal Control for Multi-Robot Motion Planning",
+    "tagline": "Generate feasible motion. Coordinate safely.",
+    "summary": "A useful motion plan must obey the robot's dynamics and avoid collisions, even when many robots share the same space. MDOC brings these requirements inside model-based diffusion: candidate controls are corrected during rollout, and known dynamics turn them into executable state trajectories. The planner estimates its denoising direction from evaluated rollouts without learning from demonstrations. MDOC-CBS then uses the same low-level mechanism to resolve conflicts between robots.",
+    "question": "Can we generate dynamically feasible, collision-free motion without demonstration training, and use that planner to coordinate a team of robots?",
+    "mechanism": [
+      {
+        "title": "Let the model guide generation",
+        "body": "Instead of querying a learned score network, MDOC samples control sequences, rolls them through known dynamics, and evaluates their costs. Monte Carlo Score Ascent estimates a direction that progressively refines the trajectory distribution toward useful solutions."
+      },
+      {
+        "title": "Correct controls inside the rollout",
+        "body": "A Control Barrier Function defines local safety conditions. At each rollout step, MDOC projects a proposed control onto the corresponding constraint half-spaces before advancing the dynamics. Safety correction therefore acts on the inputs that generate the motion."
+      },
+      {
+        "title": "Coordinate through conflict resolution",
+        "body": "MDOC-CBS separates individual planning from team coordination. Conflict-Based Search identifies inter-robot collisions and adds constraints; affected robots replan with MDOC. The same projection mechanism handles obstacle and inter-robot constraints."
+      }
+    ],
+    "transition": "In tightly constrained environments, aggressive safety correction can restrict exploration and increase rollout variability. MD-COAS takes up this question: how can soft feasibility guidance and hard correction work together throughout denoising?",
+    "scope": "Training-free single-robot motion planning and CBS-based multi-robot coordination in simulated continuous environments with known dynamics. The main experiments use a single-integrator model, with additional dynamics studies in the appendix.",
+    "results": [
+      {
+        "label": "Multi-robot scale",
+        "value": "Up to 40 robots",
+        "condition": "Reported on larger maps, including the 6 × 6 benchmark; the standard 2 × 2 experiments evaluate up to 20 robots."
+      },
+      {
+        "label": "Planning-time reduction",
+        "value": "5–10×",
+        "condition": "Relative to MMD-CBS in the reported 2 × 2 Empty and Conveyor experiments, at comparable conflict-tree expansion levels."
+      },
+      {
+        "label": "Useful candidate yield",
+        "value": "100% Pass&Free",
+        "condition": "On the two reported narrow-passage benchmarks with 128 proposal samples per planning step; this measures candidates that traverse the bottleneck and remain collision-free."
+      }
+    ],
+    "limitations": [
+      "Success is not universal: tight random maps expose Monte Carlo variance and a trade-off between exploration and aggressive CBF correction.",
+      "The paper's demonstrated multi-robot scale depends on map, horizon, dynamics, and computational budget; it is not a general deployment guarantee.",
+      "Online receding-horizon use, richer dynamics, and improved projection efficiency are identified as future directions."
+    ],
+    "authors": [
+      {
+        "name": "Zhilin He",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      },
+      {
+        "name": "Yorai Shaoul",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      },
+      {
+        "name": "Jiaoyang Li",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      }
+    ],
+    "affiliations": [
+      "Carnegie Mellon University, Pittsburgh, PA, USA"
+    ],
+    "publication": {
+      "status": "published",
+      "label": "RSS 2026",
+      "venue": "Robotics: Science and Systems XXII",
+      "year": 2026,
+      "arxivId": "2607.12423",
+      "doi": "10.15607/RSS.2026.XXII.041",
+      "verifiedAt": "2026-10-09",
+      "sourceUrl": "https://arxiv.org/abs/2607.12423"
+    },
+    "links": {
+      "paper": "https://arxiv.org/abs/2607.12423",
+      "code": "https://github.com/hhhhzl/mdoc"
+    },
+    "citation": "@article{he2026model,\n  title={Model-Based Diffusion Optimal Control for Multi-Robot Motion Planning},\n  author={He, Zhilin and Shaoul, Yorai and Li, Jiaoyang},\n  journal={arXiv preprint arXiv:2607.12423},\n  year={2026}\n}",
+    "stage": "Feasible generation",
+    "steps": [
+      "Dynamics rollouts",
+      "CBF projection",
+      "Multi-robot coordination"
+    ],
+    "media": [
+      "mdoc_cbs_random",
+      "mdoc_single_narrow"
+    ],
+    "recipe": "mdoc"
+  },
+  {
+    "id": "md-coas",
+    "name": "MD-COAS",
+    "expandedName": "Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling",
+    "title": "Motion Planning with Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling",
+    "tagline": "Balance exploration, feasibility, and compute.",
+    "summary": "Hard constraints can reject most exploratory candidates, while soft penalties alone can leave unsafe solutions. MD-COAS brings both approaches into one model-based diffusion planner. A soft feasibility prior preserves informative guidance, a CFS projection corrects candidates, and adaptive scheduling decides how much constraint enforcement to apply as the trajectory distribution becomes cleaner. The result is a more flexible way to search highly non-convex environments under a computational budget.",
+    "question": "How can a generative planner preserve useful exploration while enforcing difficult constraints, without spending the same correction effort at every denoising step?",
+    "mechanism": [
+      {
+        "title": "Keep imperfect samples informative",
+        "body": "An inexact Augmented Lagrangian soft feasibility prior gives continuous weight to mildly infeasible candidates. Their constraint information can still guide the next update instead of disappearing behind a hard feasible-or-infeasible indicator."
+      },
+      {
+        "title": "Correct the full control sequence",
+        "body": "A Convex Feasible Set projection constructs local constraint approximations and solves a structured quadratic program over the control sequence. Re-rolling the corrected controls through the dynamics preserves the connection between planned motion and the model."
+      },
+      {
+        "title": "Adapt enforcement during denoising",
+        "body": "Constraint residuals adjust the soft-prior multipliers and penalties. A compute-aware primal–dual schedule also controls projection frequency, inner iterations, and active constraints, concentrating correction effort where it is needed."
+      }
+    ],
+    "transition": "MD-COAS adapts how strongly and how often feasibility is enforced. 2GO asks how active constraint geometry can also shape the direction of refinement and the stochastic exploration itself, extending the story to constrained locomotion.",
+    "scope": "Training-free single-robot planning with known dynamics, evaluated on randomized 2D obstacle maps and a D3IL 7-DoF arm avoidance task. The arm plans in joint space while its end-effector remains on a 2D workspace plane.",
+    "results": [
+      {
+        "label": "Arm avoidance",
+        "value": "100% safe success",
+        "condition": "Zero reported violations at all three tested obstacle radii; 5 random seeds and 20 trajectory candidates per seed at each level."
+      },
+      {
+        "label": "2D constrained maps",
+        "value": "100% SSR",
+        "condition": "Safe & Success Rate on Easy and Constrained map families, L1–L6. The more difficult non-convex Union Maps, L7–L10, achieve approximately 50% SSR."
+      },
+      {
+        "label": "Hardest arm setting",
+        "value": "1.00 vs 0.73 SSR",
+        "condition": "MD-COAS versus MDOC at obstacle radius 0.05. This robustness gain comes with higher planning time in the same experiment."
+      }
+    ],
+    "limitations": [
+      "Full-sample CFS projection has a computational cost. MD-COAS is slower than MDOC in the reported 7-DoF table; adaptive scheduling improves efficiency relative to uniformly applied correction rather than guaranteeing a speedup over every baseline.",
+      "The hardest non-convex 2D maps remain challenging; the paper does not report universal success or safety across arbitrary environments.",
+      "This paper evaluates single-robot tasks. Richer dynamics and multi-robot coordination are future directions, not demonstrated extensions."
+    ],
+    "authors": [
+      {
+        "name": "Zhilin He",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      },
+      {
+        "name": "Bowei Li",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      },
+      {
+        "name": "Jianlin Dou",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      },
+      {
+        "name": "Yuner Zhang",
+        "affiliations": [
+          "University of Pennsylvania"
+        ]
+      },
+      {
+        "name": "Changliu Liu",
+        "affiliations": [
+          "Carnegie Mellon University"
+        ]
+      }
+    ],
+    "affiliations": [
+      "Carnegie Mellon University",
+      "University of Pennsylvania"
+    ],
+    "publication": {
+      "status": "preprint",
+      "label": "arXiv preprint",
+      "year": 2026,
+      "arxivId": "2607.14455",
+      "submitted": "2026-07-16",
+      "verifiedAt": "2026-10-09",
+      "sourceUrl": "https://arxiv.org/abs/2607.14455",
+      "note": "The public arXiv record does not identify an accepted publication venue."
+    },
+    "links": {
+      "paper": "https://arxiv.org/abs/2607.14455"
+    },
+    "citation": "@article{he2026motion,\n  title={Motion Planning with Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling},\n  author={He, Zhilin and Li, Bowei and Dou, Jianlin and Zhang, Yuner and Liu, Changliu},\n  journal={arXiv preprint arXiv:2607.14455},\n  year={2026}\n}",
+    "stage": "Adaptive constraints",
+    "steps": [
+      "Soft feasibility prior",
+      "CFS correction",
+      "Adaptive scheduling"
+    ],
+    "media": [
+      "mdcoas_2d_l10_candidates",
+      "mdcoas_7dof_execution"
+    ],
+    "recipe": "mdcoas"
+  },
+  {
+    "id": "2go",
+    "name": "2GO",
+    "title": "Model-Based Geometry-Aware Generative Optimization for Constrained Locomotion Planning",
+    "tagline": "Let constraint geometry guide the search.",
+    "summary": "A quadruped must choose among disconnected footholds; a humanoid must coordinate its body and posture through narrow passages. 2GO uses active constraint geometry to shape how a model-based generative planner refines trajectories and explores alternatives. Its two Gs stand for geometry-aware and generative: geometry becomes part of the reverse update, rather than only a test applied to the final plan.",
+    "question": "How should a generative planner change both its update direction and its exploration when the feasible region is narrow, disconnected, or posture-dependent?",
+    "mechanism": [
+      {
+        "title": "Read the active geometry",
+        "body": "Task context and violation proxies select active constraints. Their normals describe locally important directions for foothold consistency or body clearance."
+      },
+      {
+        "title": "Shape refinement and exploration",
+        "body": "A normal-induced metric shapes the denoising direction, while a regularized tangent filter shapes reverse-process noise. Candidate-sampling randomness and added reverse stochasticity remain distinct."
+      },
+      {
+        "title": "Schedule the reverse transport",
+        "body": "An adaptive task-geometry schedule separates transport choice from stochasticity, accommodating DDPM-, DDIM-, and flow-like updates as exploration gives way to refinement."
+      },
+      {
+        "title": "Correct and execute",
+        "body": "Optional Convex Feasible Set correction addresses residual violations. A reference governor then adapts a selected plan to the tracking limits of the execution controller."
+      }
+    ],
+    "transition": "MD-COAS adapts how feasibility is enforced during generation. 2GO asks how local constraint geometry should also shape the direction and randomness of that process. MGA subsequently investigates contact-responsive motion–impedance control, where feasible commands must be reconsidered through their physical realization.",
+    "scope": "Evaluated on quadruped stepping stones and humanoid corridors, with planning metrics separated from governed MuJoCo execution. The hardware demonstration uses a real Unitree G1 with motion-capture-registered AR obstacles and the built-in locomotion controller. It is qualitative deployment evidence with virtual obstacles.",
+    "results": [
+      {
+        "label": "Harder stepping stones · planning success",
+        "value": "88%",
+        "condition": "S2 pSSR: 2GO 88%, MDOC 68%, MD-COAS 14%, MBD 4%, MPPI 20%. Five seeds, ten returned trajectories per seed; goal tolerance 0.20 m."
+      },
+      {
+        "label": "Stepping stones · planning to execution",
+        "value": "98% / 80%",
+        "condition": "S1: 98% planning pSSR and 80% governed MuJoCo Go2 eSSR. Execution selects and adapts one reference per seed, across five trials; the two percentages measure different populations."
+      }
+    ],
+    "limitations": [
+      "Performance depends on the task: in the U-shaped corridor, 2GO achieves 48% pSSR versus 90% for MDOC. The progression across these papers does not imply uniform dominance.",
+      "Planning and governed execution use different evaluation criteria. Candidate selection and controller adaptation can change outcomes; execution percentages should not be read as planner-only effects.",
+      "The real G1 video demonstrates navigation relative to AR obstacles. It does not establish a real-world success rate against physical walls."
+    ],
+    "links": {
+      "paper": "https://arxiv.org/abs/2610.07772"
+    },
+    "stage": "Geometry-aware search",
+    "steps": [
+      "Active geometry",
+      "Metric shaping",
+      "Tangent exploration"
+    ],
+    "media": [
+      "twogo_go2_s2",
+      "twogo_g1_zone_c"
+    ],
+    "recipe": "twogo",
+    "publication": {
+      "label": "Preprint",
+      "year": 2026
+    }
+  },
+  {
+    "id": "mga",
+    "name": "MGA",
+    "title": "Manifold Generative Annealing for Contact Constraint-aware Impedance Control with Reinforcement Learning Prior",
+    "tagline": "Refine interaction through its physical response.",
+    "summary": "In contact, a displacement command can produce motion, deformation, force, or a jam. Manifold Generative Annealing combines learned interaction proposals with model-based evaluation and feedback-conditioned geometric refinement. It jointly optimizes short motion–impedance sequences, then replans as contact evolves. Learned experience supplies candidate behaviors; the generative optimizer does not require a learned denoising score.",
+    "question": "How can learned interaction strategies be reassessed and corrected when current contact conditions differ from training or nominal predictions?",
+    "mechanism": [
+      {
+        "title": "Propose useful behaviors",
+        "body": "Pretrained RL policies generate structured short-horizon proposals alongside Gaussian exploration. Depending on the integration mode, learned horizons join the refinement bank or compete separately at execution selection."
+      },
+      {
+        "title": "Reassess with dynamics",
+        "body": "Common closed-loop model rollouts evaluate candidates under current conditions. Rollout weighting forms an update without a learned density or score; a favorable candidate is not automatically committed to execution."
+      },
+      {
+        "title": "Refine for realization",
+        "body": "Where enabled, tracking and contact feedback adjust the task references used to define local residuals. Geometry shapes the update, and response reliability modulates refinement strength."
+      },
+      {
+        "title": "Correct residuals and replan",
+        "body": "Local Residual Correction (LRC) applies a damped Jacobian step to residuals left after directional shaping and finite updates. The controller executes the first primitive and shifts the remaining horizon for the next solve."
+      }
+    ],
+    "transition": "2GO develops geometry-aware generation for constrained locomotion. MGA extends the research direction toward contact interaction: geometric refinement is conditioned on physical response, and learned behaviors provide additional candidates. It addresses a different control setting rather than replacing 2GO's locomotion planner.",
+    "scope": "Simulation covers surface scanning, peg insertion, and Unitree H1 pushing. Dobot Nova 5 hardware demonstrations evaluate the model-based component without an RL proposal prior, using position commands with force feedback. They do not directly execute a full Cartesian stiffness matrix.",
+    "results": [
+      {
+        "label": "Peg insertion · safe completions",
+        "value": "28 / 30",
+        "condition": "Ten seeds each for nominal, pose-shift, and sensing-shift conditions. MGA: 28 safe completions; PegasusFlow: 23; MPPI and DIAL: 17 each. All 30 MGA trials complete insertion, but two pose-shift trials exceed force limits."
+      },
+      {
+        "label": "Soft curved surface · contact-valid coverage",
+        "value": "96.0% vs 50.5%",
+        "condition": "Matched Soft Convex execution: MGA versus the ablation without LRC. The ablation leaves the 5 mm path tolerance. This illustrates the mechanism in one matched case, not an aggregate success rate."
+      }
+    ],
+    "limitations": [
+      "LRC is a local correction, not an exact projection or hard-feasibility guarantee. Unseen-surface safe success is 50%; the 100% results for nominal hard, soft, and hybrid groups should not be generalized to unseen surfaces.",
+      "Peg and humanoid evaluations add nine learned horizons per replanning call after Gaussian refinement. These experts compete separately and do not receive that refinement. The 64-sample nominal budget does not imply equal total rollout cost.",
+      "Hardware results validate the model-based component with contact feedback, not the complete RL-assisted simulation configuration."
+    ],
+    "links": {},
+    "stage": "Feedback-informed interaction",
+    "steps": [
+      "Learned proposals",
+      "Model-based evaluation",
+      "Manifold refinement"
+    ],
+    "media": [
+      "mga_surface_hybrid_stripes",
+      "mga_peg_id_wide"
+    ],
+    "recipe": "mga"
+  }
+]

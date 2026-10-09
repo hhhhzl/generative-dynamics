@@ -1,0 +1,153 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning and priors | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Learning and priors"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/learning-and-priors/"><meta property="og:title" content="Learning and priors"><meta property="og:description" content="GenerativeDynamics documentation: Learning and priors"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/learning-and-priors/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" aria-current="page">Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Guides</div><h1 id="learning-and-generative-inference">Learning and generative inference</h1>
+<p>GenerativeDynamics connects learned policies and trajectory models to
+model-based generative optimization and closed-loop control. Choose the
+learning path that matches your task:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Learn</th>
+<th>Use at runtime</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>RL policies</strong></td>
+<td>PPO or SAC in a Brax/MJX environment</td>
+<td>A standalone policy controller</td>
+</tr>
+<tr>
+<td><strong>MGA policy priors</strong></td>
+<td>PPO on the contact task&#39;s training domains</td>
+<td>State-conditioned horizon proposals, followed by online generative refinement and acceptance</td>
+</tr>
+<tr>
+<td><strong>Learned trajectory diffusion</strong></td>
+<td>DPCC diffusion on offline D3IL demonstrations</td>
+<td>Trajectory sampling with DPCC projections or SafeDiffuser CBF corrections</td>
+</tr>
+</tbody></table>
+<p>Model-based diffusion planners can generate trajectories without a learned
+checkpoint. Learning and model-based inference are complementary components;
+their requirements depend on the selected <a href="/docs/planners">planner</a>.</p>
+<p>Run the commands below from the repository root in an isolated Python
+environment. Check <a href="/docs/installation">installation</a> and
+<a href="/docs/compatibility">device support</a> before selecting CPU or CUDA.</p>
+<h2 id="train-and-reuse-an-rl-policy">Train and reuse an RL policy</h2>
+<p>The arm training entry supports PPO and SAC. It reads task, training domains,
+action transforms and training settings from <code>metadata.training.rl</code> in a task
+base configuration.</p>
+<pre><code class="language-bash">python -m pip install -e &quot;.[simulation,optimization]&quot;
+python scripts/tasks/robot/arm/train_rl_baseline.py \
+  --config configs/arm/peg_insert/_base.yaml \
+  --algo ppo --out results/learning/peg_insert_ppo.pkl
+</code></pre>
+<p>This uses the task configuration&#39;s training distribution and budget. Evaluate
+the resulting policy before comparing task performance; retraining does not
+recreate the frozen paper checkpoint byte for byte. The same entry supports
+<code>--algo sac</code> for standalone policy baselines.</p>
+<p>For a pipeline check, use a separate small run:</p>
+<pre><code class="language-bash">python scripts/tasks/robot/arm/train_rl_baseline.py \
+  --config configs/arm/peg_insert/_base.yaml \
+  --algo ppo --smoke --cpu-low-memory \
+  --out results/learning/peg_insert_smoke.pkl
+</code></pre>
+<p><code>--smoke</code> reduces training steps and domains; <code>--cpu-low-memory</code> selects a
+compact network and PPO batch. This checkpoint checks the training pipeline
+and is not the policy used in the MGA recipe below.</p>
+<p>Checkpoints retain policy parameters, network configuration, observation
+normalization and task/action metadata. Reconstruct policy inference with the
+saved configuration:</p>
+<pre><code class="language-python">from genedynamics.learning.train_rl_policy import load_policy, build_policy_act
+
+params, network_config = load_policy(&quot;results/learning/peg_insert_ppo.pkl&quot;)
+act = build_policy_act(params, network_config, deterministic=True)
+# action = act(observation_from_the_matching_task, rng_key)
+</code></pre>
+<p>Use the same task&#39;s observation and action semantics at training and inference.
+For surface scanning, use <code>configs/arm/surface_scan/_base.yaml</code>; its training
+settings include material/geometry domains and domain randomization. An ATACOM
+tangent policy is trained separately with <code>--atacom</code> and has its own checkpoint.</p>
+<h2 id="mga-train-a-policy-and-reuse-it-as-a-prior">MGA: train a policy and reuse it as a prior</h2>
+<p>MGA reconstructs a <strong>PPO</strong> policy as a reusable prior. It can roll the policy
+forward from the current state, map the resulting control horizon to solver
+nodes, and sample additional stochastic policy proposals. The online optimizer
+then evaluates and refines candidates using dynamics, task objectives and
+constraint geometry before the task&#39;s acceptance checks select execution.</p>
+<p>For a local experiment, save this inherited configuration as
+<code>configs/local/mga_peg.yaml</code> after creating <code>configs/local/</code>:</p>
+<pre><code class="language-yaml">base: ../arm/peg_insert/main/mga.yaml
+name: mga_peg_custom_prior
+method_params:
+  policy_ckpt: results/learning/peg_insert_ppo.pkl
+</code></pre>
+<pre><code class="language-bash">genedynamics-run configs/local/mga_peg.yaml \
+  --device cpu --seed 0 --development-root results/development
+</code></pre>
+<p>The parent recipe supplies the contact-task contract, <code>prior_mode: additive</code>,
+proposal settings and incumbent acceptance. Development output keeps a custom
+checkpoint separate from formal evaluation. See
+<a href="/docs/configuration#inheritance">configuration inheritance</a> for composing
+variants. Task performance requires a trained and evaluated prior. Keep the
+pipeline-check checkpoint separate from this experiment.</p>
+<p>The shared API is <code>build_policy_prior(params, config, env=..., Hsample=..., Hnode=..., ctrl_dt=...)</code> in <code>genedynamics.learning.train_rl_policy</code>. A matching
+PPO checkpoint is required for this sequence-prior adapter. SAC currently
+supports standalone policy inference rather than MGA horizon priors.</p>
+<h2 id="learned-trajectory-diffusion">Learned trajectory diffusion</h2>
+<p>DPCC uses a Torch diffusion model trained on offline demonstrations. In
+addition to the Python extras, this source-tree workflow needs the vendored
+<code>third_party/diffuser</code> package, D3IL environment assets and the avoiding dataset.</p>
+<pre><code class="language-bash">bash scripts/setup/setup_mujoco_menagerie.sh
+python -m pip install -e &quot;.[simulation,d3il,torch]&quot;
+export PYTHONPATH=&quot;$PWD/third_party:${PYTHONPATH:-}&quot;
+export DPCC_AVOIDING_DATA_DIR=&quot;/absolute/path/to/avoiding/data&quot;
+
+python -m genedynamics.solvers.single.dpcc.tools.train \
+  --config-file configs/d3il_avoiding/dpcc_diffusion_train.py \
+  --dataset avoiding-d3il --seeds 5 --device cuda
+</code></pre>
+<p>Set the dataset directory to the extracted D3IL trajectory files. The 4D
+loader consumes each file&#39;s <code>robot.des_c_pos</code> and <code>robot.c_pos</code>; it derives
+actions from consecutive desired positions. Keep this directory available
+during evaluation because the loader reconstructs the dataset normalizer.
+This training command targets a CUDA Torch installation on a compatible host.</p>
+<p>The supplied configuration writes training configurations, checkpoints and
+losses under <code>logs/avoiding-d3il/diffusion/H8_K20_Dmodels.GaussianDiffusion/5/</code>.
+Evaluate the matching seed and best checkpoint with:</p>
+<pre><code class="language-bash">genedynamics-run configs/d3il_avoiding/dpcc.yaml --seed 0
+</code></pre>
+<p>Here <code>method_params.seed: 5</code> selects the diffusion model, while <code>--seed 0</code>
+selects the experiment seed. The recipe also declares the model path, horizon
+and normalization setup. DPCC applies model-based projections during sampling;
+<code>configs/d3il_avoiding/safediffuser.yaml</code> loads a compatible diffusion checkpoint
+and applies CBF/QP corrections during denoising. See the
+<a href="/docs/d3il">D3IL integration</a> and
+<a href="/docs/planners">planner reference</a> for the environment and variants.</p>
+<h2 id="calibrate-task-specific-reliability">Calibrate task-specific reliability</h2>
+<p>Surface scanning also uses a learned reliability model to estimate execution
+risk from observable state/action features. Fit and calibrate it on disjoint
+completed run outputs, then report performance on a third held-out split:</p>
+<pre><code class="language-bash">python scripts/tasks/robot/arm/train_mga_reliability.py \
+  --training-results results/learning/scan-fit \
+  --calibration-results results/learning/scan-calibration \
+  --test-results results/learning/scan-test \
+  --quantile 0.95 --output results/learning/reliability_q95.json
+</code></pre>
+<p>Replace those three example directories with collected unified-runner outputs
+containing <code>results.json</code> and their trajectory files. This command fits the
+predictor and calibrates upper risk bounds; it does not collect trajectories.
+New fits remain development artifacts until independently validated. The
+surface-scan recipe declares a frozen reliability checkpoint and abstains to
+the task&#39;s model-based certificate outside learned support.</p>
+<p>The main peg-insertion recipe instead sets <code>learned_reliability: false</code>; it
+still uses a learned PPO prior and model-based acceptance. Its reliability
+collection/validation configurations are separate development paths. A learned
+policy prior and a learned reliability gate have different roles and can be
+enabled independently by the task recipe.</p>
+<h2 id="optional-diffusion-prior-extension">Optional diffusion-prior extension</h2>
+<p><code>genedynamics.learning.priors.diffusion.LearnedDiffusionPrior</code> provides a JAX DDPM
+score-MLP with <code>train</code>, <code>score</code> and sequence <code>warm_start</code> methods; <code>EliteBuffer</code>
+stores reusable trajectory samples. These are extension components. Published
+MGA recipes use PPO priors, and the current MGA transport passes
+<code>score_g=None</code>: it does not automatically train an elite-buffer diffusion model
+or fuse that model&#39;s score into the online solver.</p>
+<div class="doc-origin">Based on the framework documentation · docs/guides/learning-and-priors.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/learning-and-priors.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/configuration/">Previous: Configuration</a><a href="/docs/batched-constraints/">Next: Batched constraints</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#train-and-reuse-an-rl-policy">Train and reuse an RL policy</a><a href="#mga-train-a-policy-and-reuse-it-as-a-prior">MGA: train a policy and reuse it as a prior</a><a href="#learned-trajectory-diffusion">Learned trajectory diffusion</a><a href="#calibrate-task-specific-reliability">Calibrate task-specific reliability</a><a href="#optional-diffusion-prior-extension">Optional diffusion-prior extension</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

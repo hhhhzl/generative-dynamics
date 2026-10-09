@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>D3IL integration | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: D3IL integration"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/d3il/"><meta property="og:title" content="D3IL integration"><meta property="og:description" content="GenerativeDynamics documentation: D3IL integration"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/d3il/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" aria-current="page">D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Integrations</div><h2 id="d3il-integration-vendor-submodule">D3IL integration (vendor / submodule)</h2>
+<h3 id="why-we-keep-the-full-d3il-repo">Why we keep the full D3IL repo</h3>
+<p>D3IL tasks (avoiding / pushing / sorting / stacking / aligning / inserting / …) share:</p>
+<ul>
+<li><code>d3il_sim/</code> (scene, robot, controllers, MuJoCo backend)</li>
+<li><code>models/</code> assets (XML, meshes, textures)</li>
+</ul>
+<p>For long-term multi-task support, <strong>do not “trim” D3IL down to only avoiding</strong>. Missing assets will break other tasks later, often with late/opaque runtime errors.</p>
+<h3 id="repository-layout-recommended">Repository layout (recommended)</h3>
+<ul>
+<li><strong>Pinned third-party code</strong> lives under <code>third_party/</code>.</li>
+<li>D3IL is expected to be importable as <strong><code>environments.d3il.*</code></strong>.</li>
+</ul>
+<p>Current vendored layout:</p>
+<pre><code>third_party/
+  environments/
+    __init__.py
+    d3il/
+      __init__.py
+      d3il_sim/
+      envs/
+      models/
+      ...
+</code></pre>
+<p>This matches D3IL’s internal imports like:</p>
+<ul>
+<li><code>from environments.d3il.d3il_sim... import ...</code></li>
+</ul>
+<h3 id="alternative-full-upstream-repo">Alternative: full upstream repo</h3>
+<p>If you want <strong>D3IL agents/configs/simulation scripts</strong> (not only the MuJoCo envs),
+vendor/pin the full upstream repo (e.g. as a submodule from
+<a href="https://github.com/ALRhub/d3il#"><code>ALRhub/d3il</code></a>) and use this layout:</p>
+<pre><code>third_party/
+  d3il/                # full upstream repo
+    environments/
+      d3il/
+        d3il_sim/
+        envs/
+        models/
+</code></pre>
+<p>Our bootstrapping helper supports <strong>both</strong> layouts.</p>
+<h2 id="taskspec-pattern-recommended-for-multi-task-scaling">TaskSpec pattern (recommended for multi-task scaling)</h2>
+<p>For each D3IL task, we recommend implementing a <strong>spec</strong> instead of duplicating wrapper code.</p>
+<ul>
+<li><strong>Spec</strong>: task-specific glue (obs/state definition, action formatting, success/collision parsing)</li>
+<li><strong>Generic wrapper</strong>: <code>D3ILTaskEnv(spec)</code> handles lifecycle (<code>start/reset/step/close</code>)</li>
+</ul>
+<p>To add a new task (e.g. pushing):</p>
+<ul>
+<li>Create <code>D3ILPushingSpec</code> next to <code>D3ILAvoidingSpec</code></li>
+<li>Create an EnvironmentPlugin <code>D3ILPushingPlugin</code> that instantiates <code>D3ILTaskEnv(D3ILPushingSpec(...))</code></li>
+</ul>
+<p>This keeps task extensions isolated and avoids copy/paste bugs.</p>
+<h3 id="python-import-path">Python import path</h3>
+<p>Because D3IL imports are rooted at <code>environments.*</code>, the directory <strong>containing</strong> the <code>environments/</code> package must be on <code>sys.path</code> / <code>PYTHONPATH</code>:</p>
+<ul>
+<li>Add <code>&lt;repo_root&gt;/third_party</code> to <code>PYTHONPATH</code>, or</li>
+<li>Call <code>genedynamics.envs.external.d3il.ensure_d3il_on_path()</code> early (preferred inside adapters).</li>
+</ul>
+<h3 id="mujoco-assets-path-resolution">MuJoCo assets / path resolution</h3>
+<p>D3IL uses its own path helper (<code>d3il_sim/utils/sim_path.py</code>) to locate XML and meshes relative to the package location.</p>
+<p>So the two key rules are:</p>
+<ul>
+<li>Keep D3IL’s directory structure intact under <code>third_party/environments/d3il/</code></li>
+<li>Ensure imports resolve as <code>environments.d3il</code> (so D3IL can locate <code>models/</code> reliably)</li>
+</ul>
+<h3 id="submodule-recommendation-future-improvement">Submodule recommendation (future improvement)</h3>
+<p>For reproducibility, replace the vendored copy with a <strong>git submodule</strong> pinned to a specific commit:</p>
+<ul>
+<li><code>third_party/environments/d3il</code> (or a repo that contains <code>environments/d3il</code>)</li>
+</ul>
+<p>This keeps <code>genedynamics</code> clean while allowing controlled upgrades.</p>
+<h2 id="a-e-summary-what-we-changed-and-how-to-run">A → E summary (what we changed) and how to run</h2>
+<p>This section documents the current integration status, end-to-end:</p>
+<ul>
+<li><strong>A</strong>: Third-party wiring (D3IL vendored/submodule + import bootstrap)</li>
+<li><strong>B</strong>: <code>d3il_avoiding</code> env wrapper + experiment env plugin</li>
+<li><strong>C</strong>: <code>edoc_mpc</code> / <code>mbd_mpc</code> (plan on JAX model, execute on MuJoCo)</li>
+<li><strong>D</strong>: Standard outputs + minimal metrics for rollout baselines</li>
+<li><strong>E3</strong>: TaskSpec abstraction for scaling to other D3IL tasks</li>
+</ul>
+<h3 id="a-third-party-wiring">A — Third-party wiring</h3>
+<ul>
+<li><strong>Vendored D3IL env stack</strong>: <code>third_party/environments/d3il/</code></li>
+<li><strong><code>environments.*</code> package root</strong>: <code>third_party/environments/__init__.py</code></li>
+<li><strong>Bootstrap</strong>: <code>genedynamics/envs/external/d3il/bootstrap.py</code> (<code>ensure_d3il_on_path()</code> supports:<ul>
+<li><code>third_party/environments/d3il</code> (vendored subtree)</li>
+<li><code>third_party/d3il/environments/d3il</code> (full upstream repo)
+)</li>
+</ul>
+</li>
+<li><strong>Setup helpers</strong>:<ul>
+<li><code>scripts/setup/setup_d3il.sh</code> (prints export commands)</li>
+<li><code>scripts/setup/setup.sh</code> (points to setup_d3il.sh)</li>
+</ul>
+</li>
+<li><strong>Dependencies</strong>:<ul>
+<li><code>requirements.txt</code> includes <code>gym&gt;=0.26.2</code> and <code>gin-config&gt;=0.5.0</code></li>
+</ul>
+</li>
+<li><strong>Packaging fix</strong>:<ul>
+<li><code>setup.py</code> now reads <code>requirements.txt</code> into <code>install_requires</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="b-d3il-avoiding-env-integration">B — D3IL Avoiding env integration</h3>
+<ul>
+<li><strong>Wrapper env</strong>: <code>genedynamics/envs/external/d3il/avoiding_env.py</code></li>
+<li><strong>Env plugin</strong>: <code>genedynamics/experiments/plugins/environments/d3il_avoiding.py</code><ul>
+<li><code>env_name: d3il_avoiding</code></li>
+</ul>
+</li>
+<li><strong>State/action convention (avoiding)</strong>:<ul>
+<li><code>state = [x_des, y_des, x, y]</code></li>
+<li><code>action = [dx, dy]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="c-edocmbd-on-d3il-avoiding-mpc">C — EDOC/MBD on D3IL Avoiding (MPC)</h3>
+<ul>
+<li><strong>Planning model</strong>: <code>genedynamics/envs/external/d3il/avoiding_plan_env.py</code> (<code>AvoidingPlanEnv</code>)</li>
+<li><strong>MPC executor</strong>: <code>genedynamics/experiments/common/d3il_mpc.py</code></li>
+<li><strong>Method plugins</strong>:<ul>
+<li><code>method: edoc_mpc</code> → <code>genedynamics/experiments/plugins/methods/edoc_mpc.py</code></li>
+<li><code>method: mbd_mpc</code> → <code>genedynamics/experiments/plugins/methods/mbd_mpc.py</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="d-standard-outputs-minimal-metricsviz">D — Standard outputs + minimal metrics/viz</h3>
+<ul>
+<li><strong><code>results.json</code> (rollout methods)</strong> now includes standardized fields when available:<ul>
+<li><code>exec_states</code>, <code>exec_actions</code></li>
+<li><code>success</code>, <code>collision</code></li>
+<li><code>planning_time_per_step</code>, <code>avg_planning_time_per_step</code></li>
+</ul>
+</li>
+<li><strong>Metric plugin</strong>:<ul>
+<li><code>metric: episode_outcome</code> → <code>genedynamics/experiments/plugins/metrics/episode_outcome.py</code></li>
+</ul>
+</li>
+<li><strong>SSR now supports non-standard state layout</strong> via <code>env_plugin.extract_position(...)</code></li>
+</ul>
+<h3 id="e3-taskspec-abstraction-for-future-multi-task-scaling">E3 — TaskSpec abstraction (for future multi-task scaling)</h3>
+<ul>
+<li><strong>Spec interface</strong>: <code>genedynamics/envs/external/d3il/specs/base.py</code></li>
+<li><strong>Avoiding spec</strong>: <code>genedynamics/envs/external/d3il/specs/avoiding.py</code></li>
+<li><strong>Generic wrapper</strong>: <code>genedynamics/envs/external/d3il/task_env.py</code> (<code>D3ILTaskEnv</code>)</li>
+<li><strong>Avoiding wrapper is spec-driven</strong> (API unchanged): <code>D3ILAvoidingEnv</code> delegates to <code>D3ILTaskEnv(D3ILAvoidingSpec)</code></li>
+</ul>
+<h2 id="how-to-run">How to run</h2>
+<h3 id="0-install-deps-set-pythonpath-for-d3il">0) Install deps + set PYTHONPATH for D3IL</h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+
+# show the PYTHONPATH export lines
+./scripts/setup/setup_d3il.sh
+
+# vendored layout:
+export PYTHONPATH=&quot;$(pwd)/third_party:${PYTHONPATH:-}&quot;
+</code></pre>
+<p>Quick import check:</p>
+<pre><code class="language-bash">python3 -c &quot;import environments.d3il; import environments.d3il.d3il_sim; print(&#39;OK&#39;)&quot;
+</code></pre>
+<h3 id="1-offlineopen-loop-planning-no-mujoco-execution">1) Offline/open-loop planning (no MuJoCo execution)</h3>
+<p>We added an offline planning environment:</p>
+<ul>
+<li><code>env_name: avoiding_plan</code></li>
+</ul>
+<p>Example config:</p>
+<ul>
+<li><code>configs/avoiding_plan/mbd.yaml</code></li>
+</ul>
+<p>Run:</p>
+<pre><code class="language-bash">python3 -m genedynamics.experiments.run_experiment_from_config configs/avoiding_plan/mbd.yaml
+</code></pre>
+<h3 id="2-mpc-on-real-d3il-mujoco-plan-in-jax-model-execute-in-env">2) MPC on real D3IL MuJoCo (plan in JAX model, execute in env)</h3>
+<p>Use:</p>
+<ul>
+<li><code>env_name: d3il_avoiding</code></li>
+<li><code>method: edoc_mpc</code> or <code>mbd_mpc</code></li>
+</ul>
+<p>Minimal YAML fields:</p>
+<pre><code class="language-yaml">env_name: d3il_avoiding
+env_params:
+  render: true
+method: edoc_mpc   # or mbd_mpc
+method_params:
+  horizon: 20
+  max_episode_length: 150
+  action_limit: 0.05
+metrics:
+  - episode_outcome
+  - ssr
+visualizations:
+  - trajectory
+</code></pre>
+<h3 id="3-optional-tests-auto-skip-if-deps-missing">3) Optional tests (auto-skip if deps missing)</h3>
+<pre><code class="language-bash">pytest -q test/integration/test_d3il_avoiding_env_optional.py
+pytest -q test/integration/test_d3il_avoiding_mpc_optional.py
+</code></pre>
+<div class="doc-origin">Based on the framework documentation · docs/integrations/d3il.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/integrations/d3il.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/humanoid-corridor/">Previous: Humanoid corridor</a><a href="/docs/api/">Next: Python API reference</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#d3il-integration-vendor-submodule">D3IL integration (vendor / submodule)</a><a href="#taskspec-pattern-recommended-for-multi-task-scaling">TaskSpec pattern (recommended for multi-task scaling)</a><a href="#a-e-summary-what-we-changed-and-how-to-run">A → E summary (what we changed) and how to run</a><a href="#how-to-run">How to run</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

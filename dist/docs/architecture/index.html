@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architecture | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Architecture"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/architecture/"><meta property="og:title" content="Architecture"><meta property="og:description" content="GenerativeDynamics documentation: Architecture"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/architecture/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" aria-current="page">Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Concepts</div><h1 id="architecture">Architecture</h1>
+<p>GenerativeDynamics implements <strong>generative dynamics on manifold</strong> for robotics
+planning, control and learning through replaceable components. Define a task,
+compose planners, constraints and learned models, then run through the direct
+Python API or experiment framework. Explicit adapters connect selected plans
+to the separate deployment runtime. Learned policies and trajectory models supply
+proposals; model-based objectives and constraints shape online generation;
+controllers execute the selected result and return the next measured state.</p>
+<pre><code class="language-mermaid">flowchart TB
+    C[Configuration and plugins] --&gt; R[Experiment runtime]
+    R --&gt; ENV[Task and environment adapters]
+    R --&gt; GEN[Generative solver]
+
+    subgraph LEARN[Learning and reusable models]
+        DATA[Simulation episodes / offline demonstrations] --&gt; TRAIN[Policy or diffusion training]
+        TRAIN --&gt; CKPT[Checkpoints and model configuration]
+        CKPT --&gt; PRIOR[PPO horizon priors / learned trajectory diffusion]
+    end
+
+    ENV --&gt; TRAIN
+    PRIOR --&gt; GEN
+    ENV --&gt; MODEL[Dynamics and task objectives]
+    MODEL --&gt; GEN
+    GEO[Constraint manifolds / geometry / solvers / schedules] --&gt; GEN
+    GEN --&gt; ACCEPT[Task acceptance and safety checks]
+    ACCEPT --&gt; CTRL[Controllers and robot I/O]
+    CTRL --&gt; WORLD[Simulator or physical robot]
+    WORLD --&gt; STATE[Measured state]
+    STATE --&gt; GEN
+    ENV --&gt; WORLD
+
+    GEN --&gt; EVIDENCE[Metrics / traces / replay / provenance]
+    WORLD --&gt; EVIDENCE
+    EVIDENCE -. offline evaluation and retraining .-&gt; DATA
+    EVIDENCE -. task-specific fit and calibration .-&gt; REL[Reliability model]
+    REL --&gt; ACCEPT
+
+    classDef learning fill:#ede9fe,stroke:#8b5cf6,color:#312e81
+    classDef inference fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    classDef execution fill:#dcfce7,stroke:#22c55e,color:#14532d
+    classDef evidence fill:#fff7ed,stroke:#f97316,color:#7c2d12
+    class DATA,TRAIN,CKPT,PRIOR,REL learning
+    class GEN,MODEL,GEO,ACCEPT inference
+    class CTRL,WORLD,STATE execution
+    class C,R,ENV,EVIDENCE evidence
+</code></pre>
+<p>Each task selects the paths it needs. MGA combines PPO proposals with online
+model-based generative optimization; DPCC and SafeDiffuser sample learned
+trajectory diffusion models. Model-based diffusion also runs without learned
+weights. The dotted feedback paths describe explicit offline workflows, rather
+than automatic learning during robot execution. See
+<a href="/docs/learning-and-priors">learning and priors</a> for runnable entries.</p>
+<h2 id="constraints-follow-the-sample-batch">Constraints follow the sample batch</h2>
+<p>A generative planner maintains candidate trajectories, not just one final
+plan. Supported JAX paths map rollout and correction kernels across candidates
+with <code>vmap</code>, while state-dependent time propagation uses <code>scan</code>. Feasibility
+weights, CBF/CFS corrections and manifold geometry feed subsequent updates.
+2GO limits projection work through probes; MGA can evaluate learned horizon
+proposals alongside the model-based search. Learned trajectory diffusion has
+its own denoising and constraint integration path. See
+<a href="/docs/batched-constraints">batched constraints and generative samples</a>
+for the exact per-method order, shapes and numerical-backend boundaries.</p>
+<h2 id="ownership-boundaries">Ownership boundaries</h2>
+<h3 id="configuration-owns-the-protocol">Configuration owns the protocol</h3>
+<p><code>ExperimentConfig</code> owns method/environment selection, seeds, suites, device,
+metrics, visualization, and output identity. Relative <code>base:</code> chains merge
+dictionaries recursively and replace scalar/list values deterministically.</p>
+<h3 id="plugins-adapt-components">Plugins adapt components</h3>
+<p>Plugins translate a stable runner interface into solver-, environment-, or
+task-specific calls. They keep conditional logic out of the runner and give
+registrations explicit names that YAML can reference.</p>
+<h3 id="solvers-own-planning-mathematics">Solvers own planning mathematics</h3>
+<p>Solvers own generative inference and online optimization over dynamics,
+objectives, constraints, random keys and schedule parameters. They can consume
+learned priors without taking ownership of training. They do not choose result
+paths, render figures, or aggregate multi-seed experiments.</p>
+<h3 id="learning-owns-models-and-their-training-contracts">Learning owns models and their training contracts</h3>
+<p>Training entries own policy/diffusion fitting, datasets or training domains,
+normalization and checkpoint configuration. Shared prior interfaces expose
+actions, control-horizon proposals and optional scores to consumers. PPO
+checkpoints can serve standalone inference and MGA horizon proposals; SAC
+currently serves standalone policies. DPCC has a dedicated Torch diffusion
+training/loading path. Task-specific reliability fitting and calibration stay
+separate from online candidate evaluation.</p>
+<p>The small JAX learned-diffusion prior is an extension component; the published
+MGA recipes do not automatically train it or inject its score into transport.</p>
+<h3 id="environments-own-state-and-execution-semantics">Environments own state and execution semantics</h3>
+<p>Environment plugins create model environments and, where required, distinct
+execution environments. Contact tasks can keep structured simulator state and
+provide task-owned reset, position extraction, recovery, and reliability
+contracts.</p>
+<h3 id="the-runner-owns-evidence">The runner owns evidence</h3>
+<p>The runner validates configuration, expands suite/seed matrices, persists
+success and failure state, invokes metrics and visualizations, and aggregates
+numeric results. A failed matrix entry remains visible rather than appearing as
+a successful partial run.</p>
+<h3 id="deployment-is-a-separate-runtime">Deployment is a separate runtime</h3>
+<p>Deployment composes robot I/O, controllers, tasks, safety filters, observers,
+and localization through registries. Planning outputs cross into deployment
+through explicit adapters and saved artifacts instead of simulator internals.
+Measured state closes the execution/replanning loop. Saved traces can support
+later learning and calibration, with the selected checkpoint and task contract
+recorded for the next run.</p>
+<h2 id="why-this-is-an-industrial-architecture">Why this is an industrial architecture</h2>
+<p>The framework makes replaceability and evidence first-class. A policy prior
+can be reused without folding training into a solver; a planner can be changed
+without creating a new result format; a simulator can be changed without
+rewriting method selection. A benchmark identifies its config, device and
+checkpoint provenance, and an incomplete run records its failure. These
+boundaries turn paper algorithms into maintainable application components.</p>
+<h2 id="backend-boundary">Backend boundary</h2>
+<p>V1 solver implementations target JAX. NumPy supports utilities and adapters.
+Torch supports a runtime adapter and specialized learned planners, but is not a
+general replacement for JAX solvers. Rust and C++ require the same tensor,
+randomness, compilation, device, and serialization contracts before they can
+be advertised as backends.</p>
+<div class="doc-origin">Based on the framework documentation · docs/concepts/architecture.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/concepts/architecture.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/read-results/">Previous: Read your results</a><a href="/docs/choose-method/">Next: Choose a method</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#constraints-follow-the-sample-batch">Constraints follow the sample batch</a><a href="#ownership-boundaries">Ownership boundaries</a><a href="#why-this-is-an-industrial-architecture">Why this is an industrial architecture</a><a href="#backend-boundary">Backend boundary</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

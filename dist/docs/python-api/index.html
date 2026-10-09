@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plan from Python | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: Plan from Python"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/python-api/"><meta property="og:title" content="Plan from Python"><meta property="og:description" content="GenerativeDynamics documentation: Plan from Python"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/python-api/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" aria-current="page">Plan from Python</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Start</div><h1 id="plan-and-execute-from-python">Plan and execute from Python</h1>
+<p>Use an environment and a planner directly when you want to embed planning in
+your own application. This example drives a two-dimensional point robot from
+<code>[0.8, 0.8]</code> to the origin using 2GO on CPU. It needs no robot simulator,
+checkpoint or result directory.</p>
+<p>After <a href="/docs/installation">installing the package with the optimization extra</a>
+(<code>python -m pip install -e &quot;.[optimization]&quot;</code>), run the checked-in example
+from the repository root:</p>
+<pre><code class="language-bash">python examples/plan_to_goal.py
+</code></pre>
+<h2 id="create-the-task-and-planner">Create the task and planner</h2>
+<p>The environment defines the dynamics and the energy defines the objective.
+Select the runtime before constructing the planner:</p>
+<pre><code class="language-python">import jax
+import numpy as np
+
+from genedynamics.core.backends.runtime import RuntimeBackendManager
+from genedynamics.envs import make_env, make_energy
+from genedynamics.solvers import TwoGOSolver
+
+RuntimeBackendManager.set_backend(&quot;jax&quot;, device=&quot;cpu&quot;)
+env_name = &quot;single_integrator_box_2d&quot;
+env = make_env(env_name)
+planner = TwoGOSolver(
+    dynamics=env,
+    energy=make_energy(env_name),
+    backend=RuntimeBackendManager.get_backend(),
+    dt=env.dt,
+    horizon=20,
+    Nsample=128,
+    Ndiffuse=16,
+)
+</code></pre>
+<p><code>horizon</code> is the number of future control steps in each plan. <code>Nsample</code>
+controls the candidate batch size, and <code>Ndiffuse</code> controls the number of
+generative updates. Matching <code>dt</code> keeps planning and execution on the same
+time step.</p>
+<h2 id="execute-the-first-action-and-replan">Execute the first action and replan</h2>
+<pre><code class="language-python">state = np.array([0.8, 0.8], dtype=np.float32)
+for step in range(60):
+    key = jax.random.fold_in(jax.random.PRNGKey(0), step)
+    plan = planner.solve(state, horizon=20, rng_key=key)
+    state = env.transition(state, plan.actions[0])
+    if np.linalg.norm(state) &lt; 0.1:
+        break
+
+print(f&quot;Goal error: {np.linalg.norm(state):.3f}&quot;)
+</code></pre>
+<p><code>solve</code> returns a <code>Trajectory</code> containing states, actions and planner
+diagnostics in <code>info</code>. Each loop executes the first action from the new plan,
+then plans again from the resulting state. The explicit random keys make the
+sequence repeatable within the selected numerical environment.</p>
+<h2 id="success-criterion">Success criterion</h2>
+<p>The task succeeds when the Euclidean distance to the origin is below <code>0.1</code>,
+within 60 executed steps. The checked-in example also asserts that the planned
+states, planned actions and executed states are finite, and fails if the goal
+is not reached.</p>
+<p>A verified CPU run with JAX 0.6.2 produced:</p>
+<pre><code class="language-text">Reached goal in 48 steps (error=0.099).
+</code></pre>
+<p>This checks a complete planning/execution loop, rather than only testing that
+the planner can return an array. The first call includes JAX compilation;
+this small example is not a latency benchmark.</p>
+<p>For obstacle-rich or robot tasks, start with the <a href="/docs/recipes">algorithm recipes</a>,
+which assemble the appropriate geometry, constraint filters and assets. Use
+the <a href="/docs/quickstart">experiment runner</a> when you need configuration files,
+seed matrices, metrics and saved artifacts. See the
+<a href="/docs/planners">planner catalogue</a> for other algorithms and
+<a href="/docs/architecture">architecture</a> for execution interfaces.</p>
+<div class="doc-origin">Based on the framework documentation · docs/getting-started/python-api.md · release/v1-open-source · <a href="https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/getting-started/python-api.md" target="_blank" rel="noopener noreferrer">View source</a></div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/installation/">Previous: Installation</a><a href="/docs/quickstart/">Next: First experiment</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#create-the-task-and-planner">Create the task and planner</a><a href="#execute-the-first-action-and-replan">Execute the first action and replan</a><a href="#success-criterion">Success criterion</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

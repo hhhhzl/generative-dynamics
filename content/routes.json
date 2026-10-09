@@ -1,0 +1,158 @@
+[
+  {
+    "route": "/",
+    "title": "Generative dynamics on manifold"
+  },
+  {
+    "route": "/research/",
+    "title": "Research"
+  },
+  {
+    "route": "/research/mdoc/",
+    "title": "MDOC — Model-Based Diffusion Optimal Control for Multi-Robot Motion Planning"
+  },
+  {
+    "route": "/research/md-coas/",
+    "title": "MD-COAS — Motion Planning with Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling"
+  },
+  {
+    "route": "/research/2go/",
+    "title": "2GO — Model-Based Geometry-Aware Generative Optimization for Constrained Locomotion Planning"
+  },
+  {
+    "route": "/research/mga/",
+    "title": "MGA — Manifold Generative Annealing for Contact Constraint-aware Impedance Control with Reinforcement Learning Prior"
+  },
+  {
+    "route": "/results/",
+    "title": "Results & demonstrations"
+  },
+  {
+    "route": "/framework/",
+    "title": "The framework"
+  },
+  {
+    "route": "/docs/overview/",
+    "title": "Overview"
+  },
+  {
+    "route": "/docs/",
+    "title": "Documentation"
+  },
+  {
+    "route": "/docs/installation/",
+    "title": "Installation"
+  },
+  {
+    "route": "/docs/python-api/",
+    "title": "Plan from Python"
+  },
+  {
+    "route": "/docs/quickstart/",
+    "title": "First experiment"
+  },
+  {
+    "route": "/docs/read-results/",
+    "title": "Read your results"
+  },
+  {
+    "route": "/docs/architecture/",
+    "title": "Architecture"
+  },
+  {
+    "route": "/docs/choose-method/",
+    "title": "Choose a method"
+  },
+  {
+    "route": "/docs/configuration/",
+    "title": "Configuration"
+  },
+  {
+    "route": "/docs/learning-and-priors/",
+    "title": "Learning and priors"
+  },
+  {
+    "route": "/docs/batched-constraints/",
+    "title": "Batched constraints"
+  },
+  {
+    "route": "/docs/adding-a-plugin/",
+    "title": "Add a plugin"
+  },
+  {
+    "route": "/docs/recipes/",
+    "title": "Algorithm recipes"
+  },
+  {
+    "route": "/docs/planar-cpu/",
+    "title": "Planar CPU example"
+  },
+  {
+    "route": "/docs/humanoid-corridor/",
+    "title": "Humanoid corridor"
+  },
+  {
+    "route": "/docs/d3il/",
+    "title": "D3IL integration"
+  },
+  {
+    "route": "/docs/api/",
+    "title": "Python API reference"
+  },
+  {
+    "route": "/docs/cli/",
+    "title": "Command-line reference"
+  },
+  {
+    "route": "/docs/planners/",
+    "title": "Planners"
+  },
+  {
+    "route": "/docs/environments/",
+    "title": "Environments"
+  },
+  {
+    "route": "/docs/constraints/",
+    "title": "Constraints"
+  },
+  {
+    "route": "/docs/compatibility/",
+    "title": "Compatibility"
+  },
+  {
+    "route": "/docs/metrics/",
+    "title": "Metrics and benchmarks"
+  },
+  {
+    "route": "/docs/media-sources/",
+    "title": "Demonstration sources"
+  },
+  {
+    "route": "/docs/roadmap/",
+    "title": "Roadmap"
+  },
+  {
+    "route": "/docs/v1-scope/",
+    "title": "Release scope"
+  },
+  {
+    "route": "/docs/v1-evidence/",
+    "title": "Validation evidence"
+  },
+  {
+    "route": "/docs/testing/",
+    "title": "Testing"
+  },
+  {
+    "route": "/docs/releasing/",
+    "title": "Releasing"
+  },
+  {
+    "route": "/docs/v1-checklist/",
+    "title": "Release checklist"
+  },
+  {
+    "route": "/404/",
+    "title": "Page not found"
+  }
+]
