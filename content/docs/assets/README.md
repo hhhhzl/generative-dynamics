@@ -21,7 +21,11 @@ retain the original source-video timing. They loop silently without added
 acceleration. The homepage hero combines the original MGA contact and 2GO
 locomotion simulations with real G1 hardware using AR virtual obstacles and MGA
 hardware surface interaction and insertion. The gallery retains all six original
-research demonstrations and adds three hardware clips.
+research demonstrations and adds three hardware clips. An additional row shows
+MGA Unitree H1 fixed-stance pushing, contact-force regulation, and unjamming
+from the paper supplement. These humanoid clips preserve the original GIF
+timing, including the final 800 ms hold; they preview research beyond the
+currently qualified V1 recipes.
 
 | Website clip | Preserved source interval |
 | --- | --- |
@@ -29,6 +33,7 @@ research demonstrations and adds three hardware clips.
 | 2GO G1 corridor | Full original GIF, 34.56 seconds |
 | 2GO real G1 | 92–112 seconds of the original hardware video, played over 20 seconds |
 | MGA hardware excerpts | 12–24 seconds of the original deployment video, played over 12 seconds |
+| MGA humanoid pushing | Full original GIFs: fixed stance 1.54 s, force regulation 2.80 s, unjamming 2.12 s |
 
 Other website planning and simulation clips retain presentation timing.
 Source animation timing does not establish planning latency or synchronize
