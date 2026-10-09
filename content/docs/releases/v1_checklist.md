@@ -4,7 +4,7 @@ The checklist is ordered so each phase produces evidence required by the next.
 
 ## 1. Freeze scope
 
-- [x] Create `release/v1-open-source` from the current development head.
+- [x] Create `main` from the current development head.
 - [x] Record included algorithms, tasks, and deferred systems.
 - [x] Disconnect soft-robot, co-design, and 3DGS plugins from default imports.
 - [x] Remove soft-robot, co-design, and 3DGS source, configurations, tests,

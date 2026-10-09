@@ -71,6 +71,6 @@ genedynamics-deploy --help
 
 ## Sources
 
-- [Actual argument definitions](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/runner.py#L114)
-- [Validation, formal readiness, and execution](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/runner.py#L250)
-- [Installed entry points](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/pyproject.toml#L127)
+- [Actual argument definitions](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/runner.py#L114)
+- [Validation, formal readiness, and execution](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/runner.py#L250)
+- [Installed entry points](https://github.com/hhhhzl/genedynamics/blob/main/pyproject.toml#L127)

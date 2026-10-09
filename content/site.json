@@ -3,7 +3,7 @@
   "title":"Generative dynamics on manifold.",
   "description":"Generative models, manifold geometry, and robot learning in one modular planning and control framework.",
   "repository":"https://github.com/hhhhzl/genedynamics",
-  "branch":"release/v1-open-source",
+  "branch":"main",
   "version":"0.1.0 Alpha",
   "origin":"https://generative-dynamics.wisecocoa1.chatgpt.site"
 }

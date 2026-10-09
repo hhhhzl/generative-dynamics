@@ -63,7 +63,7 @@ formal versus development runs.
 This guide is derived from `ExperimentRunner` and the documented CLI; it does
 not introduce a new artifact schema.
 
-- [Matrix execution and resume](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L846)
-- [Protocol manifest](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L984)
-- [Per-run results and trajectories](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L3046)
-- [Aggregated results](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L3199)
+- [Matrix execution and resume](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L846)
+- [Protocol manifest](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L984)
+- [Per-run results and trajectories](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L3046)
+- [Aggregated results](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L3199)

@@ -23,6 +23,7 @@ The current four papers are entries, not a fixed site limit. Research detail pag
 | Framework name, repository, version, canonical origin | `content/site.json` |
 | Research papers, their story, evidence, links, and associated demos | `content/research.json` |
 | Method catalog, including methods without a dedicated paper | `content/methods.json` |
+| Homepage CPU, GPU, and Docker code examples | `content/examples.json` |
 | Documentation navigation and grouping | `content/docs.json` |
 | Documentation articles | `content/docs/*.md` |
 | Demo metadata, captions, playback qualifications, and homepage selection | `content/media.json` |
@@ -37,7 +38,7 @@ To add a documentation page, save its Markdown in `content/docs/` and register i
 
 To add a demonstration, place the video in `assets/media/`, add its metadata to `content/media.json`, and reference its ID in a paper or `homepageIds`. MP4 clips are used in place of GIFs to reduce transfer size and provide controls. Preserve the source, hardware/simulation distinction, and playback-speed qualification.
 
-After changing content, rebuild. When removing a route, also remove its old directory from `dist/` before rebuilding; the generator does not erase stale routes. Keep internal links and citation targets valid.
+After changing content, rebuild. Each build refreshes the generated `dist/` directory. Keep internal links and citation targets valid.
 
 ## Content provenance
 
@@ -51,7 +52,36 @@ After changing content, rebuild. When removing a route, also remove its old dire
 
 `.openai/hosting.json` points Sites to `dist/` and preserves this site's project identity. Publish the exact built source state and its deployment archive together. This first edition is owner-private.
 
-The static output can also be deployed to another provider. For a different domain, update `content/site.json` → `origin` and rebuild. A subdirectory deployment requires adapting absolute site-relative links and assets.
+The static output can also be deployed to another provider. `SITE_ORIGIN` overrides the canonical host at build time; `SITE_BASE_PATH` prefixes local links and assets for a project subdirectory. Leave the base path empty for a root-domain site.
+
+## GitHub Pages deployment
+
+The included `.github/workflows/deploy-pages.yml` builds with Node.js 24 and publishes only `dist/`. It reads the actual origin and base path from GitHub Pages, so both a project site and a user site work without editing content or templates.
+
+1. Create an empty GitHub repository, for example `hhhhzl/generative-dynamics`. A public repository works with GitHub Free. Do not initialize it with a README if you will push this checkout's existing history.
+2. Push this website checkout to that repository's `main` branch. The framework repository is separate; these instructions publish the website source.
+
+```sh
+cd /Users/zhilinhe/Documents/Codex/2026-10-08/ca/outputs/generative-dynamics
+git remote add github https://github.com/hhhhzl/generative-dynamics.git
+git push -u github HEAD:main
+```
+
+3. In the GitHub repository, open **Settings → Pages → Build and deployment → Source**, and select **GitHub Actions**.
+4. Open **Actions → Deploy website to GitHub Pages → Run workflow → main**. The first push may have run before Pages was enabled; this manual run publishes after setup. Once both jobs succeed, GitHub reports the live URL. For the example project repository, the default URL is `https://hhhhzl.github.io/generative-dynamics/`.
+5. Later pushes to `main` rebuild and publish automatically. If the repository uses another branch, update the workflow's `push.branches` and GitHub environment rules accordingly.
+
+For `https://hhhhzl.github.io/`, use a repository named `hhhhzl.github.io`; each account has one user site. An independent project repository is convenient when that user site is already in use. If `github` is already configured as a remote, use its existing configuration or update its URL instead of adding it again.
+
+To inspect a GitHub-style project build locally:
+
+```sh
+SITE_ORIGIN=https://hhhhzl.github.io SITE_BASE_PATH=/generative-dynamics npm run build
+```
+
+Serve `dist/` under `/generative-dynamics/` when previewing that build; serving it at `/` will not emulate GitHub's project path. Run `npm run build` without these environment variables before previewing or publishing on the original root-domain host.
+
+GitHub Pages setup documentation: [publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site), [custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 ## Validation
 

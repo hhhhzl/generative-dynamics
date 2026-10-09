@@ -5,6 +5,10 @@ your own application. This example drives a two-dimensional point robot from
 `[0.8, 0.8]` to the origin using 2GO on CPU. It needs no robot simulator,
 checkpoint or result directory.
 
+This walkthrough selects CPU explicitly. For device-checked GPU planning, use
+the [GPU Python example](/docs/gpu/#use-2go-directly-from-python), or follow
+the [Docker guide](/docs/docker/) for a container environment.
+
 After [installing the package with the optimization extra](/docs/installation)
 (`python -m pip install -e ".[optimization]"`), run the checked-in example
 from the repository root:

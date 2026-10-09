@@ -2,7 +2,7 @@
 
 This page records the release-candidate checks from 2026-10-05 and the
 documentation/package refresh on 2026-10-09, on branch
-`release/v1-open-source`. It is validation evidence, not a performance claim.
+`main`. It is validation evidence, not a performance claim.
 
 ## Release surface
 

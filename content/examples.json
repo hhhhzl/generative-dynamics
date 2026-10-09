@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cpu",
+    "label": "CPU",
+    "title": "plan_to_goal.py \u00b7 Python API",
+    "code": "import jax\nimport numpy as np\n\nfrom genedynamics.envs import make_env, make_energy\nfrom genedynamics.solvers import TwoGOSolver\nfrom genedynamics.core.backends.runtime import (\n    RuntimeBackendManager,\n)\n\nRuntimeBackendManager.set_backend(\"jax\", device=\"cpu\")\nenv = make_env(\"single_integrator_box_2d\")\nplanner = TwoGOSolver(\n    dynamics=env,\n    energy=make_energy(\"single_integrator_box_2d\"),\n    backend=RuntimeBackendManager.get_backend(),\n    dt=env.dt, horizon=20, Nsample=128, Ndiffuse=16,\n)\nplan = planner.solve(\n    np.array([0.8, 0.8], dtype=np.float32),\n    horizon=20, rng_key=jax.random.PRNGKey(0),\n)\nnext_state = env.transition(\n    np.array([0.8, 0.8], dtype=np.float32),\n    plan.actions[0],\n)",
+    "foot": "Plan \u2192 execute the first action \u2192 replan"
+  },
+  {
+    "id": "gpu",
+    "label": "GPU",
+    "title": "Linux / NVIDIA \u00b7 JAX CUDA",
+    "code": "# After installing requirements/gpu-jax.txt\npython -c \"import jax; print(jax.devices('gpu'))\"\n\n# 2GO plan\u2013execute loop\npython examples/plan_to_goal.py --device gpu --samples 1024\n\n# Batched action constraints\npython examples/batched_constraints.py --device gpu --samples 4096",
+    "foot": "Check device placement before comparing performance."
+  },
+  {
+    "id": "docker",
+    "label": "Docker",
+    "title": "Linux / NVIDIA \u00b7 Docker Compose",
+    "code": "docker compose -f docker/compose.gpu.yml build\n\n# Verify GPU access inside the container\ndocker compose -f docker/compose.gpu.yml run --rm genedynamics-train-gpu \\\n  python -c \"import jax; print(jax.devices('gpu'))\"\n\n# Run 2GO; the source and results stay in your checkout\ndocker compose -f docker/compose.gpu.yml run --rm genedynamics-train-gpu \\\n  python examples/plan_to_goal.py --device gpu --samples 1024",
+    "foot": "See the Docker guide for CPU images, mounts, and headless rendering."
+  }
+]

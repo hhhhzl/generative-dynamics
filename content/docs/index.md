@@ -11,7 +11,7 @@ model-based generative inference with dynamics, manifold geometry and
 constraints. Connect the resulting plans to closed-loop control through shared task, solver and execution
 interfaces.
 
-[Watch the full-quality video](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/assets/showcase.mp4) ·
+[Watch the full-quality video](https://github.com/hhhhzl/genedynamics/blob/main/docs/assets/showcase.mp4) ·
 [Explore the task recipes](/docs/recipes)
 
 ## 🧩 Build with reusable components
@@ -53,6 +53,8 @@ scheduling, and closed-form, JAXopt OSQP, OSQP and CVXOPT numerical solvers.
 | --- | --- |
 | Install the package and optional simulators | [Installation](/docs/installation) |
 | Use an environment and planner in your own Python loop | [Direct Python example](/docs/python-api) |
+| Run JAX planners on Linux/NVIDIA | [GPU workflows](/docs/gpu/) |
+| Use isolated CPU or NVIDIA GPU environments | [Docker](/docs/docker/) |
 | Save trajectories, metrics and multi-seed experiments | [First experiment](/docs/quickstart) |
 | Train models and reuse learned priors | [Learning workflows](/docs/learning-and-priors) |
 | Choose a paper algorithm and task | [Recipes](/docs/recipes) |

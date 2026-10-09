@@ -1,8 +1,8 @@
 # Constraint solvers
 
-Compose [CBF action filters](https://github.com/hhhhzl/genedynamics/tree/release/v1-open-source/genedynamics/core/constraints/action_filters),
-[CFS trajectory projections](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cfs_qp_full.py)
-and [adaptive augmented-Lagrangian scheduling](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/schedulers/ConstraintScheduler/almadaptive/alm_adaptive.py)
+Compose [CBF action filters](https://github.com/hhhhzl/genedynamics/tree/main/genedynamics/core/constraints/action_filters),
+[CFS trajectory projections](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cfs_qp_full.py)
+and [adaptive augmented-Lagrangian scheduling](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/schedulers/ConstraintScheduler/almadaptive/alm_adaptive.py)
 with the numerical interfaces below.
 
 Constraints participate **inside the sampling loop**. A candidate batch has
@@ -15,10 +15,10 @@ an executable JAX example.
 
 | Solver | What it provides | Implementation | Upstream reference |
 | --- | --- | --- | --- |
-| **Closed form** | Euclidean halfspace projection, box clipping and unconstrained solves for special cases. | [ClosedFormSolver](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/solvers/closed_form.py) | Local implementation |
-| **JAXopt OSQP** | A general convex-QP interface built on `jaxopt.OSQP`. | [JAXOPTOsqpSolver](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/solvers/jaxopt_osqp_solver.py) | [JAXopt documentation](https://jaxopt.github.io/stable/quadratic_programming.html) |
-| **OSQP** | Sparse CPU convex-QP solves through the OSQP Python interface. | [OSQPSolver](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/solvers/osqp_solver.py) | [OSQP documentation](https://osqp.org/docs/index.html) |
-| **CVXOPT** | CPU convex-QP solves, including trajectory smoothness and slack formulations. | [CVXOPTSolver](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/solvers/cvxopt_solver.py) | [CVXOPT documentation](https://cvxopt.org/userguide/coneprog.html#quadratic-programming) |
+| **Closed form** | Euclidean halfspace projection, box clipping and unconstrained solves for special cases. | [ClosedFormSolver](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/solvers/closed_form.py) | Local implementation |
+| **JAXopt OSQP** | A general convex-QP interface built on `jaxopt.OSQP`. | [JAXOPTOsqpSolver](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/solvers/jaxopt_osqp_solver.py) | [JAXopt documentation](https://jaxopt.github.io/stable/quadratic_programming.html) |
+| **OSQP** | Sparse CPU convex-QP solves through the OSQP Python interface. | [OSQPSolver](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/solvers/osqp_solver.py) | [OSQP documentation](https://osqp.org/docs/index.html) |
+| **CVXOPT** | CPU convex-QP solves, including trajectory smoothness and slack formulations. | [CVXOPTSolver](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/solvers/cvxopt_solver.py) | [CVXOPT documentation](https://cvxopt.org/userguide/coneprog.html#quadratic-programming) |
 
 Install optional numerical packages with:
 
@@ -30,9 +30,9 @@ python -m pip install -e ".[optimization]"
 
 | Component | Use it for | Implementation |
 | --- | --- | --- |
-| **CBF filters** | Correcting actions along rollouts, including Cartesian-to-joint Jacobian lifting. | [Closed-form](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cbf_closed_form.py) · [QP filter](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cbf_qp.py) · [Joint lift](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cbf_qp_joint_lift.py) |
-| **CFS projections** | Building local obstacle halfspaces and correcting per-step or full-horizon actions. | [Per step](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cfs_qp_perstep.py) · [Full horizon](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/action_filters/cfs_qp_full.py) · [Joint lift](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/convexify/cfs/action_joint_lift.py) |
-| **Adaptive ALM scheduling** | Updating feasibility penalties and projection effort from constraint feedback. | [ALMAdaptiveConstraintScheduler](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/schedulers/ConstraintScheduler/almadaptive/alm_adaptive.py) |
+| **CBF filters** | Correcting actions along rollouts, including Cartesian-to-joint Jacobian lifting. | [Closed-form](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cbf_closed_form.py) · [QP filter](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cbf_qp.py) · [Joint lift](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cbf_qp_joint_lift.py) |
+| **CFS projections** | Building local obstacle halfspaces and correcting per-step or full-horizon actions. | [Per step](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cfs_qp_perstep.py) · [Full horizon](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/action_filters/cfs_qp_full.py) · [Joint lift](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/convexify/cfs/action_joint_lift.py) |
+| **Adaptive ALM scheduling** | Updating feasibility penalties and projection effort from constraint feedback. | [ALMAdaptiveConstraintScheduler](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/schedulers/ConstraintScheduler/almadaptive/alm_adaptive.py) |
 
 CBF and CFS identify constraint-handling methods; the numerical solver is a
 separate choice. See the original [CBF-QP paper](https://arxiv.org/abs/1609.06408)
@@ -56,7 +56,7 @@ then inspect [MDOC and MD-COAS recipes](/docs/recipes) for their integration.
   `jax.jit`/`vmap` sampling loop; use the existing pure-JAX filter path or an
   explicit host-side integration.
 - **QPAX is an optional operator fallback.** The
-  [per-step operator](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/constraints/operators/qp/per_step_filter.py)
+  [per-step operator](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/constraints/operators/qp/per_step_filter.py)
   can call QPAX; this repository does not provide a separate QPAX solver class.
 
 Use the [compatibility matrix](/docs/compatibility) for backend and device status.

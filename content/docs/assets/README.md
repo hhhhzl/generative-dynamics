@@ -21,7 +21,7 @@ There are no added titles, captions, logos or labels inside the animation.
 - `architecture.svg` is the separately editable framework diagram.
 
 The compact source clips are checked in under `showcase_sources/v2/`.
-[manifest.json](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/assets/showcase_sources/v2/manifest.json) records all 44 checksums,
+[manifest.json](https://github.com/hhhhzl/genedynamics/blob/main/docs/assets/showcase_sources/v2/manifest.json) records all 44 checksums,
 original source identities, crop bounds, selected time ranges and playback
 normalization. It uses symbolic source roots rather than personal machine paths.
 The gallery can be rebuilt without a simulator or the original paper folders:

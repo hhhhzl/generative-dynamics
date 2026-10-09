@@ -1,6 +1,6 @@
 # Releasing V1
 
-Work from `release/v1-open-source` and follow
+Work from `main` and follow
 [`docs/releases/v1_checklist.md`](/docs/v1-checklist).
 
 ## Candidate procedure

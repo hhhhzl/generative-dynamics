@@ -178,19 +178,20 @@
       "University of Pennsylvania"
     ],
     "publication": {
-      "status": "preprint",
-      "label": "arXiv preprint",
+      "status": "conference",
+      "label": "IROS 2026",
       "year": 2026,
       "arxivId": "2607.14455",
       "submitted": "2026-07-16",
       "verifiedAt": "2026-10-09",
       "sourceUrl": "https://arxiv.org/abs/2607.14455",
-      "note": "The public arXiv record does not identify an accepted publication venue."
+      "note": "Conference venue confirmed by the author. The linked paper is the arXiv version.",
+      "venue": "IROS 2026"
     },
     "links": {
       "paper": "https://arxiv.org/abs/2607.14455"
     },
-    "citation": "@article{he2026motion,\n  title={Motion Planning with Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling},\n  author={He, Zhilin and Li, Bowei and Dou, Jianlin and Zhang, Yuner and Liu, Changliu},\n  journal={arXiv preprint arXiv:2607.14455},\n  year={2026}\n}",
+    "citation": "@inproceedings{he2026mdcoas,\n  title={Motion Planning with Model-Based Diffusion via Constraint Optimization and Adaptive Scheduling},\n  author={He, Zhilin and Li, Bowei and Dou, Jianlin and Zhang, Yuner and Liu, Changliu},\n  booktitle={2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},\n  year={2026}\n}",
     "stage": "Adaptive constraints",
     "steps": [
       "Soft feasibility prior",

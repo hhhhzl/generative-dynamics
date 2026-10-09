@@ -48,6 +48,14 @@
     "title": "Plan from Python"
   },
   {
+    "route": "/docs/gpu/",
+    "title": "GPU workflows"
+  },
+  {
+    "route": "/docs/docker/",
+    "title": "Docker"
+  },
+  {
     "route": "/docs/quickstart/",
     "title": "First experiment"
   },

@@ -1,0 +1,209 @@
+<!doctype html><html lang="en" data-base-path=""><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GPU workflows | GenerativeDynamics</title><meta name="description" content="GenerativeDynamics documentation: GPU workflows"><meta name="theme-color" content="#2559e9"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2036%2036%22%20%20fill%3D%22none%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2234%22%20height%3D%2234%22%20rx%3D%228%22%20fill%3D%22%23121c2e%22%2F%3E%3Cpath%20d%3D%22M7%2027C9%2021%2012%2021%2015%2018S20%2010%2029%209M8%2029C12%2027%2012%2020%2018%2020S22%2014%2029%2010%22%20stroke%3D%22%23729dff%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20d%3D%22M8%2027C12%2024%2013%2019%2017%2018S23%2010%2029%209%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2227%22%20r%3D%222%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2229%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23729dff%22%2F%3E%3C%2Fsvg%3E"><link rel="canonical" href="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/gpu/"><meta property="og:title" content="GPU workflows"><meta property="og:description" content="GenerativeDynamics documentation: GPU workflows"><meta property="og:type" content="website"><meta property="og:url" content="https://generative-dynamics.wisecocoa1.chatgpt.site/docs/gpu/"><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="GenerativeDynamics home"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav id="primary-nav" class="nav" aria-label="Primary"><a href="/research/" >Research</a><a href="/results/" >Results</a><a href="/framework/" >Framework</a><a href="/docs/" aria-current="page">Docs</a><a class="repo" href="https://github.com/hhhhzl/genedynamics" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></header><main id="main"><div class="wrap docs-layout"><button type="button" class="doc-mobile-menu" aria-expanded="false" aria-controls="doc-sidebar">Browse documentation</button><aside class="doc-sidebar" id="doc-sidebar" aria-label="Documentation"><label for="doc-find" class="eyebrow" style="margin-bottom:9px">Documentation</label><input type="search" id="doc-find" placeholder="Find a page" autocomplete="off"><div class="doc-group"><h3>Start</h3><a href="/docs/overview/" >Overview</a><a href="/docs/installation/" >Installation</a><a href="/docs/python-api/" >Plan from Python</a><a href="/docs/gpu/" aria-current="page">GPU workflows</a><a href="/docs/docker/" >Docker</a><a href="/docs/quickstart/" >First experiment</a><a href="/docs/read-results/" >Read your results</a></div><div class="doc-group"><h3>Concepts</h3><a href="/docs/architecture/" >Architecture</a><a href="/docs/choose-method/" >Choose a method</a></div><div class="doc-group"><h3>Guides</h3><a href="/docs/configuration/" >Configuration</a><a href="/docs/learning-and-priors/" >Learning and priors</a><a href="/docs/batched-constraints/" >Batched constraints</a><a href="/docs/adding-a-plugin/" >Add a plugin</a></div><div class="doc-group"><h3>Recipes</h3><a href="/docs/recipes/" >Algorithm recipes</a><a href="/docs/planar-cpu/" >Planar CPU example</a><a href="/docs/humanoid-corridor/" >Humanoid corridor</a></div><div class="doc-group"><h3>Integrations</h3><a href="/docs/d3il/" >D3IL integration</a></div><div class="doc-group"><h3>Reference</h3><a href="/docs/api/" >Python API reference</a><a href="/docs/cli/" >Command-line reference</a><a href="/docs/planners/" >Planners</a><a href="/docs/environments/" >Environments</a><a href="/docs/constraints/" >Constraints</a><a href="/docs/compatibility/" >Compatibility</a><a href="/docs/metrics/" >Metrics and benchmarks</a><a href="/docs/media-sources/" >Demonstration sources</a></div><div class="doc-group"><h3>Project</h3><a href="/docs/roadmap/" >Roadmap</a><a href="/docs/v1-scope/" >Release scope</a><a href="/docs/v1-evidence/" >Validation evidence</a><a href="/docs/testing/" >Testing</a><a href="/docs/releasing/" >Releasing</a><a href="/docs/v1-checklist/" >Release checklist</a></div></aside><article class="doc-content"><div class="breadcrumb"><a href="/docs/">Docs</a><span>/</span>Start</div><h1 id="run-with-an-nvidia-gpu">Run with an NVIDIA GPU</h1>
+<p>Use the JAX CUDA installation path on Linux to run the framework&#39;s JAX planners
+on an available NVIDIA GPU. The task configuration and experiment interface stay
+the same: select <code>--device gpu</code> for configured runs, or <code>device=&quot;gpu&quot;</code> in Python.</p>
+<p>The current release provides a CUDA installation path; qualification varies by
+task. These examples show how to configure and inspect a GPU run. They are not
+GPU benchmark results or a claim of numerical parity with the CPU release suite.</p>
+<p>For a container setup, follow the <a href="/docs/docker/">Docker guide</a>.</p>
+<h2 id="install-the-cuda-environment">Install the CUDA environment</h2>
+<p>Use Python 3.10–3.12 on a Linux host with a compatible NVIDIA driver. The
+repository&#39;s GPU requirement file selects <code>jax[cuda12]&gt;=0.6.2,&lt;0.7</code> and also
+includes the simulation dependencies.</p>
+<pre><code class="language-bash">git clone https://github.com/hhhhzl/genedynamics.git
+cd genedynamics
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e &quot;.[optimization]&quot;
+python -m pip install -r requirements/gpu-jax.txt
+python -m pip check
+</code></pre>
+<p>If you already have a checkout, begin with its environment setup instead of
+cloning again. Keep the repository&#39;s JAX version range when installing CUDA
+support. Consult the <a href="https://docs.jax.dev/en/latest/installation.html">official JAX installation guide</a>
+for driver and CUDA compatibility; the latest upstream installation command may
+target a newer JAX version than this release.</p>
+<p>The V1 CUDA path is not available on macOS. Use the CPU example locally or run
+these commands on a suitable Linux/NVIDIA machine.</p>
+<h2 id="confirm-the-actual-device">Confirm the actual device</h2>
+<p>First check that JAX can initialize a GPU, then verify that the framework places
+an array there:</p>
+<pre><code class="language-python">import jax
+from genedynamics.core.backends.runtime import RuntimeBackendManager
+
+print(&quot;JAX version:&quot;, jax.__version__)
+print(&quot;GPU devices:&quot;, jax.devices(&quot;gpu&quot;))
+
+RuntimeBackendManager.set_backend(&quot;jax&quot;, device=&quot;gpu&quot;)
+backend = RuntimeBackendManager.get_backend()
+assert backend.get_device() == &quot;gpu&quot;, &quot;The runtime fell back to CPU&quot;
+
+probe = backend.tensor([0.0, 1.0])
+probe.block_until_ready()
+print(&quot;Probe placement:&quot;, probe.devices())
+assert all(device.platform == &quot;gpu&quot; for device in probe.devices())
+</code></pre>
+<p>Run this in the same Python environment as your experiment. If GPU initialization
+fails, resolve the installation or driver problem before recording GPU results.
+The framework can fall back to CPU with a warning, so successful process exit
+alone does not establish that a GPU was used.</p>
+<p>Use <code>gpu</code> for the device setting in both configured runs and the direct Python API.</p>
+<h2 id="run-the-included-gpu-examples">Run the included GPU examples</h2>
+<p>The current examples accept a device and candidate count. They check the selected
+device and fail clearly if a GPU is unavailable:</p>
+<pre><code class="language-bash">python examples/plan_to_goal.py --device gpu --samples 1024
+python examples/batched_constraints.py --device gpu --samples 4096
+</code></pre>
+<p>The first example runs the 2GO plan–execute loop. The second projects an action
+batch against fixed halfspaces; it demonstrates array composition rather than a
+complete robot task. Use <a href="/docs/docker/">Docker</a> to run these entrypoints in the
+GPU container.</p>
+<h2 id="run-a-planar-experiment-on-gpu">Run a planar experiment on GPU</h2>
+<p>Start with a single seed and obstacle level. This MBD task does not require a
+robot simulator or learned checkpoint.</p>
+<pre><code class="language-bash">genedynamics-run configs/single_2d/mbd.yaml \
+  --device gpu --seed 0 --level 0 --dry-run
+
+genedynamics-run configs/single_2d/mbd.yaml \
+  --device gpu --seed 0 --level 0 \
+  --development-root results/_development/gpu-planar
+</code></pre>
+<p><code>--dry-run</code> checks the configuration; it does not initialize a planner or verify
+GPU execution. During the actual run, inspect the device message as well as the
+completed/failed summary. The runner prints the resolved output directory and
+saves configuration, metrics, trajectories, and provenance there.</p>
+<h2 id="run-the-2go-corridor-planner-on-gpu">Run the 2GO corridor planner on GPU</h2>
+<p>The Zone A configuration uses 2GO for constrained humanoid body-motion planning.
+The selected level below is the configuration&#39;s default level, with one seed.</p>
+<pre><code class="language-bash">genedynamics-run \
+  configs/humanoid/corridor_2d/main/twogo_zone_a.yaml \
+  --device gpu --seed 0 --level 1 --dry-run
+
+genedynamics-run \
+  configs/humanoid/corridor_2d/main/twogo_zone_a.yaml \
+  --device gpu --seed 0 --level 1 \
+  --development-root results/_development/gpu-corridor
+</code></pre>
+<p>This runs the planning configuration. It does not launch a humanoid walking
+controller or establish a hardware deployment setup. Inspect the selected
+trajectory, corridor metrics, and run status before expanding the comparison.
+See the <a href="/docs/humanoid-corridor/">corridor recipe</a> for task context.</p>
+<p>After inspecting one completed case, expand the same output tree:</p>
+<pre><code class="language-bash">genedynamics-run \
+  configs/humanoid/corridor_2d/main/twogo_zone_a.yaml \
+  --device gpu --seeds 0 1 2 --level 1 \
+  --development-root results/_development/gpu-corridor --resume
+</code></pre>
+<p>The runner reuses complete entries with matching resolved configurations.
+Preserve aborted execution evidence and use a new output root for a new attempt.</p>
+<h2 id="use-2go-directly-from-python">Use 2GO directly from Python</h2>
+<p>The <a href="/docs/python-api/">Python walkthrough</a> constructs a task and planner before
+entering a receding-horizon loop. For GPU use, select the device before creating
+the planner. This compact example generates one plan:</p>
+<pre><code class="language-python">import jax
+import numpy as np
+
+from genedynamics.core.backends.runtime import RuntimeBackendManager
+from genedynamics.envs import make_env, make_energy
+from genedynamics.solvers import TwoGOSolver
+
+assert jax.devices(&quot;gpu&quot;), &quot;No JAX GPU is available&quot;
+RuntimeBackendManager.set_backend(&quot;jax&quot;, device=&quot;gpu&quot;)
+backend = RuntimeBackendManager.get_backend()
+assert backend.get_device() == &quot;gpu&quot;
+
+device = jax.devices(&quot;gpu&quot;)[0]
+print(&quot;Selected JAX device:&quot;, device)
+with jax.default_device(device):
+    env_name = &quot;single_integrator_box_2d&quot;
+    env = make_env(env_name)
+    planner = TwoGOSolver(
+        dynamics=env,
+        energy=make_energy(env_name),
+        backend=backend,
+        dt=env.dt,
+        horizon=20,
+        Nsample=128,
+        Ndiffuse=16,
+    )
+    state = backend.tensor([0.8, 0.8], dtype=np.float32)
+    print(&quot;Input placement:&quot;, state.devices())
+    plan = planner.solve(state, horizon=20, rng_key=jax.random.PRNGKey(0))
+    assert np.isfinite(np.asarray(plan.states)).all()
+    assert np.isfinite(np.asarray(plan.actions)).all()
+    next_state = env.transition(state, plan.actions[0])
+
+# The public trajectory interface returns host-side NumPy data.
+print(&quot;First action:&quot;, plan.actions[0])
+</code></pre>
+<p>The JAX device context covers task construction and planning, including arrays
+created inside compiled kernels. This example selects one visible GPU; it does
+not distribute candidates across multiple GPUs.</p>
+<p>To execute a full task, repeat the plan–execute loop from the walkthrough with a
+fresh deterministic random key at each step. The current checked-in
+<code>examples/plan_to_goal.py</code> supports <code>--device gpu --samples 1024</code> and includes
+the complete loop. Use the configurable runner above to save experiment artifacts.</p>
+<h2 id="support-boundaries">Support boundaries</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Current status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core JAX CPU</td>
+<td>Supported portable path; CPU release evidence is documented.</td>
+</tr>
+<tr>
+<td>JAX CUDA on Linux/NVIDIA</td>
+<td>Installable through <code>requirements/gpu-jax.txt</code>; task qualification varies.</td>
+</tr>
+<tr>
+<td>2GO GPU configuration</td>
+<td>Uses the JAX runtime and device override shown above; these commands do not imply a published GPU parity or speed benchmark.</td>
+</tr>
+<tr>
+<td>MGA on GPU</td>
+<td>Qualification is deferred. Use its qualified CPU path for the release recipes.</td>
+</tr>
+<tr>
+<td>DPCC and SafeDiffuser</td>
+<td>Specialized optional Torch integrations. Their CPU/CUDA behavior depends on the Torch installation, task assets, and checkpoints; JAX CUDA installation does not configure them.</td>
+</tr>
+<tr>
+<td>MuJoCo/MJX and Brax</td>
+<td>Simulation dependencies and adapters are separate from solver selection. A planner&#39;s GPU flag does not automatically move every simulator or controller to GPU.</td>
+</tr>
+<tr>
+<td>Humanoid walking/push and Isaac Lab</td>
+<td>Walking/push readiness remains deferred; Isaac Lab is an experimental deployment adapter.</td>
+</tr>
+<tr>
+<td>macOS CUDA</td>
+<td>Not available in the V1 support matrix.</td>
+</tr>
+</tbody></table>
+<h2 id="interpret-performance-carefully">Interpret performance carefully</h2>
+<p>The first planning call includes JAX tracing and compilation. Record compilation
+and cold latency separately from warm latency, and include synchronization and
+host/device transfers in the stated timing policy. Log hardware, JAX/jaxlib
+versions, commit, configuration, seeds, horizon, candidate count, and diffusion
+steps. Small examples are useful integration checks, not evidence of a GPU
+speedup. See <a href="/docs/metrics/">Metrics and benchmarks</a> for the reporting contract.</p>
+<p>For a CPU comparison, run the same task with <code>--device cpu</code> and a separate
+development output root. Different platforms can select different valid modes
+when floating-point reductions break a symmetric tie; judge both task metrics
+and constraint behavior rather than requiring identical trajectory coordinates.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/requirements/gpu-jax.txt">GPU dependency contract</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/compatibility.md">Compatibility matrix</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/release/v1_compatibility.json">Machine-readable support status</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/runner.py">CLI device override</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/backends/runtime/jax_backend.py">JAX runtime device handling</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/configs/humanoid/corridor_2d/main/twogo_zone_a.yaml">2GO corridor configuration</a></li>
+<li><a href="https://github.com/hhhhzl/genedynamics/blob/main/examples/plan_to_goal.py">Direct Python example</a></li>
+</ul>
+<div class="doc-origin">Based on the framework documentation · Website guide · main</div><nav class="doc-pagination" aria-label="Documentation pages"><a href="/docs/python-api/">Previous: Plan from Python</a><a href="/docs/docker/">Next: Docker</a></nav></article><nav class="doc-toc" aria-label="On this page"><strong>ON THIS PAGE</strong><a href="#install-the-cuda-environment">Install the CUDA environment</a><a href="#confirm-the-actual-device">Confirm the actual device</a><a href="#run-the-included-gpu-examples">Run the included GPU examples</a><a href="#run-a-planar-experiment-on-gpu">Run a planar experiment on GPU</a><a href="#run-the-2go-corridor-planner-on-gpu">Run the 2GO corridor planner on GPU</a><a href="#use-2go-directly-from-python">Use 2GO directly from Python</a><a href="#support-boundaries">Support boundaries</a><a href="#interpret-performance-carefully">Interpret performance carefully</a><a href="#sources">Sources</a></nav></div></main><footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><svg viewBox="0 0 36 36" aria-hidden="true" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" fill="#121c2e"/><path d="M7 27C9 21 12 21 15 18S20 10 29 9M8 29C12 27 12 20 18 20S22 14 29 10" stroke="#729dff" stroke-width="1.5"/><path d="M8 27C12 24 13 19 17 18S23 10 29 9" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="27" r="2" fill="#fff"/><circle cx="29" cy="9" r="2" fill="#729dff"/></svg><span>Generative<b>Dynamics</b></span></a><p>Generative models, manifold geometry, and robot learning.<br>Planning. Control. Learning.</p></div><nav class="footer-links" aria-label="Footer"><a href="/research/">Research</a><a href="/results/">Results</a><a href="/docs/python-api/">Get started</a><a href="/docs/compatibility/">Compatibility</a></nav></div><div class="footer-bottom"><span>RESEARCH FRAMEWORK · 0.1.0 Alpha</span><span>Research and framework documentation · 2026</span></div></div></footer></body></html>

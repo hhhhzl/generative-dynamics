@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "snapshotDate": "2026-10-09",
   "repositoryUrl": "https://github.com/hhhhzl/genedynamics",
-  "branch": "release/v1-open-source",
+  "branch": "main",
   "routePattern": "/docs/{id}",
   "mediaPrefix": "/media/",
   "groups": [
@@ -22,9 +22,9 @@
       "path": "docs/index.md",
       "route": "/docs/overview",
       "sourcePath": "docs/index.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/index.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/index.md",
       "kind": "repository-document",
-      "sha256": "dfc757e91b158dcffc435670ee1a460a83850227c7d1e6ace322be5cecdeed24",
+      "sha256": "3b9252523f7235b87f07ca5a2d8be5eac64acb40d5c82bae7c98d235c5e80e99",
       "sourceSha256": "f8f50f6defb2530786037af116bce90920decaa24300fb31a1d2ecef8189845c"
     },
     {
@@ -34,9 +34,9 @@
       "path": "docs/getting-started/installation.md",
       "route": "/docs/installation",
       "sourcePath": "docs/getting-started/installation.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/getting-started/installation.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/getting-started/installation.md",
       "kind": "repository-document",
-      "sha256": "07e3c8e7905d982f74b15bef3645c0fbd9981d5f52285c8a2c56df4e31c3cca4",
+      "sha256": "dbdcf7727b8b477cef588e4a05119c2aefc75dc3ee4ebb745812977f4c661458",
       "sourceSha256": "c95557a1a99f26c5e2e5e5215a146a49f4fff3db11f0e4c3c4572b6ab933b11e"
     },
     {
@@ -46,10 +46,34 @@
       "path": "docs/getting-started/python-api.md",
       "route": "/docs/python-api",
       "sourcePath": "docs/getting-started/python-api.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/getting-started/python-api.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/getting-started/python-api.md",
       "kind": "repository-document",
-      "sha256": "e797e6ec6a8aa44c013f9993a41ba33471d9c671000e8f717987800fd62966fb",
+      "sha256": "cde959da7ae9982a014be82617b0dee15a8381dc8a18d664d25bc2b9f4eacd4d",
       "sourceSha256": "5cfc9324cc6f65d2c3c12a2d78e8652664417eed5a7cab459cd54cd70cefd692"
+    },
+    {
+      "id": "gpu",
+      "title": "GPU workflows",
+      "group": "Start",
+      "path": "docs/getting-started/gpu.md",
+      "route": "/docs/gpu",
+      "sourcePath": null,
+      "sourceUrl": null,
+      "kind": "source-derived-guide",
+      "sourceSha256": null,
+      "sha256": "cdee71479c0cbe262bbe050a51d58313304e83c94b3b9eaebc126fd09bef5a97"
+    },
+    {
+      "id": "docker",
+      "title": "Docker",
+      "group": "Start",
+      "path": "docs/getting-started/docker.md",
+      "route": "/docs/docker",
+      "sourcePath": null,
+      "sourceUrl": null,
+      "kind": "source-derived-guide",
+      "sourceSha256": null,
+      "sha256": "c7437351b86a5460fcf0bd5a0167b318db8121460b87ecf11d769ffe4d000650"
     },
     {
       "id": "quickstart",
@@ -58,7 +82,7 @@
       "path": "docs/getting-started/quickstart.md",
       "route": "/docs/quickstart",
       "sourcePath": "docs/getting-started/quickstart.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/getting-started/quickstart.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/getting-started/quickstart.md",
       "kind": "repository-document",
       "sha256": "f60ec7aef32ea1775081ac5b6a5f3e153cc8a5f3196dc35e9f77f5fecbad9875",
       "sourceSha256": "cce9bf2d3675957ec94afe5caa05ea3c0bb26f6595607ccba548eb392eda8d22"
@@ -72,7 +96,7 @@
       "sourcePath": null,
       "sourceUrl": null,
       "kind": "source-derived-guide",
-      "sha256": "12fa47e39e3bbd464efce3faede567254178a530cd636de0a1d4cae1714fcc09",
+      "sha256": "ebd42554b6c7e89c11910d48136d2861caddcf22b51757a5f344772c8067d4db",
       "sourceSha256": null
     },
     {
@@ -82,7 +106,7 @@
       "path": "docs/concepts/architecture.md",
       "route": "/docs/architecture",
       "sourcePath": "docs/concepts/architecture.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/concepts/architecture.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/concepts/architecture.md",
       "kind": "repository-document",
       "sha256": "b5c49181589e0755ca0f2569c1713cb950473015cd319e75e80c5bae75aab5f1",
       "sourceSha256": "6c46321b3efce91eb6d157a3bb4006460a7793118aba150ad0dfac9a5b9204c2"
@@ -96,7 +120,7 @@
       "sourcePath": null,
       "sourceUrl": null,
       "kind": "source-derived-guide",
-      "sha256": "8e65124ded7039cc51ac552327391ea1afaa615488ccc6fd9db6ce811079926a",
+      "sha256": "b80663fdca9da22c1b2cdddcc93884922a5135f3c45c470730f414d2bb941820",
       "sourceSha256": null
     },
     {
@@ -106,7 +130,7 @@
       "path": "docs/guides/configuration.md",
       "route": "/docs/configuration",
       "sourcePath": "docs/guides/configuration.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/configuration.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/guides/configuration.md",
       "kind": "repository-document",
       "sha256": "9c7b513707ae0569fbcc7291524fabdb7100f3c7733cbaa6b42050d0b06412ca",
       "sourceSha256": "9c7b513707ae0569fbcc7291524fabdb7100f3c7733cbaa6b42050d0b06412ca"
@@ -118,7 +142,7 @@
       "path": "docs/guides/learning-and-priors.md",
       "route": "/docs/learning-and-priors",
       "sourcePath": "docs/guides/learning-and-priors.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/learning-and-priors.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/guides/learning-and-priors.md",
       "kind": "repository-document",
       "sha256": "f416c1e43407dfb46f8e1743de6d5ada285a26ab1ed9bd5f3ce5cbfd789b0120",
       "sourceSha256": "0f5dd886f5f8be3823d9aba7a6249fe691000489d2bd1ed07143723e15344752"
@@ -130,9 +154,9 @@
       "path": "docs/guides/batched-constraints.md",
       "route": "/docs/batched-constraints",
       "sourcePath": "docs/guides/batched-constraints.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/batched-constraints.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/guides/batched-constraints.md",
       "kind": "repository-document",
-      "sha256": "d37189008eadf5380654a73b2b12f36a90b495e5e2f6086b57068b20e44ca1c3",
+      "sha256": "19cc3dd5f781ed22575295c92d9b3870bad8e8158dbdfcf96255eb911377c508",
       "sourceSha256": "8f534f503b03b117f61579942aff1ca9bb39e5f269c573bf20e0e4fa4b02cba3"
     },
     {
@@ -142,7 +166,7 @@
       "path": "docs/guides/adding-a-plugin.md",
       "route": "/docs/adding-a-plugin",
       "sourcePath": "docs/guides/adding-a-plugin.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/guides/adding-a-plugin.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/guides/adding-a-plugin.md",
       "kind": "repository-document",
       "sha256": "b2e581ba812e8dd4376820f759628449c88689b829801c15a609b4fa2710d8e2",
       "sourceSha256": "b2e581ba812e8dd4376820f759628449c88689b829801c15a609b4fa2710d8e2"
@@ -154,7 +178,7 @@
       "path": "docs/recipes/index.md",
       "route": "/docs/recipes",
       "sourcePath": "docs/recipes/index.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/recipes/index.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/recipes/index.md",
       "kind": "repository-document",
       "sha256": "3c42b9d84be7901d8d7b6f00b68680373d7e83e12e2a8161a070c5d515f79021",
       "sourceSha256": "3b094e93a4a443bf405eaae8c6541224b28cbae5f1a2d4ea98ed77cb48af8191"
@@ -166,7 +190,7 @@
       "path": "docs/recipes/planar-cpu.md",
       "route": "/docs/planar-cpu",
       "sourcePath": "docs/recipes/planar-cpu.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/recipes/planar-cpu.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/recipes/planar-cpu.md",
       "kind": "repository-document",
       "sha256": "2370283f463b85119c9cfd0fc7a4b8a863a09ab1fadd4c879f01890c1f369f57",
       "sourceSha256": "2370283f463b85119c9cfd0fc7a4b8a863a09ab1fadd4c879f01890c1f369f57"
@@ -178,7 +202,7 @@
       "path": "docs/recipes/humanoid-corridor.md",
       "route": "/docs/humanoid-corridor",
       "sourcePath": "docs/recipes/humanoid-corridor.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/recipes/humanoid-corridor.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/recipes/humanoid-corridor.md",
       "kind": "repository-document",
       "sha256": "0b60c628e659a37ad83240c93ee1d92a4c6635766c6b761de7eb8c4d18841536",
       "sourceSha256": "0b60c628e659a37ad83240c93ee1d92a4c6635766c6b761de7eb8c4d18841536"
@@ -190,7 +214,7 @@
       "path": "docs/integrations/d3il.md",
       "route": "/docs/d3il",
       "sourcePath": "docs/integrations/d3il.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/integrations/d3il.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/integrations/d3il.md",
       "kind": "repository-document",
       "sha256": "249ec87c07f45de11559802404e31f6ccd634c5b63daa554b27f467e410e244a",
       "sourceSha256": "249ec87c07f45de11559802404e31f6ccd634c5b63daa554b27f467e410e244a"
@@ -202,9 +226,9 @@
       "path": "docs/api/README.md",
       "route": "/docs/api",
       "sourcePath": "docs/api/README.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/api/README.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/api/README.md",
       "kind": "repository-document-with-source-verified-reference",
-      "sha256": "2cde498ddc361f2b2f790d21abc091e74dc9aec06ec2a9a237426265a348e8f6",
+      "sha256": "945c8a08481ef4056168898c1530d4cf1e59e9173b6d13c6b7917e3c67914c0e",
       "sourceSha256": "f33a4629e45cf530b3b58204cf91bb8793127655d241460a34045a837475bf40"
     },
     {
@@ -216,7 +240,7 @@
       "sourcePath": null,
       "sourceUrl": null,
       "kind": "source-derived-guide",
-      "sha256": "d7664cd62b7287e40de8ce4616c43574b7a8b36ff73ec636217301aa668307da",
+      "sha256": "d0462921ec843ad1ef1c9462b20355da699d363ce7fbec5c8edcee2fd3b975a8",
       "sourceSha256": null
     },
     {
@@ -226,9 +250,9 @@
       "path": "docs/reference/planners.md",
       "route": "/docs/planners",
       "sourcePath": "docs/reference/planners.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/planners.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/planners.md",
       "kind": "repository-document",
-      "sha256": "d73ff18093ad03c7c441c4da834eb977de1a9e29af484b8990052b1be4166a6a",
+      "sha256": "aef99f1f3571c7d14f9b054d5b6c1128b18be167f0bd65e2df35be9c9148e0dd",
       "sourceSha256": "9bbfe4221777352603966b3ce656908a28627bf21282d4e8cc6964b5ec7b44ce"
     },
     {
@@ -238,9 +262,9 @@
       "path": "docs/reference/environments.md",
       "route": "/docs/environments",
       "sourcePath": "docs/reference/environments.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/environments.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/environments.md",
       "kind": "repository-document",
-      "sha256": "dec7516a33df0d47e042341dce4d7642977d4ae93885ae41023724209ca9ecaf",
+      "sha256": "5e30fab9785e6623536af3a08ef09beb84bc6bee67fce0a4e08689a1f0b87a61",
       "sourceSha256": "71edf3d4e2aef3c9457b385a741fa98605080638ab629652c34dc8207557a204"
     },
     {
@@ -250,9 +274,9 @@
       "path": "docs/reference/constraints.md",
       "route": "/docs/constraints",
       "sourcePath": "docs/reference/constraints.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/constraints.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/constraints.md",
       "kind": "repository-document",
-      "sha256": "1e83824a490e1bea44bd20446dd9b64b0c66dbf2fdfd00f28a1f43d213f10e64",
+      "sha256": "7b5174b94ebd1b09583915bbdbe25ca5bc6c6d5c85ec5c2d744ebecde74491e2",
       "sourceSha256": "c5ad155105633401e1d2c0593e2cdab0de7cad1d328530cd5f105f3c1933df13"
     },
     {
@@ -262,7 +286,7 @@
       "path": "docs/reference/compatibility.md",
       "route": "/docs/compatibility",
       "sourcePath": "docs/reference/compatibility.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/compatibility.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/compatibility.md",
       "kind": "repository-document",
       "sha256": "d8a1c8d44b59f8c35df45e944176d15dcb4dbb600646872296bc25685ca0d7d1",
       "sourceSha256": "d8a1c8d44b59f8c35df45e944176d15dcb4dbb600646872296bc25685ca0d7d1"
@@ -274,7 +298,7 @@
       "path": "docs/reference/metrics.md",
       "route": "/docs/metrics",
       "sourcePath": "docs/reference/metrics.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/metrics.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/metrics.md",
       "kind": "repository-document",
       "sha256": "afdf00f2d97edba23a8251d3dd6d7aaf4395a5eef9406fe39ebea3fe735658b5",
       "sourceSha256": "afdf00f2d97edba23a8251d3dd6d7aaf4395a5eef9406fe39ebea3fe735658b5"
@@ -286,9 +310,9 @@
       "path": "docs/assets/README.md",
       "route": "/docs/media-sources",
       "sourcePath": "docs/assets/README.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/assets/README.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/assets/README.md",
       "kind": "repository-document",
-      "sha256": "a4a97ba2205915f993b364609ef22657dc43a05818cda47aac53d081b9a21b63",
+      "sha256": "b1e3be6233d1cd6f09a2b3ff2672826b27571942e9c137b458362fc23892e7dd",
       "sourceSha256": "fc4d3f3f8f4ba450f3dc594ff9c15b73a74144d166f290424316ae625e529a11"
     },
     {
@@ -298,7 +322,7 @@
       "path": "docs/reference/roadmap.md",
       "route": "/docs/roadmap",
       "sourcePath": "docs/reference/roadmap.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/reference/roadmap.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/reference/roadmap.md",
       "kind": "repository-document",
       "sha256": "958ac122089c828d47d8f0b2557da588dd939618323509adada9a063c81d690c",
       "sourceSha256": "6861b153920bb6eddc7abaee17f60f197307a9aef79dbdc58ac5f81d11c8c600"
@@ -310,7 +334,7 @@
       "path": "docs/releases/v1_scope.md",
       "route": "/docs/v1-scope",
       "sourcePath": "docs/releases/v1_scope.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/releases/v1_scope.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/releases/v1_scope.md",
       "kind": "repository-document",
       "sha256": "5a895f81799709e836ef084883c19825bba7b180db1180a864efa7febec5e84b",
       "sourceSha256": "25740edfd0505983f66fb35c07dd477968bf3fde12ba7f329b6af2ce24b62ea5"
@@ -322,9 +346,9 @@
       "path": "docs/releases/v1_evidence.md",
       "route": "/docs/v1-evidence",
       "sourcePath": "docs/releases/v1_evidence.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/releases/v1_evidence.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/releases/v1_evidence.md",
       "kind": "repository-document",
-      "sha256": "ff2593f391bb2c37a7a196f9dd5076131e8a2d11e82e25dd6cc5b9634fa45ef5",
+      "sha256": "0b2a87748deacaac6209cc290d8db93c65c469e52d0dd633215723f4bd66126b",
       "sourceSha256": "ff2593f391bb2c37a7a196f9dd5076131e8a2d11e82e25dd6cc5b9634fa45ef5"
     },
     {
@@ -334,7 +358,7 @@
       "path": "docs/development/testing.md",
       "route": "/docs/testing",
       "sourcePath": "docs/development/testing.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/development/testing.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/development/testing.md",
       "kind": "repository-document",
       "sha256": "c655185bd4a121505fbbffdfd4502abbae6a36b2817f744b431d19a15c5aa9b4",
       "sourceSha256": "c655185bd4a121505fbbffdfd4502abbae6a36b2817f744b431d19a15c5aa9b4"
@@ -346,9 +370,9 @@
       "path": "docs/development/releasing.md",
       "route": "/docs/releasing",
       "sourcePath": "docs/development/releasing.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/development/releasing.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/development/releasing.md",
       "kind": "repository-document",
-      "sha256": "589b1f23111d42178b7d8a015f3995625526d7b334079aecc82c4330d3cc0ca2",
+      "sha256": "647093730d32399d574a6bc13ffa884c75261c95c662375a3ad3e31d881e4fe0",
       "sourceSha256": "cb3eb174828a867c0036eeb17c05e4f0cb13f89fa42f8a5b0cdceb70f980760c"
     },
     {
@@ -358,9 +382,9 @@
       "path": "docs/releases/v1_checklist.md",
       "route": "/docs/v1-checklist",
       "sourcePath": "docs/releases/v1_checklist.md",
-      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/docs/releases/v1_checklist.md",
+      "sourceUrl": "https://github.com/hhhhzl/genedynamics/blob/main/docs/releases/v1_checklist.md",
       "kind": "repository-document",
-      "sha256": "0e5acdee614e6884214f5be6245baa8990e052612f6fe87353a566984705a48c",
+      "sha256": "f015428e306227d53f8643221f2cfbd5e2f8a052ac44952f4ca50a80de10425c",
       "sourceSha256": "0e5acdee614e6884214f5be6245baa8990e052612f6fe87353a566984705a48c"
     }
   ]

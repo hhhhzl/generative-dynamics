@@ -5,12 +5,12 @@ a task, then select a planner from the [planner catalogue](/docs/planners).
 
 | Task | What it provides | Starting configuration | Implementation |
 | --- | --- | --- | --- |
-| **Planar navigation** | A bounded 2D point robot for constrained planning and obstacle avoidance. | [MD-COAS](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/single_2d/mdcoas.yaml) | [Single integrator](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/domains/toy/single_integrator_box_2d.py) |
-| **7-DoF arm avoidance** | D3IL obstacle avoidance with Cartesian XY or seven-joint velocity actions. | [MD-COAS](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/d3il_avoiding/mdcoas.yaml) | [Cartesian interface](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/external/d3il/avoiding_env.py) · [Joint-velocity interface](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/external/d3il/avoiding_env_7d_vel.py) |
-| **Quadruped stepping stones** | Joint planning of body motion, foot residuals and gait phase over discrete footholds. | [2GO](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/quadruped/stepping_stones_2d/main/twogo.yaml) | [Stepping-stone model](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/domains/quadruped/stepping_stones.py) |
-| **Humanoid corridor** | Navigation through narrow passages using body pose, height and arm posture. | [2GO · Zone A](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/humanoid/corridor_2d/main/twogo_zone_a.yaml) | [Corridor model](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/domains/humanoid/corridor.py) |
-| **Surface scanning** | Contact scanning across planar, cylindrical and NURBS surfaces with motion, stiffness and force control. | [MGA](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/arm/surface_scan/main/mga.yaml) | [Surface-scan API](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/domains/manipulation/surface_scan_brax.py) |
-| **Peg insertion** | Contact-rich insertion with motion–impedance actions and pose, clearance, friction and sensing variants. | [MGA](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/configs/arm/peg_insert/main/mga.yaml) | [Insertion environment](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/domains/manipulation/peg_insert_brax.py) |
+| **Planar navigation** | A bounded 2D point robot for constrained planning and obstacle avoidance. | [MD-COAS](https://github.com/hhhhzl/genedynamics/blob/main/configs/single_2d/mdcoas.yaml) | [Single integrator](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/domains/toy/single_integrator_box_2d.py) |
+| **7-DoF arm avoidance** | D3IL obstacle avoidance with Cartesian XY or seven-joint velocity actions. | [MD-COAS](https://github.com/hhhhzl/genedynamics/blob/main/configs/d3il_avoiding/mdcoas.yaml) | [Cartesian interface](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/external/d3il/avoiding_env.py) · [Joint-velocity interface](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/external/d3il/avoiding_env_7d_vel.py) |
+| **Quadruped stepping stones** | Joint planning of body motion, foot residuals and gait phase over discrete footholds. | [2GO](https://github.com/hhhhzl/genedynamics/blob/main/configs/quadruped/stepping_stones_2d/main/twogo.yaml) | [Stepping-stone model](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/domains/quadruped/stepping_stones.py) |
+| **Humanoid corridor** | Navigation through narrow passages using body pose, height and arm posture. | [2GO · Zone A](https://github.com/hhhhzl/genedynamics/blob/main/configs/humanoid/corridor_2d/main/twogo_zone_a.yaml) | [Corridor model](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/domains/humanoid/corridor.py) |
+| **Surface scanning** | Contact scanning across planar, cylindrical and NURBS surfaces with motion, stiffness and force control. | [MGA](https://github.com/hhhhzl/genedynamics/blob/main/configs/arm/surface_scan/main/mga.yaml) | [Surface-scan API](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/domains/manipulation/surface_scan_brax.py) |
+| **Peg insertion** | Contact-rich insertion with motion–impedance actions and pose, clearance, friction and sensing variants. | [MGA](https://github.com/hhhhzl/genedynamics/blob/main/configs/arm/peg_insert/main/mga.yaml) | [Insertion environment](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/domains/manipulation/peg_insert_brax.py) |
 
 ## Configuration keys
 
@@ -44,7 +44,7 @@ required by the selected recipe. D3IL also requires its
 [integration setup](/docs/d3il). MuJoCo, MJX and Brax are simulation
 layers; they do not introduce additional task families.
 
-The [V1 compatibility contract](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/release/v1_compatibility.json)
+The [V1 compatibility contract](https://github.com/hhhhzl/genedynamics/blob/main/release/v1_compatibility.json)
 defines the release scope. Additional source implementations are available for
 experimentation, but are outside this supported task catalogue. Humanoid
 walking/push execution and MGA GPU qualification remain follow-up work.

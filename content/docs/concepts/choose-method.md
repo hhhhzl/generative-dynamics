@@ -42,6 +42,6 @@ and [release scope](/docs/v1-scope) before selecting a device or robot.
 
 ## Sources
 
-Adapted from the repository [README](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/README.md),
+Adapted from the repository [README](https://github.com/hhhhzl/genedynamics/blob/main/README.md),
 [planner catalogue](/docs/planners), [recipes](/docs/recipes),
 and [release scope](/docs/v1-scope).

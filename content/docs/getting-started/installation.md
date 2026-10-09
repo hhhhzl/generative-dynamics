@@ -1,17 +1,22 @@
 # Installation
 
+Choose the [portable CPU setup](#supported-base-environment), a
+[Linux/NVIDIA GPU environment](/docs/gpu/), or the framework's
+[Docker images](/docs/docker/). GPU selection and simulator selection are
+separate; check the requirements of your task.
+
 ## Supported base environment
 
 - Python 3.10, 3.11, or 3.12
 - Linux or macOS for the core package
 - JAX CPU for the portable default
 
-Clone the release branch, then create an isolated environment. Repository
+Clone the repository, then create an isolated environment. Repository
 access is required while the open-source release is being prepared.
 The optimization extra supports the CPU 2GO walkthrough:
 
 ```bash
-git clone --branch release/v1-open-source https://github.com/hhhhzl/genedynamics.git
+git clone https://github.com/hhhhzl/genedynamics.git
 cd genedynamics
 python -m venv .venv
 source .venv/bin/activate
@@ -56,6 +61,8 @@ python -c "import jax; print(jax.default_backend(), jax.devices())"
 
 The first V1 release does not qualify MGA GPU behavior. A visible GPU device
 only proves installation; it does not prove numerical parity or performance.
+See [GPU workflows](/docs/gpu/) for device checks, Python use, and configured
+MBD/2GO examples. See [Docker](/docs/docker/) to run the same tasks in a container.
 
 ## MuJoCo Menagerie assets
 
@@ -67,7 +74,7 @@ bash scripts/setup/setup_mujoco_menagerie.sh
 ```
 
 The setup is safe to repeat and refuses conflicting edits. See the
-[asset revision and patch notes](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/third_party/patches/README.md)
+[asset revision and patch notes](https://github.com/hhhhzl/genedynamics/blob/main/third_party/patches/README.md)
 for the upstream pin and local-checkout behavior.
 
 ## D3IL

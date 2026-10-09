@@ -32,7 +32,7 @@ energy = make_energy("single_integrator_box_2d")
 `make_env(name: str, **kwargs)` creates a registered environment; an unknown
 name raises `ValueError` and lists available registrations.
 `make_energy(env_name: str)` creates the registered energy functional for that
-environment name. See the [factory implementation](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/envs/factories.py#L35).
+environment name. See the [factory implementation](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/envs/factories.py#L35).
 
 ## Runtime and a direct solver
 
@@ -59,10 +59,10 @@ options are not universal across all planners.
 requires `len(states) == len(actions) + 1`; inconsistent lengths raise
 `ValueError`.
 
-Sources: [runtime manager](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/backends/runtime/manager.py#L44),
-[2GO constructor](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/solvers/single/twogo/twogo.py#L35),
-[solver contract](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/solvers/base.py#L65),
-[Trajectory](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/core/types.py#L63).
+Sources: [runtime manager](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/backends/runtime/manager.py#L44),
+[2GO constructor](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/solvers/single/twogo/twogo.py#L35),
+[solver contract](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/solvers/base.py#L65),
+[Trajectory](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/core/types.py#L63).
 
 ## Configure and run an experiment
 
@@ -97,10 +97,10 @@ formal-readiness and checkpoint-file checks before execution.
 | `runner.run_all(resume=False)` | Expand configured suites/levels/seeds and return experiment result dictionaries. |
 | `runner.failures` | Retained failed entries from the current matrix run. |
 
-Sources: [configuration](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/config.py#L129),
-[runner construction](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L124),
-[matrix execution](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/experiment.py#L846),
-[built-in registration](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/runner.py#L330).
+Sources: [configuration](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/config.py#L129),
+[runner construction](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L124),
+[matrix execution](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/experiment.py#L846),
+[built-in registration](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/runner.py#L330).
 
 ## Registry and plugin contracts
 
@@ -121,5 +121,5 @@ Environment plugins own environment creation, energy creation, state dimension,
 and position extraction, with optional task-owned reset and execution behavior.
 
 See [Add a plugin](/docs/adding-a-plugin), the
-[registry source](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/registry.py#L12),
-and [abstract contracts](https://github.com/hhhhzl/genedynamics/blob/release/v1-open-source/genedynamics/experiments/framework/base.py#L19).
+[registry source](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/registry.py#L12),
+and [abstract contracts](https://github.com/hhhhzl/genedynamics/blob/main/genedynamics/experiments/framework/base.py#L19).
