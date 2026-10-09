@@ -127,8 +127,8 @@
       },
       {
         "label": "2D constrained maps",
-        "value": "100% SSR",
-        "condition": "Safe & Success Rate on Easy and Constrained map families, L1–L6. The more difficult non-convex Union Maps, L7–L10, achieve approximately 50% SSR."
+        "value": "0.98–1.00 SSR",
+        "condition": "Safe & Success Rate reported in the result heatmap for Easy and Constrained map families, L1–L6. The more difficult non-convex Union Maps, L7–L10, achieve approximately 50% SSR."
       },
       {
         "label": "Hardest arm setting",

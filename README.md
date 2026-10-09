@@ -22,6 +22,8 @@ The current four papers are entries, not a fixed site limit. Research detail pag
 | --- | --- |
 | Framework name, repository, version, canonical origin | `content/site.json` |
 | Research papers, their story, evidence, links, and associated demos | `content/research.json` |
+| Paper figures, full comparison tables, captions, and source references | `content/evidence/*.json` |
+| Original paper figure assets | `assets/media/papers/` |
 | Method catalog, including methods without a dedicated paper | `content/methods.json` |
 | Homepage CPU, GPU, and Docker code examples | `content/examples.json` |
 | Documentation navigation and grouping | `content/docs.json` |
@@ -37,6 +39,8 @@ To add a paper, copy a complete entry in `content/research.json`, assign a uniqu
 To add a documentation page, save its Markdown in `content/docs/` and register its path, slug, title, and group in `content/docs.json`. Use site-relative links to `/docs/<slug>/`. Documentation search filters page titles in the sidebar; it is not a full-text search engine.
 
 To add a demonstration, place the video in `assets/media/`, add its metadata to `content/media.json`, and reference its ID in a paper, `homepageIds`, or `heroIds`. The hero selection combines simulation and hardware clips. Preserve the existing research demonstrations when adding hardware footage. MP4 clips are used in place of GIFs to reduce transfer size and provide controls. Preserve the source, hardware/simulation distinction, and playback-speed qualification. 2GO and hardware clips use `timingPolicy: "source"` and `playbackRate: 1`; retain original timestamps when re-encoding and record the selected source interval. Never shorten a clip by speeding it up.
+
+To add reported results, create `content/evidence/<paper-id>.json`. Figures retain their original panels and legends and link to full-resolution assets. Tables store all rows, column groups, experimental conditions, and source figure/table labels; highlighted rows identify the proposed method. Keep numerical precision and distinguish planning candidates, governed execution, and hardware trials. Paper assets are derivatives of the supplied manuscripts, not new experiment runs.
 
 After changing content, rebuild. Each build refreshes the generated `dist/` directory. Keep internal links and citation targets valid.
 
@@ -62,7 +66,7 @@ The included `.github/workflows/deploy-pages.yml` builds with Node.js 24 and pub
 2. Push this website checkout to that repository's `main` branch. The framework repository is separate; these instructions publish the website source.
 
 ```sh
-cd /Users/zhilinhe/Documents/Codex/2026-10-08/ca/outputs/generative-dynamics
+cd /Users/zhilinhe/Desktop/hhhhzl/EduGetRicher/CMU/projects/enerdynamics/site/generative-dynamics
 git remote add github https://github.com/hhhhzl/generative-dynamics.git
 git push -u github HEAD:main
 ```

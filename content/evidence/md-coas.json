@@ -1,0 +1,163 @@
+{
+  "intro": "Paper results evaluate constraint optimization and adaptive scheduling on ten 2D difficulty levels and a 7-DoF arm obstacle-avoidance task.",
+  "figures": [
+    {
+      "id": "md-coas-2d-benchmark",
+      "title": "Safety, cost, and runtime across 2D maps",
+      "src": "/media/papers/md-coas/2d-benchmark-results.png",
+      "alt": "Original paper heatmap of safe and success rate at levels L1 to L10, with cost convergence, final cost, runtime, and all method legends.",
+      "caption": "Safe & Success Rate at each difficulty level, followed by cost over reverse-diffusion steps, final cost, and planning time. Each level uses 10 random seeds and 20 trajectory modes per seed. Shaded regions show one standard deviation. MD-COAS-A and MD-COAS-F are ablations; the full method is the MD-COAS row.",
+      "sourceLabel": "Figure 3",
+      "sourceFile": "latex/latex_mdcoas/tex/exp1.tex",
+      "sourceLines": "33–39"
+    },
+    {
+      "id": "md-coas-adaptive-scheduling",
+      "title": "How safety effort adapts during denoising",
+      "src": "/media/papers/md-coas/adaptive-scheduling.png",
+      "alt": "Original paper plots of the residual-driven augmented Lagrangian duals and adaptive CFS projection scheduling across reverse diffusion.",
+      "caption": "Safety-enforcement variables over reverse-diffusion steps, averaged across all 2D levels and seeds. Left: iALM dual and penalty updates driven by the feasibility residual. Right: CFS projection probability, iteration budget, active-set size, and compute dual. The plot compares the full method with two ablations.",
+      "sourceLabel": "Figure 4",
+      "sourceFile": "latex/latex_mdcoas/tex/exp1_a.tex",
+      "sourceLines": "45–49"
+    }
+  ],
+  "tables": [
+    {
+      "id": "md-coas-arm-results",
+      "title": "7-DoF arm obstacle avoidance",
+      "caption": "Quantitative results as obstacle radius increases. SSR is Safe & Success Rate (↑); V is violation rate (% ↓); T is planning time (↓); P is path length (↓). Means are reported across seeds, with path length averaged over safe and successful trajectories.",
+      "sourceLabel": "Table I",
+      "sourceFile": "latex/latex_mdcoas/tex/exp2.tex",
+      "sourceLines": "28–105",
+      "columns": [
+        "Method",
+        "SSR ↑",
+        "V (%) ↓",
+        "T ↓",
+        "P ↓",
+        "SSR ↑",
+        "V (%) ↓",
+        "T ↓",
+        "P ↓",
+        "SSR ↑",
+        "V (%) ↓",
+        "T ↓",
+        "P ↓"
+      ],
+      "groups": [
+        {
+          "label": "",
+          "colspan": 1
+        },
+        {
+          "label": "Obstacle radius = 0.03",
+          "colspan": 4
+        },
+        {
+          "label": "Obstacle radius = 0.04",
+          "colspan": 4
+        },
+        {
+          "label": "Obstacle radius = 0.05",
+          "colspan": 4
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            "SafeDiffuser",
+            "0.45",
+            "1.30",
+            "5.49 ± 0.20",
+            "1.57 ± 0.05",
+            "0.35",
+            "2.68",
+            "11.53 ± 1.30",
+            "1.56 ± 0.05",
+            "0.30",
+            "4.40",
+            "11.18 ± 0.10",
+            "1.54 ± 0.03"
+          ]
+        },
+        {
+          "cells": [
+            "DPCC-C",
+            "0.75",
+            "0.78",
+            "1528.91 ± 571.70",
+            "1.32 ± 0.39",
+            "0.54",
+            "1.44",
+            "2561.96 ± 1818.70",
+            "1.51 ± 0.53",
+            "0.64",
+            "2.10",
+            "3460.31 ± 1568.70",
+            "1.44 ± 0.40"
+          ]
+        },
+        {
+          "cells": [
+            "EB-MBD",
+            "0.98",
+            "0.00",
+            "4.37 ± 2.00",
+            "1.01 ± 0.05",
+            "0.91",
+            "0.00",
+            "4.02 ± 0.60",
+            "1.02 ± 0.05",
+            "0.82",
+            "0.00",
+            "4.06 ± 0.60",
+            "1.01 ± 0.06"
+          ]
+        },
+        {
+          "cells": [
+            "MDOC",
+            "1.00",
+            "0.00",
+            "5.65 ± 1.90",
+            "0.89 ± 0.04",
+            "0.99",
+            "0.04",
+            "4.90 ± 0.60",
+            "0.88 ± 0.04",
+            "0.73",
+            "0.02",
+            "4.87 ± 0.70",
+            "0.90 ± 0.04"
+          ]
+        },
+        {
+          "cells": [
+            "MD-COAS (ours)",
+            "1.00",
+            "0.00",
+            "13.53 ± 2.90",
+            "0.99 ± 0.04",
+            "1.00",
+            "0.00",
+            "13.98 ± 2.10",
+            "0.99 ± 0.05",
+            "1.00",
+            "0.00",
+            "14.87 ± 2.10",
+            "1.00 ± 0.07"
+          ],
+          "highlight": true
+        }
+      ],
+      "notes": [
+        "Five random seeds and 20 trajectory modes per seed at each obstacle radius: 100 modes per method and level. End-effector radius is fixed at 0.01.",
+        "± values are standard deviations, rendered from the original right-superscript notation. The paper reports no standard deviations for SSR or V.",
+        "The source table does not specify physical units for T, P, or obstacle radius; these are reproduced as reported.",
+        "CFS projection is applied to all unweighted trajectory samples. The paper reports a trade-off between planning performance and computation time.",
+        "Hardware: NVIDIA RTX A6000 (48 GB) and 9 CPU cores; CFS projections use jaxopt."
+      ]
+    }
+  ]
+}

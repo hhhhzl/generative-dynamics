@@ -1,0 +1,77 @@
+{
+  "intro": "Paper results compare MDOC with single-robot planners and evaluate MDOC-CBS on multi-robot coordination and larger maps.",
+  "figures": [
+    {
+      "id": "mdoc-narrow-paths",
+      "title": "Single-robot narrow passages",
+      "src": "/media/papers/mdoc/narrow-path-comparison.png",
+      "alt": "Paper trajectory comparison for CEM, MPPI, RRT star, and MDOC on Narrow and More-Constrained Narrow maps.",
+      "caption": "Best collision-free trajectories from CEM, MPPI, RRT*, and MDOC on the Narrow (left) and More-Constrained Narrow (right) maps. These are the path-comparison panels from the paper; planner colors and legends are unchanged.",
+      "sourceLabel": "Figure 2 (path-comparison panels)",
+      "sourceFile": "latex/latex_mdoc/figures/tex/single.tex",
+      "sourceLines": "3–22"
+    },
+    {
+      "id": "mdoc-coordinated-trajectories",
+      "title": "Multi-robot coordination",
+      "src": "/media/papers/mdoc/conveyor-trajectory-comparison.png",
+      "alt": "Six-robot Conveyor Circle trajectories for KCBS, MMD-CBS, and MDOC-CBS, in that order.",
+      "caption": "Six robots in the Conveyor Circle setup: KCBS (left), MMD-CBS (center), and MDOC-CBS (right). Trajectories are shown without post-smoothing.",
+      "sourceLabel": "Figure 3 (Conveyor panels)",
+      "sourceFile": "latex/latex_mdoc/figures/tex/traj.tex",
+      "sourceLines": "3–27"
+    },
+    {
+      "id": "mdoc-large-map",
+      "title": "Scaling to 40 robots",
+      "src": "/media/papers/mdoc/large-map-scalability.png",
+      "alt": "Success rate and planning time versus robot count on the 6 by 6 Empty map, with the original five-planner legend.",
+      "caption": "Success rate and planning time on the 6 × 6 Empty map with the Random setup and horizon H = 196. Ten seeded trials per method and map; each trial has a 500-second limit. Planning time is averaged over successful trials, with outliers included in the mean but omitted beyond the 95th percentile from the visualization.",
+      "sourceLabel": "Figure 6 (6 × 6 results)",
+      "sourceFile": "latex/latex_mdoc/figures/tex/emptylarge.tex",
+      "sourceLines": "34–47"
+    }
+  ],
+  "tables": [
+    {
+      "id": "mdoc-pass-free",
+      "title": "Useful samples through narrow passages",
+      "caption": "Pass & Free Yield (% ↑): candidate trajectories that both traverse the bottleneck and remain collision-free, under a fixed proposal budget of M = 128 per planning step.",
+      "sourceLabel": "Table I",
+      "sourceFile": "latex/latex_mdoc/figures/tex/single.tex",
+      "sourceLines": "26–36",
+      "columns": [
+        "Map",
+        "CEM",
+        "MPPI",
+        "RRT*",
+        "MDOC (ours)"
+      ],
+      "rows": [
+        {
+          "cells": [
+            "Narrow",
+            "2.1 ± 0.2",
+            "3.2 ± 0.3",
+            "66.1 ± 6.0",
+            "100.0"
+          ]
+        },
+        {
+          "cells": [
+            "More-Constrained Narrow",
+            "0.2 ± 0.1",
+            "0.4 ± 0.1",
+            "41.7 ± 3.4",
+            "100.0"
+          ]
+        }
+      ],
+      "notes": [
+        "Ten trials per method and map, with different random seeds. Hardware: NVIDIA RTX A4500 (20 GB) and 12 CPU cores.",
+        "For RRT*, Pass & Free Yield is the fraction of expanded nodes whose associated paths traverse the bottleneck and remain collision-free; for trajectory optimizers it is the fraction of candidate trajectories.",
+        "Values and uncertainty are reproduced at the precision reported in the paper. The source caption does not identify the type of the ± uncertainty."
+      ]
+    }
+  ]
+}

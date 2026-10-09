@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://generative-dynamics.wisecocoa1.chatgpt.site/sitemap.xml
+Sitemap: https://hhhhzl.github.io/generative-dynamics/sitemap.xml
