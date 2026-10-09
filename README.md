@@ -36,7 +36,7 @@ To add a paper, copy a complete entry in `content/research.json`, assign a uniqu
 
 To add a documentation page, save its Markdown in `content/docs/` and register its path, slug, title, and group in `content/docs.json`. Use site-relative links to `/docs/<slug>/`. Documentation search filters page titles in the sidebar; it is not a full-text search engine.
 
-To add a demonstration, place the video in `assets/media/`, add its metadata to `content/media.json`, and reference its ID in a paper, `homepageIds`, or `heroIds`. The hero selection requires hardware clips. MP4 clips are used in place of GIFs to reduce transfer size and provide controls. Preserve the source, hardware/simulation distinction, and playback-speed qualification. 2GO and hardware clips use `timingPolicy: "source"` and `playbackRate: 1`; retain original timestamps when re-encoding and record the selected source interval. Never shorten a clip by speeding it up.
+To add a demonstration, place the video in `assets/media/`, add its metadata to `content/media.json`, and reference its ID in a paper, `homepageIds`, or `heroIds`. The hero selection combines simulation and hardware clips. Preserve the existing research demonstrations when adding hardware footage. MP4 clips are used in place of GIFs to reduce transfer size and provide controls. Preserve the source, hardware/simulation distinction, and playback-speed qualification. 2GO and hardware clips use `timingPolicy: "source"` and `playbackRate: 1`; retain original timestamps when re-encoding and record the selected source interval. Never shorten a clip by speeding it up.
 
 After changing content, rebuild. Each build refreshes the generated `dist/` directory. Keep internal links and citation targets valid.
 

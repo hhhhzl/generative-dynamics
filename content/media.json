@@ -15,6 +15,9 @@
     "mdoc_cbs_random",
     "mdcoas_7dof_execution",
     "twogo_go2_s2",
+    "twogo_g1_zone_c",
+    "mga_surface_hybrid_stripes",
+    "mga_peg_id_wide",
     "hardware_twogo_g1",
     "hardware_mga_surface_foam",
     "hardware_mga_peg_insert"
@@ -138,7 +141,8 @@
       "scientificMotionSynthesized": false,
       "frameCount": 148,
       "timingPolicy": "source",
-      "playbackRate": 1
+      "playbackRate": 1,
+      "heroLabel": "Feasible footholds"
     },
     {
       "id": "twogo_g1_zone_c",
@@ -180,7 +184,8 @@
       "scientificMotionSynthesized": false,
       "frameCount": 576,
       "timingPolicy": "source",
-      "playbackRate": 1
+      "playbackRate": 1,
+      "heroLabel": "Corridor navigation"
     },
     {
       "id": "mga_surface_hybrid_stripes",
@@ -219,7 +224,8 @@
       "sourceClip": "docs/assets/showcase_sources/v2/mga_surface_hybrid_stripes.mp4",
       "playback": "Source excerpt rescaled to 6.0 seconds; looped, silent; not real-time execution or latency evidence.",
       "qualification": "research-demonstration",
-      "scientificMotionSynthesized": false
+      "scientificMotionSynthesized": false,
+      "heroLabel": "Adaptive contact"
     },
     {
       "id": "mga_peg_id_wide",
@@ -457,7 +463,7 @@
       "frameCount": 600,
       "timingPolicy": "source",
       "playbackRate": 1,
-      "heroLabel": "Real Unitree G1 \u00b7 AR obstacles"
+      "heroLabel": "G1 \u00b7 AR obstacles"
     },
     {
       "id": "hardware_mga_surface_foam",
@@ -500,7 +506,7 @@
       "frameCount": 360,
       "timingPolicy": "source",
       "playbackRate": 1,
-      "heroLabel": "Compliant surface interaction"
+      "heroLabel": "Compliant contact"
     },
     {
       "id": "hardware_mga_surface_curved",
@@ -595,7 +601,10 @@
     "showcase-poster.png"
   ],
   "heroIds": [
+    "mga_surface_hybrid_stripes",
     "hardware_twogo_g1",
+    "twogo_go2_s2",
+    "twogo_g1_zone_c",
     "hardware_mga_surface_foam",
     "hardware_mga_peg_insert"
   ]
