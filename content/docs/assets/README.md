@@ -20,7 +20,8 @@ All 2GO animations retain their original frame timing, and hardware excerpts
 retain the original source-video timing. They loop silently without added
 acceleration. The homepage hero combines the original MGA contact and 2GO
 locomotion simulations with real G1 hardware using AR virtual obstacles and MGA
-hardware surface interaction and insertion. The gallery retains all six original
+hardware surface interaction and insertion. Three additional Unitree H1 contact
+clips complete the hero’s 3 × 3 grid. The gallery retains all six original
 research demonstrations and adds three hardware clips. An additional row shows
 MGA Unitree H1 fixed-stance pushing, contact-force regulation, and unjamming
 from the paper supplement. These humanoid clips preserve the original GIF

@@ -640,14 +640,15 @@
       "timingPolicy": "source",
       "playbackRate": 1,
       "recipeSupported": false,
-      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path."
+      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path.",
+      "heroLabel": "Humanoid pushing"
     },
     {
       "id": "mga_humanoid_force_regulation",
       "title": "Humanoid force regulation",
       "method": "MGA",
       "task": "Force-regulated pushing",
-      "caption": "Unitree H1 regulates contact force while pushing.",
+      "caption": "Unitree H1 regulates contact force against a stationary box.",
       "medium": "simulation",
       "usage": "home",
       "path": "assets/media/mga_humanoid_force_regulation.mp4",
@@ -685,7 +686,8 @@
       "timingPolicy": "source",
       "playbackRate": 1,
       "recipeSupported": false,
-      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path."
+      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path.",
+      "heroLabel": "Force regulation"
     },
     {
       "id": "mga_humanoid_unjamming",
@@ -730,7 +732,8 @@
       "timingPolicy": "source",
       "playbackRate": 1,
       "recipeSupported": false,
-      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path."
+      "context": "MGA Unitree H1 simulation from the paper supplement. Humanoid pushing remains deferred in the current framework release; this clip does not establish a qualified V1 reproduction path.",
+      "heroLabel": "Contact unjamming"
     }
   ],
   "missing": [],
@@ -745,6 +748,9 @@
     "twogo_go2_s2",
     "twogo_g1_zone_c",
     "hardware_mga_surface_foam",
-    "hardware_mga_peg_insert"
+    "hardware_mga_peg_insert",
+    "mga_humanoid_fixed_stance_push",
+    "mga_humanoid_force_regulation",
+    "mga_humanoid_unjamming"
   ]
 }
